@@ -17,11 +17,11 @@ Pivotal Tracker.
 - [ ] Hosting on Heroku
 
 ### Design Docs
-1. [Wireframes](/wireframes)
-2. [React Components](/component-hierarchy.md)
-3. [Sample State](/sample-state.md)
-4. [DB Schema](/schema.md)
-5. [API Endponts](/api-endpoints.md)
+1. [Wireframes](/docs/wireframes)
+2. [React Components](/docs/component-hierarchy.md)
+3. [Sample State](/docs/sample-state.md)
+4. [DB Schema](/docs/schema.md)
+5. [API Endponts](/docs/api-endpoints.md)
 
 ### Implementation Timeline
 ##### Phase 1: User Authentication (2 days)
