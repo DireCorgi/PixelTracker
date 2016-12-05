@@ -9,8 +9,8 @@
 * PATCH /api/users
 
 #### Session
-*POST /api/session
-*DELETE /api/session
+* POST /api/session
+* DELETE /api/session
 
 #### Project
 * POST /api/projects

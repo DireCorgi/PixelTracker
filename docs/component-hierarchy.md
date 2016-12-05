@@ -1,36 +1,36 @@
 ### Component Hierarchy
 
-##### AuthformContainer
+#### AuthformContainer
 * AuthForm
 
-##### DashboardContainer
+#### DashboardContainer
 * Header
 * ProjectIndex
 
-##### ProjectContainer
+#### ProjectContainer
 * ProjectHeader
 * Sidebar
 * StoryIndex
 
-##### NewProjectContainer
+#### NewProjectContainer
 * NewProject
 
-##### StoryContainer
+#### StoryContainer
 * StoryDetailView
 
-##### MemberContainer
+#### MemberContainer
 * ProjectHeader
 * NewMember
 * MemberIndex
 
-##### ProjectIndex
+#### ProjectIndex
 * ProjectSummaryView
 
-##### StoryIndex
+#### StoryIndex
 * StoryFilterColumn
   * StorySummaryView
 
-##### StoryDetailView
+#### StoryDetailView
 * StoryName
 * StoryTags
 * StoryDescription
