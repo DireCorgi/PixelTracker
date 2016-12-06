@@ -52,10 +52,10 @@ class MainHeader extends React.Component {
 
   render() {
     return (
-      <header className="main-header">
+      <header className="main-header group">
         <h1 className="header-logo">Pixel Tracker</h1>
 
-        <nav className="right-nav-list">
+        <nav className="right-nav-list group">
           { this.navItems() }
         </nav>
       </header>
