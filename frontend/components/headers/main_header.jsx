@@ -31,8 +31,8 @@ class MainHeader extends React.Component {
     } else {
       return (
         <ul>
-          <li><Link to='/signup'>Signup</Link></li>
-          <li><Link to='/login'>LogIn</Link></li>
+          <li><Link to='/login'>Log in</Link></li>
+          <li className="sign-up-link"><Link to='/signup'>Sign up</Link></li>
         </ul>
       );
     }
@@ -52,12 +52,14 @@ class MainHeader extends React.Component {
 
   render() {
     return (
-      <header className="main-header group">
-        <h1 className="header-logo">Pixel Tracker</h1>
+      <header className="main-header">
+        <div className="header-container group">
+          <h1 className="header-logo">Pixel Tracker</h1>
 
-        <nav className="right-nav-list group">
-          { this.navItems() }
-        </nav>
+          <nav className="right-nav-list group">
+            { this.navItems() }
+          </nav>
+        </div>
       </header>
     );
   }

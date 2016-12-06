@@ -2,6 +2,41 @@ header.main-header {
   background: #fff;
 }
 
+.header-container {
+  margin: 0 auto;
+  padding: 10px 20px;
+  max-width: 860px;
+  min-width: 360px;
+}
+
 .header-logo {
-  
+  float: left;
+  padding: 10px 0;
+}
+
+.right-nav-list {
+  float: right;
+}
+
+.right-nav-list li {
+  float: left;
+  padding: 10px 0;
+  margin: 0 20px;
+}
+
+.right-nav-list a {
+  display: block;
+  color: #426FA0;
+  text-shadow: 0 0 1px #94D2ED;
+  font-size: 14px;
+  border-radius: 3px;
+  padding: 4px 8px;
+  font-weight: 300;
+}
+
+
+.sign-up-link a{
+  color: #fff;
+  background: #F39E40;
+  text-shadow: 0 0 0;
 }
