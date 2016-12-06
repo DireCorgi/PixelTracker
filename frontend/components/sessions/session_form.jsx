@@ -7,6 +7,7 @@ class SessionForm extends React.Component {
     this.state = { username: "", password: "", email: "" };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleGuestLogin = this.handleGuestLogin.bind(this);
     this.updateUsername = this.updateUsername.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
     this.updateEmail = this.updateEmail.bind(this);
@@ -24,20 +25,22 @@ class SessionForm extends React.Component {
     }
   }
 
-linkToOther() {
-    if (linkType === 'login') {
-      return (
-        <Link to='/signup'>Sign Up</Link>
-      );
-    } else if (linkType === 'signup') {
-      return (
-        <Link to='/login'>Log In</Link>
-      );
-    }
+  componentDidMount() {
+    this.props.receiveNewHeaderType(this.props.formType);
   }
 
   componentDidUpdate() {
     this.redirectIfLoggedIn();
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (this.props.formType !== newProps.formType){
+      this.props.receiveNewHeaderType(newProps.formType);
+    }
+  }
+
+  componentWillUnmount() {
+    this.props.receiveNewHeaderType('default');
   }
 
   redirectIfLoggedIn() {
@@ -76,10 +79,34 @@ linkToOther() {
     });
   }
 
+  emailInput() {
+    if (this.props.formType === 'login') {
+      return null;
+    } else {
+      return (
+        <label>Email
+          <input type='text' value={this.state.email} onChange={this.updateEmail}/>
+        </label>
+      );
+    }
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state);
     this.props.processForm(user);
+  }
+
+  handleGuestLogin(e) {
+    this.props.processForm( { username: 'guest', password: 'starwars'} );
+  }
+
+  guestLogin(){
+    if (this.props.formType === 'login'){
+      return (<button className='guest-button' onClick={this.handleGuestLogin}>Guest Login</button>);
+    } else {
+      return null;
+    }
   }
 
   render() {
@@ -90,11 +117,13 @@ linkToOther() {
           <label>Username
             <input type='text' value={this.state.username} onChange={this.updateUsername} />
           </label>
+          { this.emailInput() }
           <label>Password
             <input type='password' value={this.state.password} onChange={this.updatePassword}/>
           </label>
           <input className='submit-button' type='submit' value='submit' />
         </form>
+        {this.guestLogin()}
         {this.renderErrors()}
       </section>
     );

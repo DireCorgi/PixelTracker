@@ -3,7 +3,10 @@ import { logout } from '../../actions/session_actions';
 import MainHeader from './main_header.jsx';
 
 const mapStateToProps = ( store ) => {
-  return { currentUser: store.session.currentUser };
+  return {
+    currentUser: store.session.currentUser,
+    headerType: store.headerInfo.headerType,
+  };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {

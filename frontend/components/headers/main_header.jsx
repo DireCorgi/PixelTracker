@@ -22,7 +22,7 @@ class MainHeader extends React.Component {
           </li>
         </ul>
       );
-    } else if (this.props.pageLocation === 'signup' || this.props.pageLocation === 'login') {
+    } else if (this.props.headerType === 'signup' || this.props.headerType === 'login') {
       return (
         <ul>
           <li>{this.linkToOtherSession()}</li>
@@ -39,11 +39,11 @@ class MainHeader extends React.Component {
   }
 
   linkToOtherSession() {
-      if (this.props.pageLocation === 'login') {
+      if (this.props.headerType === 'login') {
         return (
           <Link to='/signup'>Sign Up</Link>
         );
-      } else if (this.props.pageLocation === 'signup') {
+      } else if (this.props.headerType === 'signup') {
         return (
           <Link to='/login'>Log In</Link>
         );
