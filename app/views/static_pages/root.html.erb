@@ -2,6 +2,11 @@
   <% if logged_in? %>
     window.currentUser = <%= render("api/users/user.json.jbuilder", user: current_user).html_safe %>
   <% end %>
+
+  window.mainLogoPath = "<%= image_path 'icons/Pixel-Tracker-Logo-main.png' %>";
+  window.lightLogoPath = "<%= image_path 'icons/Pixel-Tracker-Logo-light.png' %>";
+  window.splashBackgroundPath = "<%= image_path 'splash-background-compressed.jpg' %>";
+
 </script>
 
 <div id="root"></div>

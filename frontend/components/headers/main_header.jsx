@@ -41,11 +41,15 @@ class MainHeader extends React.Component {
   linkToOtherSession() {
       if (this.props.headerType === 'login') {
         return (
-          <Link to='/signup'>Sign Up</Link>
+          <figure className="session-header-message">
+            don't have an account?<Link to='/signup'>Sign Up</Link>
+          </figure>
         );
       } else if (this.props.headerType === 'signup') {
         return (
-          <Link to='/login'>Log In</Link>
+          <figure className="session-header-message">
+            already have an account?<Link to='/login'>Log In</Link>
+          </figure>
         );
       }
   }
@@ -54,8 +58,10 @@ class MainHeader extends React.Component {
     return (
       <header className="main-header">
         <div className="header-container group">
-          <h1 className="header-logo">Pixel Tracker</h1>
-
+          <h1 className="header-logo">
+            <img src={window.mainLogoPath} alt="Logo" />
+            Pixel<span className="header-logo-inside">
+              Tracker</span></h1>
           <nav className="right-nav-list group">
             { this.navItems() }
           </nav>

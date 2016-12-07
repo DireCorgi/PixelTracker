@@ -6,12 +6,28 @@ header.main-header {
   margin: 0 auto;
   padding: 10px 20px;
   max-width: 860px;
-  min-width: 360px;
+  min-width: 470px;
 }
 
 .header-logo {
   float: left;
   padding: 10px 0;
+  font-size: 22px;
+  color: #517C9F;
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
+}
+
+.header-logo > img{
+  width: auto;
+  height: 24px;
+  display: inline-block;
+  position: relative;
+  top: 3px;
+}
+
+.header-logo-inside {
+  color: #DE752C;
 }
 
 .right-nav-list {
@@ -25,7 +41,7 @@ header.main-header {
 }
 
 .right-nav-list a {
-  display: block;
+  display: inline-block;
   color: #426FA0;
   text-shadow: 0 0 1px #94D2ED;
   font-size: 14px;
@@ -34,9 +50,24 @@ header.main-header {
   font-weight: 300;
 }
 
-
 .sign-up-link a{
   color: #fff;
   background: #F39E40;
   text-shadow: 0 0 0;
+}
+
+.session-header-message {
+  margin: 5px 0 0 0;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+.session-header-message a{
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
