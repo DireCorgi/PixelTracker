@@ -6,9 +6,8 @@ section.session-form {
   display: block;
   position: absolute;;
   top: 10%;
-  left: 30%;
-  bottom: 10%;
-  right: 30%;
+  left: 50%;
+  transform: translateX(-50%);
   min-width: 100px;
   border-radius: 3px;
   background: #F3F4F4;

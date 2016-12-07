@@ -15,11 +15,8 @@ class MainHeader extends React.Component {
     if (this.loggedIn()) {
       return (
         <ul>
-          <li>{ this.props.currentUser.username }
-            <nav className="username-dropdown">
-              <button onClick={this.props.logout}>Logout</button>
-            </nav>
-          </li>
+          <li><button className="logout-button" onClick={this.props.logout}>Logout</button></li>
+          <li><span>{ this.props.currentUser.username }</span></li>
         </ul>
       );
     } else if (this.props.headerType === 'signup' || this.props.headerType === 'login') {

@@ -1,3 +1,4 @@
+
 .splash-page > img {
   max-width: 100%;
   height: auto;
@@ -8,10 +9,15 @@
   filter: blur(1.4px);
 }
 
+img.blur {
+  filter: blur(2.2px);
+}
+
 .splash-page {
   position: relative;
   background: #3187e0;
   border-top: 1px solid #7fb5ed;
+  border-bottom: 1px solid #7fb5ed;
   overflow: hidden;
   max-height: 600px;
 }
@@ -29,8 +35,7 @@
   font-family: 'Merriweather', serif;
   width: 100%;
   text-shadow: 0 0 20px black;
-  transition: opacity 0.5s;
-   -webkit-transition: opacity 0.5s; /* Safari */
+  transition: opacity 0.7s;
 }
 
 .fade {
