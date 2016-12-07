@@ -39,6 +39,7 @@ class SessionForm extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if (this.props.formType !== newProps.formType){
+      this.props.resetErrors();
       this.props.receiveNewHeaderType(newProps.formType);
     }
   }
@@ -102,10 +103,11 @@ class SessionForm extends React.Component {
   }
 
   handleGuestLogin(e) {
+    e.preventDefault();
     this.props.processForm( { username: 'guest', password: 'starwars'} );
   }
 
-  guestLogin(){
+  guestLogin() {
     if (this.props.formType === 'login'){
       return (<button className='guest-button' onClick={this.handleGuestLogin}>Guest Login</button>);
     } else {
@@ -113,16 +115,27 @@ class SessionForm extends React.Component {
     }
   }
 
+  isErrored(inputName) {
+    let errorClass = "";
+    this.props.errors.forEach((error)=> {
+      if (error.includes(inputName)) {
+        errorClass = "errored-input";
+      }
+    });
+    return errorClass;
+  }
+
   render() {
+
     return (
       <section className='session-form'>
         {this.header()}
         <form className='login-box' onSubmit={this.handleSubmit}>
-          <label>Username
+          <label className={this.isErrored("Username")}>Username
             <input type='text' value={this.state.username} onChange={this.updateUsername} />
           </label>
             { this.emailInput() }
-          <label>Password
+          <label className={this.isErrored("Password")}>Password
             <input type='password' value={this.state.password} onChange={this.updatePassword}/>
           </label>
           <input className='submit-button' type='submit' value={this.flavorText} />

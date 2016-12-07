@@ -17,6 +17,13 @@ export const receiveErrors = (errors) => {
   };
 };
 
+export const resetErrors = () => {
+  return {
+    type: RECEIVE_ERRORS,
+    errors: [],
+  };
+};
+
 export const login = (user) => {
   return (dispatch) => {
     return SessionAPIUtil.login(user).then(

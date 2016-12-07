@@ -39,6 +39,11 @@ section.session-form {
   margin-bottom: 15px;
 }
 
+.errored-input {
+  color: #B61437;
+  font-weight: 600;
+}
+
 .login-box input {
   margin-top: 2px;
   color: black;
@@ -70,4 +75,12 @@ button.guest-button {
 ul.error-display {
   margin: 0 auto;
   width: 80%;
+  color: #c7284a;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.error-display li {
+  font-weight: 400;
 }

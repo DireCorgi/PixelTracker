@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import SessionForm from './session_form';
-import { login, signup } from '../../actions/session_actions';
+import { login, signup, resetErrors } from '../../actions/session_actions';
 import { receiveNewHeaderType } from '../../actions/header_actions';
 
 const mapStateToProps = function (state) {
@@ -20,6 +20,7 @@ const mapDispatchToProps = function (dispatch, ownProps) {
   }
   return {
     processForm: (user) => dispatch(actionFunction(user)),
+    resetErrors: () => dispatch(resetErrors()),
     receiveNewHeaderType: (headerType) => dispatch(receiveNewHeaderType(headerType)),
     formType,
   };
