@@ -29,4 +29,10 @@
   font-family: 'Merriweather', serif;
   width: 100%;
   text-shadow: 0 0 20px black;
+  transition: opacity 0.5s;
+   -webkit-transition: opacity 0.5s; /* Safari */
+}
+
+.fade {
+  opacity: 0;
 }
