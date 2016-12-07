@@ -13,6 +13,6 @@ class ProjectMember < ApplicationRecord
   validates :project, :user, presence: :true
   validates :user_id, uniqueness: { scope: :project_id }
 
-  belongs_to :user
-  belongs_to :project
+  belongs_to :user, inverse_of: :project_members
+  belongs_to :project, inverse_of: :project_members
 end

@@ -19,7 +19,7 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
-  has_many :project_members
+  has_many :project_members, dependent: :destroy
 
   has_many :projects,
     through: :project_members
