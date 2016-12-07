@@ -2,7 +2,7 @@ class Api::ProjectMembersController < ApplicationController
   before_action :require_logged_in
 
   def create
-    project = Project.find(params[:project_id])
+    project = Project.find(params[:project_member][:project_id])
     user = User.find_by(username: params[:project_member][:username])
 
     if user
