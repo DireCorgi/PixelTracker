@@ -6,7 +6,6 @@ header.main-header {
   margin: 0 auto;
   padding: 10px 20px;
   max-width: 860px;
-  min-width: 470px;
 }
 
 .header-logo {
@@ -32,12 +31,14 @@ header.main-header {
 
 .right-nav-list {
   float: right;
+  width: 50%;
+  min-width: 94px;
 }
 
 .right-nav-list li {
-  float: left;
+  float: right;
   padding: 10px 0;
-  margin: 0 20px;
+  margin: 0 4%;
 }
 
 .right-nav-list a {

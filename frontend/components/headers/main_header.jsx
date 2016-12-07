@@ -31,8 +31,8 @@ class MainHeader extends React.Component {
     } else {
       return (
         <ul>
-          <li><Link to='/login'>Log in</Link></li>
           <li className="sign-up-link"><Link to='/signup'>Sign up</Link></li>
+          <li><Link to='/login'>Log in</Link></li>
         </ul>
       );
     }
