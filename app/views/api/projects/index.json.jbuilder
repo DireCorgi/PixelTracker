@@ -1,5 +1,5 @@
 json.array! @projects do |project|
   json.id project.id
   json.name project.name
-  json.updated_at project.updated_at
+  json.updated_at project.updated_at.strftime("%m-%d-%Y %H:%M:%S")
 end
