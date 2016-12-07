@@ -1,6 +1,6 @@
 # Pixel Tracker
 
-[Live Website](www.pixeltracker.org)
+[Live Website](http://www.pixeltracker.org)
 [Trello](https://trello.com/b/hOvAm6f2/pixeltracker)
 
 ### Minimum Viable Product
