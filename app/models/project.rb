@@ -10,10 +10,10 @@
 #
 
 class Project < ApplicationRecord
-  validates :name, :members, presence: true
+  validates :name, presence: true
   validates :private, inclusion: { in: [ true, false ], message: "is not defined" }
 
-  has_many :project_members, dependent: :destroy
+  has_many :project_members, dependent: :destroy, inverse_of: :project
 
   has_many :members,
     through: :project_members,
