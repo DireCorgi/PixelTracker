@@ -1,6 +1,7 @@
 
 .splash-page > img {
-  max-width: 100%;
+  max-width: 120%;
+  transform: translateX(-5%);
   height: auto;
   min-width: 700px;
   display: block;
@@ -19,7 +20,6 @@ img.blur {
   border-top: 1px solid #7fb5ed;
   border-bottom: 1px solid #7fb5ed;
   overflow: hidden;
-  max-height: 600px;
 }
 
 .splash-page-text {

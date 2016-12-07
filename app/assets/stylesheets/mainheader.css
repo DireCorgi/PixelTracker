@@ -25,8 +25,13 @@ header.main-header {
   top: 3px;
 }
 
-.header-logo-inside {
+#header-logo-inside {
   color: #DE752C;
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
+  font-size: 22px;
+  padding: 0;
+  margin: 0;
 }
 
 .right-nav-list {

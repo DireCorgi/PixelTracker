@@ -6,6 +6,8 @@ class SessionForm extends React.Component {
     super(props);
     this.state = { username: "", password: "", email: "" };
 
+    this.flavorText = "";
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleGuestLogin = this.handleGuestLogin.bind(this);
     this.updateUsername = this.updateUsername.bind(this);
@@ -15,12 +17,14 @@ class SessionForm extends React.Component {
 
   header() {
     if (this.props.formType === 'login') {
+      this.flavorText = "Log In";
       return (
-        <h1>Login</h1>
+        <h2>Log In</h2>
       );
     } else if (this.props.formType === 'signup') {
+      this.flavorText = "Sign Up";
       return (
-        <h1>Signup</h1>
+        <h2>Sign Up!</h2>
       );
     }
   }
@@ -117,13 +121,13 @@ class SessionForm extends React.Component {
           <label>Username
             <input type='text' value={this.state.username} onChange={this.updateUsername} />
           </label>
-          { this.emailInput() }
+            { this.emailInput() }
           <label>Password
             <input type='password' value={this.state.password} onChange={this.updatePassword}/>
           </label>
-          <input className='submit-button' type='submit' value='submit' />
+          <input className='submit-button' type='submit' value={this.flavorText} />
+          {this.guestLogin()}
         </form>
-        {this.guestLogin()}
         {this.renderErrors()}
       </section>
     );

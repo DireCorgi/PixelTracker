@@ -57,7 +57,7 @@ class MainHeader extends React.Component {
         <div className="header-container group">
           <h1 className="header-logo">
             <img src={window.mainLogoPath} alt="Logo" />
-            Pixel<span className="header-logo-inside">
+            Pixel<span id="header-logo-inside">
               Tracker</span></h1>
           <nav className="right-nav-list group">
             { this.navItems() }
