@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
-import DashboardHeader from './dashboard_header.jsx';
+import DashboardHeader from './dashboard_header';
 
 const mapStateToProps = ( store ) => {
   return {
