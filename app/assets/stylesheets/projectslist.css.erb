@@ -104,3 +104,14 @@
 .project-detail > button:hover:after {
   display: block;
 }
+
+.private-project:after{
+  content: "";
+  width: 12px;
+  height: 12px;
+  margin: 0 3px;
+  background: url("<%= image_path 'icons/lock-icon.png' %>");
+  background-size: cover;
+  position: relative;
+  display: inline-block;
+}

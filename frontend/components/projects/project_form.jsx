@@ -11,6 +11,7 @@ class ProjectForm extends React.Component {
     this.openForm = this.openForm.bind(this);
     this.handleNameInput = this.handleNameInput.bind(this);
     this.handleRadio = this.handleRadio.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   closeForm(e) {
@@ -35,6 +36,12 @@ class ProjectForm extends React.Component {
       privacy = false;
     }
     this.setState({project: { name: curName, private: privacy } });
+  }
+
+  handleSubmit(e){
+    this.props.createProject(this.state.project);
+    this.setState({ project: { name: "", private: true } });
+    this.closeForm(e);
   }
 
   render() {
@@ -78,7 +85,7 @@ class ProjectForm extends React.Component {
 
             </form>
             <footer className="project-form-footer group">
-              <button className="create-project">Create</button>
+              <button className="create-project" onClick={this.handleSubmit}>Create</button>
               <button onClick={this.closeForm}>Cancel</button>
             </footer>
           </section>
@@ -109,6 +116,7 @@ class ProjectForm extends React.Component {
         background: '#F6F6F6',
         zIndex: 11,
         width: '480px',
+        height: '429px',
         boxShadow: '1px 1px 4px #333',
         overflow: 'hidden',
       },

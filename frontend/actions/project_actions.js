@@ -14,7 +14,7 @@ export const receiveProjects = (projects) => {
 export const receiveOneProject = (project) => {
   return {
     type: RECEIVE_ONE_PROJECT,
-    projects: project,
+    project: project,
   };
 };
 
@@ -41,4 +41,21 @@ export const fetchOneProjects = (projectId) => {
       errors => dispatch(receiveProjectErrors(errors.responseJSON))
     );
   };
+};
+
+export const createProject = (project) => {
+  return (dispatch) => {
+    return ProjectsAPIUtil.newProject(project).then(
+      singleProject => dispatch(receiveOneProject(singleProject)),
+      errors => dispatch(receiveProjectErrors(errors.responseJSON))
+    );
+  };
+};
+
+export const createProjectMember = (projectMember) => {
+
+};
+
+export const deleteProjectMember = (projectMemberId) => {
+
 };
