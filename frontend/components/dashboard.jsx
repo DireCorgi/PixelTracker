@@ -1,9 +1,10 @@
 import React from 'react';
+import DashboardHeaderContainer from './headers/dashboard_header_container';
 
 const Dashboard = ({ children }) => {
   return (
     <div className="main-dashboard-container">
-      <h1>Dashboard</h1>
+      <DashboardHeaderContainer />
       <main className="main-dashboard-content">
         { children }
       </main>
