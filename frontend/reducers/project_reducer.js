@@ -1,7 +1,7 @@
 import { RECEIVE_PROJECTS, RECEIVE_ONE_PROJECT, RECEIVE_PROJECT_ERRORS }
   from '../actions/project_actions';
 
-const defaultState = { errors: [], projectDetail: {}, projectList: {} };
+const defaultState = { errors: [], projectList: {} };
 
 const ProjectReducer = (state = defaultState, action) => {
   Object.freeze(state);

@@ -3,7 +3,7 @@ class Api::ProjectsController < ApplicationController
   before_action :check_private, only: :show
 
   def index
-    @projects = current_user.projects
+    @projects = current_user.projects.includes(:project_members).includes(:members)
     render :index
   end
 
