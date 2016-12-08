@@ -16,6 +16,7 @@ class MainHeader extends React.Component {
       return (
         <ul>
           <li><button className="logout-button" onClick={this.props.logout}>Logout</button></li>
+          <li><Link to='/dashboard'>Dashboard</Link></li>
           <li><span>{ this.props.currentUser.username }</span></li>
         </ul>
       );

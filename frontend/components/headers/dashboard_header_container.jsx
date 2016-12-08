@@ -5,6 +5,7 @@ import DashboardHeader from './dashboard_header.jsx';
 const mapStateToProps = ( store ) => {
   return {
     currentUser: store.session.currentUser,
+    headerType: store.headerInfo.headerType,
   };
 };
 

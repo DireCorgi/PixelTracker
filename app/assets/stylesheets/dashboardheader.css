@@ -1,0 +1,96 @@
+.application-header {
+  background: #3E7293;
+  border-bottom: 1px solid #212121;
+  color: white;
+}
+
+.header-logo-light {
+  margin: 6px 20px;
+  float: left;
+  font-weight: 400;
+  font-family: 'Merriweather', serif;
+}
+
+.header-logo-light > img {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: auto;
+  top: 3px;
+}
+
+.right-nav-list-dashboard {
+  margin: 8px 20px;
+  float: right;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #CADADA;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.username-header {
+  position: relative;
+  display: block;
+  padding-right: 15px;
+}
+
+.username-header:after {
+  content: "";
+  position: absolute;
+  top: 7px;
+  right: 1px;
+  border-bottom: 0;
+  border-top: 4px solid #CADADA;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+}
+
+.username-header:hover {
+  cursor: pointer;
+}
+
+.hidden-username-nav {
+  position: absolute;
+  display: none;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px black;
+  width: 100px;
+  padding: 12px 0;
+  right: 0px;
+  top: 18px;
+  color: black;
+
+  list-style-type: none;
+}
+
+.hidden-username-nav:before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  right: 29px;
+  border-top: 0;
+  border-bottom: 5px solid #fff;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+}
+
+.display-nav {
+  display: block;
+}
+
+.username-header:hover .hidden-username-nav {
+  display: block;
+}
+
+.hidden-username-nav > li {
+  padding: 4px 0 4px 8px;
+  text-transform: none;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.hidden-username-nav > li:hover {
+  background: #EEF0F1;
+}
