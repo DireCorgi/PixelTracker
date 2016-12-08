@@ -1,17 +1,18 @@
 import { connect } from 'react-redux';
-import { logout } from '../../actions/session_actions';
-import Projects from './dashboard_header.jsx';
+import { fetchProjects } from '../../actions/project_actions';
+import { selectAllProjects } from '../../reducers/selector';
+import Projects from './projects';
 
-const mapStateToProps = ( store ) => {
+const mapStateToProps = ( state ) => {
   return {
-    currentUser: store.session.currentUser,
-    headerType: store.headerInfo.headerType,
+    projectList: selectAllProjects(state),
+    projects: state.projects
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    logout: () => dispatch(logout()),
+    fetchProjects: () => dispatch(fetchProjects()),
   };
 };
 
