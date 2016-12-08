@@ -1,0 +1,90 @@
+.project-form {
+  opacity: 1;
+}
+
+.project-form h1 {
+  color: #333333;
+  font-size: 20px;
+  background: #fff;
+  padding: 14px 16px;
+}
+
+.project-form-input {
+  padding: 26px 18px 40px 18px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.project-form-input label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #666673;
+  width: 93%;
+  margin-bottom: 30px;
+}
+
+.project-form-input input {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background: #fff;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #333;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.radio-set {
+  margin-top: 8px;
+  margin-bottom: 24px;
+}
+
+.radio-set input {
+  float: left;
+  display: inline-block;
+  width: auto;
+}
+
+.radio-set label {
+  display: block;
+  float: right;
+  width: 90%;
+  margin-bottom: 4px;
+}
+
+.radio-set p {
+  display: block;
+  float: right;
+  width: 90%;
+  font-weight: 300;
+}
+
+.project-form-footer {
+  background: #fff;
+  margin: 0;
+  padding: 14px 12px;
+}
+
+.project-form-footer button {
+  font-weight: 400;
+  float: right;
+  text-shadow: 0 0 0;
+  color: #9fa0b0;
+  padding: 8px 12px;
+}
+
+.project-form-footer button:hover {
+  color: #acadba;
+}
+
+button.create-project {
+  color: #fff;
+  background: #4A90E2;
+}
+
+button.create-project:hover {
+  color: #fff;
+  background: #67a8f4;
+}

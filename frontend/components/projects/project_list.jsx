@@ -1,10 +1,11 @@
 import React from 'react';
 import ProjectListItem from './project_list_item';
 
+
 class ProjectList extends React.Component {
   render() {
     const fullList = this.props.projects.map((project) => {
-      return (<ProjectListItem project={project} />);
+      return (<ProjectListItem key={project.id} project={project} />);
     });
 
     return (
