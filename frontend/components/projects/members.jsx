@@ -54,7 +54,10 @@ class Members extends React.Component {
         </figure>
       );
     }
-    const members = this.props.projectList[this.props.projectId].members;
+    let members = [];
+    if(this.props.projectList[this.props.projectId]) {
+      members = this.props.projectList[this.props.projectId].members;
+    }
     return (
       members.map((member) => {
         if (member.member_name === this.props.currentUsername){

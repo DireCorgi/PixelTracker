@@ -1,0 +1,43 @@
+.project-detail-container {
+  font-size: 12px;
+  background: #484F57;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main-content-container {
+  height: 100%;
+}
+
+.side-bar {
+  float:left;
+  background: #2F3337;
+  width: 200px;
+  height: 100%;
+  border: 1px solid black;
+}
+
+.side-bar-header {
+  padding: 9px 8px;
+  background: #212123;
+  border-bottom: 1px solid #000;
+}
+
+.side-bar-header > button {
+  background: url("<%= image_path 'icons/person-icon-white.png' %>");
+  background-size: cover;
+  height: 9px;
+  width: 3px;
+  opacity: .3;
+}
+
+.side-bar-header > button:hover {
+  opacity: .6;
+}
+
+.side-bar-header > span {
+  font-size: 9px;
+  font-weight: 400;
+  color: #BBB8B6;
+  padding: 0;
+}

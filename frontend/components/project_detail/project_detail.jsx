@@ -1,6 +1,6 @@
 import React from 'react';
 import DashBoardHeaderContainer from '../headers/dashboard_header_container';
-import Sidebar from './sidebar';
+import SidebarContainer from './sidebar_container';
 import { RainbowSpinner } from '../spinners/spinners';
 
 class ProjectDetail extends React.Component {
@@ -21,9 +21,12 @@ class ProjectDetail extends React.Component {
       );
     } else {
       return (
-        <section className="stories-container">
-          Stories go here
-        </section>
+        <div className="main-content-container">
+          <SidebarContainer projectId={this.props.params.projectId}/>
+          <section className="stories-container">
+            Stories go here
+          </section>
+        </div>
       );
     }
   }
@@ -32,7 +35,6 @@ class ProjectDetail extends React.Component {
     return (
       <main className='project-detail-container group'>
         <DashBoardHeaderContainer projectId={this.props.params.projectId}/>
-        <Sidebar />
         {this.renderStories()}
       </main>
     );
