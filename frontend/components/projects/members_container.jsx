@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     createProjectMember: (projectMember) => dispatch(createProjectMember(projectMember)),
     deleteProjectMember: (projectMemberId) => dispatch(deleteProjectMember(projectMemberId)),

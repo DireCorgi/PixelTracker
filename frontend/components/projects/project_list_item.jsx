@@ -7,10 +7,11 @@ const ProjectListItem = ({ project }) => {
   if (project.privacy) {
     className += ' private-project';
   }
+  const projectUrl = `/projects/${project.id}`;
 
   return (
     <div className={className}>
-      <a href="" >{project.name}</a>
+      <Link to={projectUrl} >{project.name}</Link>
       <MembersContainer projectId={project.id}/>
     </div>
   );

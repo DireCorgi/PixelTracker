@@ -41,10 +41,10 @@ export const fetchProjects = () => {
   };
 };
 
-export const fetchOneProjects = (projectId) => {
+export const fetchOneProject = (projectId) => {
   return (dispatch) => {
     return ProjectsAPIUtil.fetchOneProject(projectId).then(
-      project => dispatch(receiveProjects(project)),
+      project => dispatch(receiveOneProject(project)),
       errors => dispatch(receiveProjectErrors(errors.responseJSON))
     );
   };

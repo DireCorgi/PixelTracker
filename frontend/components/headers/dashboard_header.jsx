@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router';
+import { Link } from 'react-router';
 
 class DashboardHeader extends React.Component {
 
@@ -43,7 +44,10 @@ class DashboardHeader extends React.Component {
     return(
       <header className="application-header dashboard-header group">
         <h1 className="header-logo-light">
-          <img src={ window.lightLogoPath } alt="icon-light" />PixelTracker
+          <Link to="/dashboard">
+            <img src={ window.lightLogoPath } alt="icon-light" />
+          </Link>
+          PixelTracker
         </h1>
 
         <nav className="right-nav-list-dashboard">
