@@ -29,6 +29,17 @@ class DashboardHeader extends React.Component {
     this.setState({ userNav: newNav });
   }
 
+  renderIcon() {
+    const defaultRender = "PixelTracker";
+    if (this.props.headerType === "project detail") {
+      if (this.props.projectList[this.props.projectId]) {
+        const projectName = this.props.projectList[this.props.projectId].name;
+        return projectName;
+      }
+    } else {
+      return defaultRender;
+    }
+  }
 
   render() {
     let user = this.props.currentUser;
@@ -47,7 +58,7 @@ class DashboardHeader extends React.Component {
           <Link to="/dashboard">
             <img src={ window.lightLogoPath } alt="icon-light" />
           </Link>
-          PixelTracker
+          {this.renderIcon()}
         </h1>
 
         <nav className="right-nav-list-dashboard">

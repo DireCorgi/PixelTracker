@@ -13,6 +13,13 @@ export const receiveProjects = (projects) => {
   };
 };
 
+export const resetProjects = () => {
+  return {
+    type: RECEIVE_PROJECTS,
+    projects: [],
+  };
+};
+
 export const receiveOneProject = (project) => {
   return {
     type: RECEIVE_ONE_PROJECT,

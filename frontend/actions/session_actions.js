@@ -1,4 +1,5 @@
 import * as SessionAPIUtil from '../util/session_api_util';
+import { resetProjects } from './project_actions';
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
@@ -36,7 +37,10 @@ export const login = (user) => {
 export const logout = () => {
   return (dispatch) => {
     return SessionAPIUtil.logout().then(
-      user => dispatch(receiveCurrentUser(null))
+      user => {
+        dispatch(resetProjects());
+        return dispatch(receiveCurrentUser(null));
+      }
     );
   };
 };

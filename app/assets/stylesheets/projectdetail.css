@@ -1,0 +1,14 @@
+.project-detail-container {
+  font-size: 12px;
+  background: #484F57;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.side-bar {
+  float:left;
+  background: #2F3337;
+  width: 200px;
+  height: 100%;
+  border: 1px solid black;
+}
