@@ -11,6 +11,7 @@ const mapStateToProps = (state) => {
     projectList: state.projects.projectList,
     errors: state.projects.errors,
     currentUsername: state.session.currentUser.username,
+    loading: state.loading.membersLoading,
   };
 };
 

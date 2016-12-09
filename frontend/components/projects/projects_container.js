@@ -6,7 +6,8 @@ import Projects from './projects';
 const mapStateToProps = ( state ) => {
   return {
     projectList: selectAllProjects(state),
-    projects: state.projects
+    projects: state.projects,
+    loading: state.loading.projectsLoading,
   };
 };
 

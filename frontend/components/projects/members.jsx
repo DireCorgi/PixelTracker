@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
+import { RainbowSpinner } from '../spinners/spinners';
 
 class Members extends React.Component {
   constructor(props) {
@@ -46,6 +47,13 @@ class Members extends React.Component {
   }
 
   renderMembers(){
+    if (this.props.loading) {
+      return (
+        <figure>
+          <RainbowSpinner />
+        </figure>
+      );
+    }
     const members = this.props.projectList[this.props.projectId].members;
     return (
       members.map((member) => {
