@@ -65,6 +65,11 @@ input.submit-button {
    border: 0;
 }
 
+input.submit-button:hover {
+  background: #41709a;
+  cursor: pointer;
+}
+
 button.guest-button {
   display: block;
   margin: 0 auto;
