@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { selectAllProjects } from '../../reducers/selector';
-import { fetchOneProject } from '../../actions/project_actions';
+import { fetchOneProject, resetProjectErrors } from '../../actions/project_actions';
 import { receiveNewHeaderType } from '../../actions/header_actions';
 import ProjectDetail from './project_detail';
 
@@ -18,6 +18,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return  {
     fetchProject: (projectId) => dispatch(fetchOneProject(projectId)),
     changeHeader: (headerType) => dispatch(receiveNewHeaderType(headerType)),
+    resetProjectErrors: () => dispatch(resetProjectErrors()),
   };
 };
 

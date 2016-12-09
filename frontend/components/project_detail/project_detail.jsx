@@ -11,6 +11,14 @@ class ProjectDetail extends React.Component {
       this.props.fetchProject(this.props.params.projectId);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.params.projectId !== nextProps.params.projectId) {
+      this.props.resetProjectErrors();
+      if (!this.props.projectsList[nextProps.params.projectId])
+      this.props.fetchProject(nextProps.params.projectId);
+    }
+  }
+
   componentWillUnmount() {
     this.props.changeHeader('default');
   }
