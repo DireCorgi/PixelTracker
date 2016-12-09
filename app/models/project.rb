@@ -18,4 +18,7 @@ class Project < ApplicationRecord
   has_many :members,
     through: :project_members,
     source: :user
+
+  has_many :pixels,
+    dependent: :destroy
 end

@@ -23,7 +23,7 @@
 | project_id | integer | not null, index |
 | user_id | integer | not null, index |
 
-### stories
+### pixels
 | column name | data type | details |
 | --- | --- | --- |
 | id | integer | not null, primary key |
@@ -34,20 +34,20 @@
 | requester_id | integer | not null, index |
 | description | text |  |
 | project_id | integer | not null, index |
-| story_ord | integer | not null |
+| pixel_ord | integer | not null |
 
-### story_followers
+### pixel_followers
 | column name | data type | details |
 | --- | --- | --- |
 | id | integer | not null, primary key |
-| story_id | integer | not null, index |
+| pixel_id | integer | not null, index |
 | user_id | integer | not null, index |
 
-### story_owners
+### pixel_owners
 | column name | data type | details |
 | --- | --- | --- |
 | id | integer | not null, primary key |
-| story_id | integer | not null, index |
+| pixel_id | integer | not null, index |
 | user_id | integer | not null, index |
 
 ### tasks
@@ -56,7 +56,7 @@
 | id | integer | not null, primary key |
 | body | string | not null |
 | complete | boolean | not null, default false |
-| story_id | integer | not null, index |
+| pixel_id | integer | not null, index |
 | task_ord | integer | not null |
 
 ### labels
@@ -65,16 +65,16 @@
 | id | integer | not null, primary key |
 | name | string | not null |
 
-### story_labels
+### pixel_labels
 | column name | data type | details |
 | --- | --- | --- |
 | id | integer | not null, primary key |
-| story_id | integer | not null, index |
+| pixel_id | integer | not null, index |
 | label_id | integer | not null, index |
 
-### activity
+### comments
 | column name | data type | details |
 | --- | --- | --- |
 | id | integer | not null, primary key |
 | body | string | not null |
-| story_id | integer | not null, index |
+| pixel_id | integer | not null, index |

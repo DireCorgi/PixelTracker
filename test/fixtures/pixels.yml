@@ -1,0 +1,28 @@
+# == Schema Information
+#
+# Table name: pixels
+#
+#  id           :integer          not null, primary key
+#  story_ord    :integer          not null
+#  state        :string           not null
+#  title        :string           not null
+#  category     :string           not null
+#  description  :text
+#  points       :integer          not null
+#  project_id   :integer          not null
+#  requester_id :integer          not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+# column: value

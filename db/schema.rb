@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161207191211) do
+ActiveRecord::Schema.define(version: 20161209220715) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "pixels", force: :cascade do |t|
+    t.integer  "pixel_ord",    null: false
+    t.string   "state",        null: false
+    t.string   "title",        null: false
+    t.string   "category",     null: false
+    t.text     "description"
+    t.integer  "points",       null: false
+    t.integer  "project_id",   null: false
+    t.integer  "requester_id", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["category"], name: "index_pixels_on_category", using: :btree
+    t.index ["project_id"], name: "index_pixels_on_project_id", using: :btree
+    t.index ["requester_id"], name: "index_pixels_on_requester_id", using: :btree
+    t.index ["state"], name: "index_pixels_on_state", using: :btree
+  end
 
   create_table "project_members", force: :cascade do |t|
     t.integer  "project_id", null: false
