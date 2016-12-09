@@ -16,6 +16,7 @@ class Members extends React.Component {
 
   closeForm(e) {
     e.preventDefault();
+    this.props.resetProjectErrors();
     this.setState({ formOpen: false });
   }
 
@@ -51,14 +52,16 @@ class Members extends React.Component {
         if (member.member_name === this.props.currentUsername){
           return (
             <li key={member.project_member_id}>
-              {member.member_name}
+              <span>{member.member_name}</span>
+              <span className="email">{member.member_email}</span>
             </li>
           );
         }
         return (
           <li key={member.project_member_id}>
-            {member.member_name}
-            <button value={member.project_member_id} onClick={this.handleRemove}>remove</button>
+            <span>{member.member_name}</span>
+            <span className="email">{member.member_email}</span>
+            <button value={member.project_member_id} onClick={this.handleRemove}>Remove</button>
           </li>
         );
       })
@@ -95,10 +98,10 @@ class Members extends React.Component {
               <footer className="project-form-footer group">
                 <button className="create-project" onClick={this.handleSubmit}>Add Member</button>
                 <button onClick={this.closeForm}>Close</button>
-              </footer>
-              <ul className="error-display">
+                <ul className="error-display form-errors">
                 {errors}
-              </ul>
+                </ul>
+              </footer>
             </section>
           </div>
         </Modal>
@@ -128,9 +131,9 @@ class Members extends React.Component {
         background: '#F6F6F6',
         zIndex: 11,
         width: '480px',
-        height: '500px',
+        height: '520px',
         boxShadow: '1px 1px 4px #333',
-        overflowX: 'hidden',
+        overflow: 'hidden',
       },
     };
   }

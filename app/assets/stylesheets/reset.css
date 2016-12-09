@@ -15,7 +15,7 @@ button, article, footer, small, span {
   background: transparent;
 }
 
-ul {
+ul, li {
   list-style: none;
 }
 

@@ -43,8 +43,12 @@
 
 .radio-set input {
   float: left;
-  display: inline-block;
+  display: block;
   width: auto;
+}
+
+.radio-set input:hover{
+  cursor: pointer;
 }
 
 .radio-set label {
@@ -64,7 +68,7 @@
 .project-form-footer {
   background: #fff;
   margin: 0;
-  padding: 14px 12px 18px 12px;
+  padding: 14px 12px 60px 12px;
 }
 
 .project-form-footer button {
@@ -89,6 +93,58 @@ button.create-project:hover {
   background: #67a8f4;
 }
 
-.members-container {
-  
+.member-list {
+  height: 200px;
+  overflow-y: scroll;
+  border-top: 1px solid #ddd;
+  padding: 15px 18px;
+}
+
+.member-list > h2 {
+  font-size: 14px;
+}
+
+.member-list > li {
+  background: #fff;
+  padding: 2px 5px;
+  margin-top: 4px;
+}
+
+.member-list span {
+  font-size: 12px;
+  margin: 4px 0;
+  font-weight: 600;
+  color: #303030;
+  text-shadow: 0 0 0;
+  padding: 0;
+  margin: 0;
+  width: 160px;
+}
+
+span.email {
+  font-weight: 300;
+  width: 180px;
+}
+
+.member-list button {
+  text-align: right;
+  float: right;
+  font-size: 11px;
+  position: relative;
+  top: 1px;
+}
+
+.member-list button:hover {
+  text-decoration: underline;
+}
+
+ul.form-errors {
+  display: block;
+  float: left;
+  width: 100%;
+}
+
+.form-errors li{
+  width: 100%;
+  margin: 5px 0;
 }

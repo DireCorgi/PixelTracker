@@ -25,6 +25,13 @@ export const receiveProjectErrors = (errors) => {
   };
 };
 
+export const resetProjectErrors = () => {
+  return {
+    type: RECEIVE_PROJECT_ERRORS,
+    errors: [],
+  };
+};
+
 export const fetchProjects = () => {
   return (dispatch) => {
     return ProjectsAPIUtil.fetchProjects().then(
