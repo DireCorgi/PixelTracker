@@ -15,12 +15,33 @@
   width: 200px;
   height: 100%;
   border: 1px solid black;
+  overflow: hidden;
+}
+
+.shrink{
+  width: 42px;
 }
 
 .side-bar-header {
   padding: 9px 8px;
   background: #212123;
   border-bottom: 1px solid #000;
+  border-top: 1px solid #000;
+  width: 200px;
+}
+
+.side-bar-shrink {
+  border-top: 1px solid #393A3C;
+  width: 200px;
+  padding:10px 10px;
+}
+
+.side-bar-shrink > button {
+  background: url("<%= image_path 'icons/menu-white.png' %>");
+  background-size: cover;
+  height: 10px;
+  width: 6px;
+  opacity: .3;
 }
 
 .side-bar-header > button {
