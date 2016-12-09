@@ -1,13 +1,13 @@
 
 .splash-page > img {
   max-width: 120%;
-  transform: translateX(-5%);
   height: auto;
   min-width: 700px;
   display: block;
   position: relative;
   opacity: 0.6;
   filter: blur(1.4px);
+  margin: 0 auto;
 }
 
 img.blur {

@@ -1,0 +1,117 @@
+.projects-container {
+  display: block;
+  margin: 20px auto;
+  width: 40%;
+  min-width: 400px;
+  max-width: 550px;
+}
+
+.projects-list-header {
+  padding: 15px;
+}
+
+.projects-list-header > h1 {
+  float: left;
+  font-size: 20px;
+  font-weight: 600;
+  color: #613333;
+  margin-left: 5px
+}
+
+.projects-list-header > button {
+  float: right;
+  color: #fff;
+  background: #59AC5A;
+  font-size: 14px;
+  padding: 10px 14px;
+  position: relative;
+  top: -5px;
+}
+
+.projects-list-header > button:hover {
+  background: #4B974B;
+}
+
+.project-list {
+  padding: 15px;
+}
+
+.project-detail {
+  background: #fff;
+  margin-bottom: 30px;
+  padding: 15px 40px;
+  border: 1px solid #ccc;
+  border-top: 2px solid #74a4d7;
+}
+
+.project-detail > a {
+  float: left;
+  color: #3C4858;
+  font-size: 16px;
+  font-weight: 600;
+
+}
+
+.project-detail a:hover {
+  color: #3177c3;
+  text-decoration: underline;
+}
+
+.project-detail > button {
+  float: right;
+  width: 24px;
+  height: 24px;
+  background: url("<%= image_path 'icons/people-icon.png' %>");
+  background-size: cover;
+  opacity: 0.6;
+  position: relative;
+  padding: 2px;
+  transition: opacity 0.3s;
+}
+
+.project-detail > button:after{
+  content: "Manage project members";
+  display: none;
+  width: 130px;
+  padding: 4px;
+  border-radius: 2px;
+  background: #38474F;
+  font-size: 11px;
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+}
+
+.project-detail > button:before {
+  display: none;
+  content: "";
+  position: absolute;
+  top: 26px;
+  right: 9px;
+  border-top: 0;
+  border-bottom: 5px solid #38474F;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+}
+
+.project-detail > button:hover {
+  opacity: 1;
+}
+
+.project-detail > button:hover:before,
+.project-detail > button:hover:after {
+  display: block;
+}
+
+.private-project:after{
+  content: "";
+  width: 12px;
+  height: 12px;
+  margin: 0 3px;
+  background: url("<%= image_path 'icons/lock-icon.png' %>");
+  background-size: cover;
+  position: relative;
+  display: inline-block;
+}

@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_logged_in
-    render json: { base: ['INVALID'] }, status: 401 if !current_user
+    render json: { base: ['FORBIDDEN'] }, status: 401 if !current_user
   end
 
 end

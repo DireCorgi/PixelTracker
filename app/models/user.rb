@@ -19,6 +19,12 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
+  has_many :project_members, dependent: :destroy, inverse_of: :user
+
+  has_many :projects,
+    through: :project_members,
+    source: :project
+
   attr_reader :password
 
   def self.generate_session_token
