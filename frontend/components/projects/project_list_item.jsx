@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import Members from './members';
+import MembersContainer from './members_container';
 
 const ProjectListItem = ({ project }) => {
   let className = 'project-detail group';
@@ -11,7 +11,7 @@ const ProjectListItem = ({ project }) => {
   return (
     <div className={className}>
       <a href="" >{project.name}</a>
-      <Members projectId={project.id}/>
+      <MembersContainer projectId={project.id}/>
     </div>
   );
 };

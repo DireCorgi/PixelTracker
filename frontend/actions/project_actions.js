@@ -53,9 +53,19 @@ export const createProject = (project) => {
 };
 
 export const createProjectMember = (projectMember) => {
-
+  return (dispatch) => {
+    return ProjectsAPIUtil.newProjectMember(projectMember).then(
+      singleProject => dispatch(receiveOneProject(singleProject)),
+      errors => dispatch(receiveProjectErrors(errors.responseJSON))
+    );
+  };
 };
 
 export const deleteProjectMember = (projectMemberId) => {
-
+  return (dispatch) => {
+    return ProjectsAPIUtil.destroyProjectMember(projectMemberId).then(
+      singleProject => dispatch(receiveOneProject(singleProject)),
+      errors => dispatch(receiveProjectErrors(errors.responseJSON))
+    );
+  };
 };

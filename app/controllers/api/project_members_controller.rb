@@ -2,13 +2,13 @@ class Api::ProjectMembersController < ApplicationController
   before_action :require_logged_in
 
   def create
-    project = Project.find(params[:project_member][:project_id])
+    @project = Project.find(params[:project_member][:project_id])
     user = User.find_by(username: params[:project_member][:username])
 
     if user
-      project_member = project.project_members.new(user_id: user.id)
+      project_member = @project.project_members.new(user_id: user.id)
       if project_member.save
-        render json: {}
+        render 'api/projects/show'
       else
         render json: project_member.errors.full_messages, status: 422
       end
@@ -21,8 +21,9 @@ class Api::ProjectMembersController < ApplicationController
   def destroy
     project_member = ProjectMember.find(params[:id])
     if project_member
+      @project = project_member.project
       project_member.destroy!
-      render json: {}
+      render 'api/projects/show'
     else
       render json: ["Member Not Found"], status: 404
     end

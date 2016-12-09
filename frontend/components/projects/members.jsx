@@ -5,10 +5,13 @@ class Members extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { formOpen: false, projectMember: { username: "" } };
+    this.state = { formOpen: false, username: "" };
 
     this.closeForm = this.closeForm.bind(this);
     this.openForm = this.openForm.bind(this);
+    this.handleNameInput = this.handleNameInput.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
   }
 
   closeForm(e) {
@@ -22,17 +25,49 @@ class Members extends React.Component {
 
   handleNameInput(e) {
     const newName = e.currentTarget.value;
-    this.setState({projectMember: { username: newName } });
+    this.setState({username: newName });
   }
 
 
   handleSubmit(e){
     e.preventDefault();
-    // this.props.createProject(this.state.project);
-    this.setState({ projectMember: { username: "" } });
+    const projectMember = {
+      username: this.state.username,
+      project_id: this.props.projectId,
+    };
+    this.props.createProjectMember(projectMember);
+    this.setState({ username: "" });
+  }
+
+  handleRemove(e){
+    e.preventDefault();
+    this.props.deleteProjectMember(e.currentTarget.value);
+  }
+
+  renderMembers(){
+    const members = this.props.projectList[this.props.projectId].members;
+    return (
+      members.map((member) => {
+        if (member.member_name === this.props.currentUsername){
+          return (
+            <li key={member.project_member_id}>
+              {member.member_name}
+            </li>
+          );
+        }
+        return (
+          <li key={member.project_member_id}>
+            {member.member_name}
+            <button value={member.project_member_id} onClick={this.handleRemove}>remove</button>
+          </li>
+        );
+      })
+    );
   }
 
   render() {
+
+    const errors = this.props.errors.map((error, idx)=>(<li key={idx}>{error}</li>));
 
     return (
       <button onClick={this.openForm}>
@@ -41,21 +76,31 @@ class Members extends React.Component {
         onRequestClose={this.closeForm}
         style={this.formStyling()}
         contentLabel="manage-members">
-          <section className="project-form">
-            <form className="project-form-input">
-              <label>Add a Member
-                <input type="text"
-                  placeholder="Enter a username to add to the project"
-                  value={this.state.projectMember.username}
-                  onChange={this.handleNameInput}
-                />
-              </label>
-            </form>
-            <footer className="project-form-footer group">
-              <button className="create-project" onClick={this.handleSubmit}>Add Member</button>
-              <button onClick={this.closeForm}>Close</button>
-            </footer>
-          </section>
+          <div className='members-container'>
+            <section className="project-form">
+              <h1>Members</h1>
+              <section className="member-list">
+                <h2>Current Members</h2>
+                {this.renderMembers()}
+              </section>
+              <form className="project-form-input">
+                <label>Add a Member
+                  <input type="text"
+                    placeholder="Enter a username to add to the project"
+                    value={this.state.username}
+                    onChange={this.handleNameInput}
+                  />
+                </label>
+              </form>
+              <footer className="project-form-footer group">
+                <button className="create-project" onClick={this.handleSubmit}>Add Member</button>
+                <button onClick={this.closeForm}>Close</button>
+              </footer>
+              <ul className="error-display">
+                {errors}
+              </ul>
+            </section>
+          </div>
         </Modal>
       </button>
     );
@@ -74,17 +119,18 @@ class Members extends React.Component {
       },
       content : {
         position: 'fixed',
-        top: '10%',
-        left: '10%',
-        right: '10%',
-        bottom: '10%',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
         padding: '0',
         border: '0',
         borderRadius: '3px',
         background: '#F6F6F6',
         zIndex: 11,
+        width: '480px',
+        height: '500px',
         boxShadow: '1px 1px 4px #333',
-        overflow: 'hidden',
+        overflowX: 'hidden',
       },
     };
   }
