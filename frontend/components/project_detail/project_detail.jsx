@@ -20,6 +20,7 @@ class ProjectDetail extends React.Component {
   }
 
   componentWillUnmount() {
+    this.props.resetProjectErrors();
     this.props.changeHeader('default');
   }
 
