@@ -35,7 +35,7 @@ class Api::ProjectsController < ApplicationController
 
 
   def allow_access?(project)
-    !project.private && project.members.pluck(:username).include?(current_user.username)
+    !project.private || project.members.pluck(:username).include?(current_user.username)
   end
 
 end

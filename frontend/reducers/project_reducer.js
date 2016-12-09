@@ -13,11 +13,13 @@ const ProjectReducer = (state = defaultState, action) => {
         newProjectList[project.id] = project;
       });
       newState.projectList = newProjectList;
+      newState.errors = [];
       return newState;
     case RECEIVE_ONE_PROJECT:
       const addedProjectList = Object.assign({}, state.projectList);
       addedProjectList[action.project.id] = action.project;
       newState.projectList = addedProjectList;
+      newState.errors = [];
       return newState;
     case RECEIVE_PROJECT_ERRORS:
       newState.errors = action.errors;
