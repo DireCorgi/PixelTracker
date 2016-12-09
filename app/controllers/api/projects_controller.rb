@@ -1,6 +1,5 @@
 class Api::ProjectsController < ApplicationController
   before_action :require_logged_in
-  before_action :check_private, only: :show
 
   def index
     @projects = current_user.projects.includes(:project_members).includes(:members)
@@ -8,8 +7,13 @@ class Api::ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.includes(:project_members).includes(:members).find(params[:id])
-    render :show
+    @project = Project.includes(:project_members).includes(:members).find_by(id: params[:id])
+
+    if @project && allow_access?(@project)
+      render :show
+    else
+      render json: ["Project Not Found or Private"], status: 404
+    end
   end
 
   def create
@@ -29,11 +33,9 @@ class Api::ProjectsController < ApplicationController
     params.require(:project).permit(:name, :private)
   end
 
-  def check_private
-    @project = Project.find(params[:id])
-    if @project.private && !@project.members.pluck(:username).include?(current_user.username)
-      render json: ["Project is Private"], status: 403
-    end
+
+  def allow_access?(project)
+    !project.private && project.members.pluck(:username).include?(current_user.username)
   end
 
 end

@@ -8,6 +8,7 @@ const mapStateToProps = (state) => {
   return {
     projectsList: state.projects.projectList,
     projectsAll: selectAllProjects(state),
+    errors: state.projects.errors,
     loading: state.loading.projectsLoading,
   };
 };

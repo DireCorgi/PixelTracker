@@ -2,6 +2,7 @@ import React from 'react';
 import DashBoardHeaderContainer from '../headers/dashboard_header_container';
 import SidebarContainer from './sidebar_container';
 import { RainbowSpinner } from '../spinners/spinners';
+import PrivatePage from './private_page';
 
 class ProjectDetail extends React.Component {
   componentDidMount() {
@@ -19,16 +20,20 @@ class ProjectDetail extends React.Component {
       return (
         <figure><RainbowSpinner /></figure>
       );
-    } else {
-      return (
-        <div className="main-content-container">
-          <SidebarContainer projectId={this.props.params.projectId}/>
-          <section className="stories-container">
-            Stories go here
-          </section>
-        </div>
-      );
     }
+    if (this.props.errors) {
+      if (this.props.errors[0] === 'Project Not Found or Private') {
+        return (<PrivatePage />);
+      }
+    }
+    return (
+      <div className="main-content-container">
+        <SidebarContainer projectId={this.props.params.projectId}/>
+        <section className="stories-container">
+          Stories go here
+        </section>
+      </div>
+    );
   }
 
   render() {
