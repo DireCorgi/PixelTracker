@@ -11,6 +11,7 @@ import {
   RECEIVE_PIXEL_DETAIL,
   RECEIVE_PIXEL_ERRORS,
   LOADING_PIXELS,
+  DELETE_PIXEL,
 } from '../actions/pixel_actions';
 
 const defaultState = {
@@ -27,6 +28,7 @@ export default (state = defaultState, action) => {
     case RECEIVE_ALL_PIXELS:
     case RECEIVE_PIXEL_DETAIL:
     case RECEIVE_PIXEL_ERRORS:
+    case DELETE_PIXEL:
       return defaultState;
     case LOADING_PROJECTS:
       return Object.assign({}, state, { projectsLoading: true });

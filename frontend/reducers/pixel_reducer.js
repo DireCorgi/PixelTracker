@@ -1,4 +1,4 @@
-import { RECEIVE_ALL_PIXELS, RECEIVE_PIXEL_DETAIL, RECEIVE_PIXEL_ERRORS }
+import { RECEIVE_ALL_PIXELS, RECEIVE_PIXEL_DETAIL, RECEIVE_PIXEL_ERRORS, DELETE_PIXEL }
   from '../actions/pixel_actions';
 
 const defaultState = { pixelList: {}, pixelDetails: {}, errors: {} };
@@ -35,6 +35,14 @@ export default (state = defaultState, action) => {
       return newState;
     case RECEIVE_PIXEL_ERRORS:
       newState.errors = action.errors;
+      return newState;
+    case DELETE_PIXEL:
+      const deletedPixelList = Object.assign({}, newState.pixelList);
+      const deletedPixelDetails = Object.assgin({}, newState.pixelDetails);
+      delete deletedPixelList[action.pixelId];
+      delete deletedPixelDetails[action.pixelId];
+      newState.pixelList = deletedPixelList;
+      newState.pixelDetails = deletedPixelDetails;
       return newState;
     default:
       return state;
