@@ -3,7 +3,7 @@
 # Table name: pixels
 #
 #  id           :integer          not null, primary key
-#  story_ord    :integer          not null
+#  pixel_ord    :integer          not null
 #  state        :string           not null
 #  title        :string           not null
 #  category     :string           not null
@@ -19,7 +19,7 @@ class Pixel < ApplicationRecord
   valid_states = %w(Unstarted Started Finished Delivered Rejected Accepted)
   valid_categories = %w(Feature Bug Chore Release)
 
-  validates :story_ord,
+  validates :pixel_ord,
     :state,
     :title,
     :category,
