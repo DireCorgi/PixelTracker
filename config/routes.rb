@@ -6,9 +6,9 @@ Rails.application.routes.draw do
     resources :users, only: [:create]
     resource :session, only: [:create, :destroy]
     resources :projects, only: [:index, :show, :create] do
-      resources :pixels, only: [:index, :show, :create]
+      resources :pixels, only: [:index, :create]
     end
     resources :project_members, only: [:destroy, :create]
-    resources :pixels ,only: [:destroy, :update]
+    resources :pixels ,only: [:destroy, :update, :show]
   end
 end

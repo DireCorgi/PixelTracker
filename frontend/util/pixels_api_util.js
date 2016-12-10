@@ -5,9 +5,9 @@ export const fetchAllPixels = (projectId) => {
   });
 };
 
-export const fetchPixelDetails = (projectId, pixelId) => {
+export const fetchPixelDetail = (pixelId) => {
   return $.ajax({
-    url: `api/projects/${projectId}/pixels/${pixelId}`,
+    url: `api/pixels/${pixelId}`,
     method: 'GET',
   });
 };
