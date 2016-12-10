@@ -3,7 +3,7 @@ class Api::PixelsController < ApplicationController
   before_action :require_logged_in
 
   def index
-    project = Project.find(params[:id])
+    project = Project.find(params[:project_id])
     @pixels = project.pixels
     render :index
   end
@@ -14,7 +14,7 @@ class Api::PixelsController < ApplicationController
   end
 
   def create
-    project = Project.find(params[:id])
+    project = Project.find(params[:project_id])
     @pixel = project.pixels.new(pixel_params)
     @pixel.requester_id = current_user.id
     if @pixel.save
@@ -45,11 +45,12 @@ class Api::PixelsController < ApplicationController
   private
 
   def pixel_params
-    params.require(:pixel).permit(:state, :title, :cateogry, :story_ord, :description, :points)
+    params.require(:pixel).permit(:state, :title, :category, :pixel_ord, :description, :points)
   end
 
-  def check_member
-    project = Project.find(params[:id])
+  def check_member()
+    project = Project.find_by(id: params[:project_id])
+    project ||= Pixel.find(params[:id]).project
     unless project.members.pluck(:username).include?(current_user.username)
       render json: { base:["Cannot Edit Project If You are Not the User"] }, status: 401
     end
