@@ -1,7 +1,7 @@
 import { RECEIVE_ALL_PIXELS, RECEIVE_PIXEL_DETAIL, RECEIVE_PIXEL_ERRORS, DELETE_PIXEL }
   from '../actions/pixel_actions';
 
-const defaultState = { pixelList: {}, pixelDetails: {}, errors: {} };
+const defaultState = { pixelList: {}, errors: {} };
 
 export default (state = defaultState, action) => {
   Object.freeze(state);
@@ -16,21 +16,10 @@ export default (state = defaultState, action) => {
       newState.pixelList = newPixelList;
       return newState;
     case RECEIVE_PIXEL_DETAIL:
-      const updatedPixelList = Object.assign({}, newState.pixelList);
-      const newPixelDetails = Object.assgin({}, newState.pixelDetails);
+      const curPixelList = Object.assgin({}, newState.pixelDetails);
 
-      const newPixel = {};
-      newPixel.id = action.pixel.id;
-      newPixel.title = action.pixel.title;
-      newPixel.category = action.pixel.category;
-      newPixel.state = action.pixel.state;
-      newPixel.points = action.pixel.points;
-      newPixel.pixel_ord = action.pixel.pixel_ord;
-
-      updatedPixelList[newPixel.id] = newPixel;
-      newPixelDetails[action.pixel.id] = action.pixel;
-      newState.pixelList = updatedPixelList;
-      newState.pixelDetails = newPixelDetails;
+      curPixelList[action.pixel.id] = action.pixel;
+      newState.pixelList = curPixelList;
       newState.errors = {};
       return newState;
     case RECEIVE_PIXEL_ERRORS:
@@ -38,11 +27,8 @@ export default (state = defaultState, action) => {
       return newState;
     case DELETE_PIXEL:
       const deletedPixelList = Object.assign({}, newState.pixelList);
-      const deletedPixelDetails = Object.assgin({}, newState.pixelDetails);
       delete deletedPixelList[action.pixelId];
-      delete deletedPixelDetails[action.pixelId];
       newState.pixelList = deletedPixelList;
-      newState.pixelDetails = deletedPixelDetails;
       return newState;
     default:
       return state;

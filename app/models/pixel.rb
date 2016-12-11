@@ -13,6 +13,7 @@
 #  requester_id :integer          not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  icebox       :boolean          default(TRUE), not null
 #
 
 class Pixel < ApplicationRecord
@@ -30,6 +31,7 @@ class Pixel < ApplicationRecord
 
   validates :state, inclusion: { in: valid_states, message: "is an invalid state" }
   validates :category, inclusion: {in: valid_categories, message: "is an invalid category"}
+  validates :icebox, inclusion: { in: [ true, false ] }
 
   belongs_to :project
 

@@ -3,7 +3,7 @@
 # Table name: pixels
 #
 #  id           :integer          not null, primary key
-#  story_ord    :integer          not null
+#  pixel_ord    :integer          not null
 #  state        :string           not null
 #  title        :string           not null
 #  category     :string           not null
@@ -13,6 +13,7 @@
 #  requester_id :integer          not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  icebox       :boolean          default(TRUE), not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

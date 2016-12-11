@@ -3,6 +3,7 @@ import DashBoardHeaderContainer from '../headers/dashboard_header_container';
 import SidebarContainer from './sidebar_container';
 import { RainbowSpinner } from '../spinners/spinners';
 import PrivatePage from './private_page';
+import PixelListContainer from '../pixels/pixel_list_container';
 
 class ProjectDetail extends React.Component {
   componentDidMount() {
@@ -38,9 +39,7 @@ class ProjectDetail extends React.Component {
     return (
       <div className="main-content-container">
         <SidebarContainer projectId={this.props.params.projectId}/>
-        <section className="stories-container">
-          Stories go here
-        </section>
+        <PixelListContainer />
       </div>
     );
   }
