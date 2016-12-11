@@ -8,6 +8,7 @@ const mapStateToProps = (state) => {
     pixelList: state.pixels.pixelList,
     errors: state.pixels.errors,
     loading: state.loading.pixelsLoading,
+    sidebar: state.sidebar,
   };
 };
 

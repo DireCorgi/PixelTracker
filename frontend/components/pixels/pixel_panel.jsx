@@ -1,6 +1,12 @@
 import React from 'react';
 
 class PixelPanel extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
   pixelSummary() {
     const mapPixels = [];
     this.props.pixels.forEach((pixel)=> {
@@ -23,12 +29,16 @@ class PixelPanel extends React.Component {
     );
   }
 
+  handleClick(e) {
+    this.props.hideColumn(this.props.sidebarName);
+  }
+
   render() {
     return(
       <article className="panel-container">
         <div className="left-panel-divider"></div>
         <header className="panel-header">
-          <button></button>
+          <button onClick={this.handleClick}></button>
           { this.props.panelName }
         </header>
         <section className="panel-list">
