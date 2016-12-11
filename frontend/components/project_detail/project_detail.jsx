@@ -8,6 +8,7 @@ import PixelListContainer from '../pixels/pixel_list_container';
 class ProjectDetail extends React.Component {
   componentDidMount() {
     this.props.changeHeader('project detail');
+    this.props.fetchPixels(this.props.params.projectId);
     if (!this.props.projectsList[this.props.params.projectId])
       this.props.fetchProject(this.props.params.projectId);
   }
@@ -15,8 +16,9 @@ class ProjectDetail extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.params.projectId !== nextProps.params.projectId) {
       this.props.resetProjectErrors();
+      this.props.fetchPixels(this.props.params.projectId);
       if (!this.props.projectsList[nextProps.params.projectId])
-      this.props.fetchProject(nextProps.params.projectId);
+        this.props.fetchProject(nextProps.params.projectId);
     }
   }
 
@@ -26,7 +28,7 @@ class ProjectDetail extends React.Component {
   }
 
   renderStories() {
-    if (this.props.loading) {
+    if (this.props.loading || this.props.pixelsLoading) {
       return (
         <figure><RainbowSpinner /></figure>
       );

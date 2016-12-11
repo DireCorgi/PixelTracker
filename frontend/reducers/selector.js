@@ -14,3 +14,18 @@ export const selectAllProjects = (state) => {
   });
   return projectListArray;
 };
+
+export const selectAllPixels = (state) => {
+  const pixelList = state.pixels.pixelList;
+  const pixelListArray = values(pixelList);
+  pixelListArray.sort((a, b) => {
+    if (a.updated_a > b.updated_at ) {
+      return -1;
+    }
+    if (a.updated_at < b.updated_at) {
+      return 1;
+    }
+    return 0;
+  });
+  return pixelListArray;
+};

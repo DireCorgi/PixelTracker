@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { selectAllProjects } from '../../reducers/selector';
 import { fetchOneProject, resetProjectErrors } from '../../actions/project_actions';
+import { fetchPixels } from '../../actions/pixel_actions';
 import { receiveNewHeaderType } from '../../actions/header_actions';
 import ProjectDetail from './project_detail';
 
@@ -10,6 +11,7 @@ const mapStateToProps = (state) => {
     projectsAll: selectAllProjects(state),
     errors: state.projects.errors,
     loading: state.loading.projectsLoading,
+    pixelsLoading: state.loading.pixelsLoading,
   };
 };
 
@@ -19,6 +21,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     fetchProject: (projectId) => dispatch(fetchOneProject(projectId)),
     changeHeader: (headerType) => dispatch(receiveNewHeaderType(headerType)),
     resetProjectErrors: () => dispatch(resetProjectErrors()),
+    fetchPixels: (projectId) => dispatch(fetchPixels(projectId)),
   };
 };
 

@@ -1,0 +1,42 @@
+.pixel-container {
+  display: flex;
+  height: 100%;
+  flex-wrap: nowrap;
+}
+
+.panel-container {
+  flex-grow: 1;
+  min-width: 300px;
+  border: 1px solid #000;
+  border-left: 0;
+}
+
+.panel-header {
+  background: #2C2D2F;
+  font-size: 13px;
+  color: #fff;
+  border-top: 1px solid #393A3C;
+  padding: 14px;
+}
+
+.panel-header button {
+  width: 3px;
+  height: 10px;
+  background: url("<%= image_path 'icons/xmark-icon-white.png' %>");
+  background-size: cover;
+  margin-right: 10px;
+  opacity: .6;
+}
+
+.panel-header button:hover {
+  opacity: .9;
+}
+
+.left-panel-divider {
+  float: left;
+  display: inline-block;
+  width: 4px;
+  height: 100%;
+  background: #1D1D1D;
+  border-right: 1px solid #000;
+}
