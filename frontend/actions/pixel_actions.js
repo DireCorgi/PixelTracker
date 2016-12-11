@@ -24,7 +24,7 @@ export const deletePixel = (pixelId) => {
   return {
     type: DELETE_PIXEL,
     pixelId
-  }
+  };
 };
 
 export const receivePixelErrors = (errors) => {
@@ -78,11 +78,11 @@ export const updatePixel = (pixelId, pixel) => {
   };
 };
 
-export const updatePixel = (pixelId, pixel) => {
+export const removePixel = (pixelId) => {
   return (dispatch) => {
     dispatch(loadingPixels());
-    return PixelsAPIUtil.updatePixel(pixelId, pixel).then(
-      newPixel => dispatch(receivePixelDetail(newPixel)),
+    return PixelsAPIUtil.deletePixel(pixelId).then(
+      data => dispatch(deletePixel(pixelId)),
       errors => dispatch(receivePixelErrors(errors.responseJSON))
     );
   };

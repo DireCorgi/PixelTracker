@@ -8,6 +8,15 @@ class Sidebar extends React.Component {
 
     this.state = { shrink: false };
     this.handleClick = this.handleClick.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.resetView();
+  }
+
+  componentWillUnmount() {
+    this.props.resetView();
   }
 
   handleClick(e) {
@@ -16,6 +25,33 @@ class Sidebar extends React.Component {
     } else {
       this.setState({ shrink: true });
     }
+  }
+
+  handleFilter(filterName) {
+    return (e) => {
+      const columnName = filterName;
+      if (this.props.sidebar[columnName]) {
+        this.props.hideColumn(columnName);
+      } else {
+        this.props.showColumn(columnName);
+      }
+    };
+  }
+
+  renderFilterListItem(filterName, filterContent) {
+    const spanClassName = `sidebar-icon ${filterName}-icon`;
+    let liClassName = '';
+    if (this.props.sidebar[filterName]){
+      liClassName += 'selected-filter';
+    }
+    return (
+      <li
+        onClick={this.handleFilter(filterName)}
+        className={liClassName}>
+        <span className={spanClassName}></span>
+        {filterContent}
+      </li>
+    );
   }
 
   renderMemberNumbers() {
@@ -41,6 +77,12 @@ class Sidebar extends React.Component {
           <MembersContainer projectId={this.props.projectId}/>
           <span>{this.renderMemberNumbers()}</span>
         </header>
+
+        <nav className="side-bar-nav">
+          { this.renderFilterListItem('current', 'Current/Backlog') }
+          { this.renderFilterListItem('icebox', 'Icebox') }
+          { this.renderFilterListItem('done', 'Done') }
+        </nav>
 
       </aside>
     );

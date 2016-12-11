@@ -81,3 +81,54 @@
   font-size: 20px;
   color: #6F6F6F;
 }
+
+.side-bar-nav {
+  color: #CCCCCC;
+  font-size: 12px;
+  font-weight: normal;
+  padding: 0 10px;
+}
+
+.side-bar-nav li {
+  padding: 7px 8px 6px 0;
+  margin: 0;
+  text-shadow: 0 0 3px black;
+}
+
+.side-bar-nav li:hover {
+  cursor: pointer;
+  color: #a7bacc;
+}
+
+.side-bar-nav span {
+  height: 6px;
+  margin-right: 8px;
+  opacity: .6;
+}
+
+.side-bar-nav li:hover > span {
+  opacity: .9;
+}
+
+li.selected-filter {
+  color: #87C7F8
+}
+
+li.selected-filter:hover {
+  color: #87C7F8;
+}
+
+.current-icon {
+  background: url("<%= image_path 'icons/list-icon-white.png' %>");
+  background-size: cover;
+}
+
+.icebox-icon {
+  background: url("<%= image_path 'icons/icebox-icon-white.png' %>");
+  background-size: cover;
+}
+
+.done-icon {
+  background: url("<%= image_path 'icons/check-icon-white.png' %>");
+  background-size: cover;
+}
