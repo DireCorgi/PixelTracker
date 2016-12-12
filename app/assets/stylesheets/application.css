@@ -12,5 +12,6 @@
  *
  *= require reset
  *= require_tree .
+ *= require pixels
  *= require_self
  */

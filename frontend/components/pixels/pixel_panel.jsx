@@ -12,6 +12,13 @@ class PixelPanel extends React.Component {
 
   pixelSummary() {
     const mapPixels = [];
+    this.props.pixels.sort((a,b) => {
+      if (a.pixel_ord > b.pixel_ord) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
     this.props.pixels.forEach((pixel)=> {
       if (this.props.panelName === 'Icebox'){
         if (pixel.icebox)
@@ -41,7 +48,8 @@ class PixelPanel extends React.Component {
       return (
         <PixelFormContainer
           projectId={this.props.projectId}
-          pixelOrd={this.listLength + 1}/>
+          pixelOrd={this.listLength + 1}
+          formType="create"/>
       );
     } else {
       return null;
@@ -56,9 +64,9 @@ class PixelPanel extends React.Component {
           <button onClick={this.handleClick}></button>
           { this.props.panelName }
         </header>
+        {this.renderPixelForm()}
         <section className="panel-list">
           {this.pixelSummary()}
-          {this.renderPixelForm()}
         </section>
       </article>
     );

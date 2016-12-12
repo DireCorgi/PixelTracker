@@ -27,6 +27,13 @@ export const deletePixel = (pixelId) => {
   };
 };
 
+export const resetPixelErrors = () => {
+  return {
+    type: RECEIVE_PIXEL_ERRORS,
+    errors: {},
+  };
+};
+
 export const receivePixelErrors = (errors) => {
   return {
     type: RECEIVE_PIXEL_ERRORS,

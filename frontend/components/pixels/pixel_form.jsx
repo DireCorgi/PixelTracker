@@ -1,11 +1,33 @@
 import React from 'react';
+import { Spinner } from '../spinners/spinners';
 
 
 class PixelForm extends React.Component {
   constructor(props) {
     super(props);
+    if (this.props.formType === 'create') {
+      this.state = {
+        state: 'Unstarted',
+        title: '',
+        category: 'Feature',
+        description: '',
+        points: 0,
+        icebox: true,
+        id: "",
+      };
+    } else if (this.props.formType === 'update') {
+      this.state = this.props.pixel;
+    }
 
-    this.state = {
+    this.handleCategoryChange = this.handleCategoryChange.bind(this);
+    this.handlePointsChange = this.handlePointsChange.bind(this);
+    this.handleTitleChange = this.handleTitleChange.bind(this);
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+    this.handleSumbit = this.handleSumbit.bind(this);
+  }
+
+  resetState() {
+    const defaultState = {
       state: 'Unstarted',
       title: '',
       category: 'Feature',
@@ -14,12 +36,8 @@ class PixelForm extends React.Component {
       icebox: true,
       id: "",
     };
-
-    this.handleCategoryChange = this.handleCategoryChange.bind(this);
-    this.handlePointsChange = this.handlePointsChange.bind(this);
-    this.handleTitleChange = this.handleTitleChange.bind(this);
-    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
-    this.handleSumbit = this.handleSumbit.bind(this);
+    this.props.resetPixelErrors();
+    this.setState(defaultState);
   }
 
   handleCategoryChange(e) {
@@ -48,18 +66,32 @@ class PixelForm extends React.Component {
     e.preventDefault();
     const pixel = this.state;
     pixel.pixel_ord = this.props.pixelOrd;
-    this.props.createPixel(this.props.projectId, pixel);
+    this.props.createPixel(this.props.projectId, pixel).then(
+      () => {
+        this.resetState();
+      }
+    );
   }
 
   resetPoints() {
     this.setState({ points: 0 });
   }
 
+  titleClass() {
+    if (this.props.errors.title === undefined) {
+      return "";
+    } else {
+      return "errored-title";
+    }
+  }
 
   render() {
     let button = (
-      <button><i className="material-icons">keyboard_arrow_down</i></button>
+      <button onClick={this.props.handleClick}>
+        <i className="material-icons">keyboard_arrow_down</i>
+      </button>
     );
+
     if (this.state.id === "") {
       button = null;
     }
@@ -69,13 +101,18 @@ class PixelForm extends React.Component {
       disabled = true;
     }
 
+    if (this.props.loading){
+      return (<Spinner />);
+    }
+
     return (
       <form className='pixel-form'>
         {button}
         <input type="text"
           value={this.state.title}
           onChange={this.handleTitleChange}
-          placeholder='Pixel title' />
+          placeholder='Pixel title'
+          className={this.titleClass()}/>
         <nav className="pixel-form-nav group">
           <div className="left-form-nav">
             <div className="id-number">ID: {this.state.id}</div>
@@ -87,13 +124,13 @@ class PixelForm extends React.Component {
           </div>
         </nav>
         <section className="drop-down-features">
-          <label>PIXEL CATEGORY
+          <label>CATEGORY
             <select value={this.state.category}
               onChange={this.handleCategoryChange}>
               <option value="Feature">Feature</option>
               <option value="Bug">Bug</option>
               <option value="Chore">Build</option>
-              <option value="Release">Relase</option>
+              <option value="Release">Release</option>
             </select>
           </label>
           <label>POINTS

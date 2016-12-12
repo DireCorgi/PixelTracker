@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import PixelForm from './pixel_form';
-import { createPixel, updatePixel, removePixel }
+import { createPixel, updatePixel, removePixel, resetPixelErrors }
   from '../../actions/pixel_actions';
 
 
@@ -17,6 +17,7 @@ const mapDispatchToProps = (dispatch) => {
     createPixel: (projectId, pixel) => dispatch(createPixel(projectId, pixel)),
     updatePixel: (pixelId, pixel) => dispatch(updatePixel(pixelId, pixel)),
     removePixel: (pixelId) => dispatch(removePixel(pixelId)),
+    resetPixelErrors: () => dispatch(resetPixelErrors()),
   };
 };
 

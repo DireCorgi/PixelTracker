@@ -28,7 +28,7 @@ class ProjectDetail extends React.Component {
   }
 
   renderStories() {
-    if (this.props.loading || this.props.pixelsLoading) {
+    if (this.props.loading) {
       return (
         <figure><RainbowSpinner /></figure>
       );

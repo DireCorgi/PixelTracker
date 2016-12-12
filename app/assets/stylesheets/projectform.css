@@ -152,3 +152,7 @@ ul.form-errors {
 .project-form-input strong {
   color: #ff3434;
 }
+
+input.errored-title {
+  border: 2px solid #e46363;
+}
