@@ -17,6 +17,7 @@ class ProjectForm extends React.Component {
   closeForm(e) {
     e.preventDefault();
     this.setState({ formOpen: false });
+    this.props.resetProjectErrors();
   }
 
   openForm() {
@@ -39,13 +40,17 @@ class ProjectForm extends React.Component {
   }
 
   handleSubmit(e){
-    this.props.createProject(this.state.project);
-    this.setState({ project: { name: "", private: true } });
-    this.closeForm(e);
+    this.props.createProject(this.state.project).then(() => {
+      this.setState({ project: { name: "", private: true } });
+      this.closeForm(e);
+    });
   }
 
   render() {
-
+    let projectName = "Project Name";
+    if (this.props.errors[0] === "Name can't be blank") {
+      projectName = <strong>Project Name: Can't Be Blank</strong>;
+    }
     return (
       <button onClick={this.openForm}>Create Project
         <Modal
@@ -56,7 +61,7 @@ class ProjectForm extends React.Component {
           <section className="project-form">
             <h1>Create a new project</h1>
             <form className="project-form-input">
-              <label>Project Name
+              <label>{projectName}
                 <input type="text"
                   placeholder="Enter a name for your project"
                   value={this.state.project.name}

@@ -148,3 +148,7 @@ ul.form-errors {
   width: 100%;
   margin: 5px 0;
 }
+
+.project-form-input strong {
+  color: #ff3434;
+}
