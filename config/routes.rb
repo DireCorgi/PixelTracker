@@ -10,5 +10,6 @@ Rails.application.routes.draw do
     end
     resources :project_members, only: [:destroy, :create]
     resources :pixels ,only: [:destroy, :update, :show]
+    resources :comments, only: [:create, :update, :destroy]
   end
 end

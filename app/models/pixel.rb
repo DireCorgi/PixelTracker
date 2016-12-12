@@ -41,4 +41,8 @@ class Pixel < ApplicationRecord
 
   has_many :comments
 
+  has_many :commenters,
+    through: :comments,
+    source: :user
+
 end
