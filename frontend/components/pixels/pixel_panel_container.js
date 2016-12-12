@@ -9,6 +9,7 @@ const mapStateToProps = (state) => {
     errors: state.pixels.errors,
     loading: state.loading.pixelsLoading,
     pixels: selectAllPixels(state),
+    sidebar: state.sidebar,
   };
 };
 

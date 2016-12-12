@@ -27,7 +27,7 @@ class PixelListItem extends React.Component {
     return(
       <section className="pixel-list-item-container">
         <div className="pixel-list-item-summary">
-          <button><i className="material-icons">keyboard_arrow_down</i></button>
+          <button><i className="material-icons">keyboard_arrow_right</i></button>
           {this.renderCategory(pixel.category)}
           <figure className="pixel-points">{pixel.points}</figure>
           <span><i className="material-icons">chat_bubble_outline</i></span>
@@ -39,11 +39,11 @@ class PixelListItem extends React.Component {
               </div>
             <footer className="group">
               <div className="pixel-description-footer-left">
-              Requested By: {pixel.requester}
+                Requested By: {pixel.requester}
               </div>
 
               <div className="pixel-description-footer-right">
-              Pixel ID: {pixel.id}
+                Pixel ID: {pixel.id}
               </div>
             </footer>
           </section>

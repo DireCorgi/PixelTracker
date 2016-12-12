@@ -41,7 +41,7 @@ class ProjectDetail extends React.Component {
     return (
       <div className="main-content-container">
         <SidebarContainer projectId={this.props.params.projectId}/>
-        <PixelListContainer />
+        <PixelListContainer projectId={this.props.params.projectId}/>
       </div>
     );
   }

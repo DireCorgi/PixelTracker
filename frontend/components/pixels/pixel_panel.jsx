@@ -1,5 +1,6 @@
 import React from 'react';
 import PixelListItemContainer from './pixel_list_item_container';
+import PixelFormContainer from './pixel_form_container';
 
 class PixelPanel extends React.Component {
   constructor(props) {
@@ -34,6 +35,16 @@ class PixelPanel extends React.Component {
     this.props.hideColumn(this.props.sidebarName);
   }
 
+  renderPixelForm() {
+    if (this.props.panelName === 'Icebox') {
+      return (
+        <PixelFormContainer projectId={this.props.projectId}/>
+      );
+    } else {
+      return null;
+    }
+  }
+
   render() {
     return(
       <article className="panel-container">
@@ -44,6 +55,7 @@ class PixelPanel extends React.Component {
         </header>
         <section className="panel-list">
           {this.pixelSummary()}
+          {this.renderPixelForm()}
         </section>
       </article>
     );

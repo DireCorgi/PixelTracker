@@ -7,7 +7,6 @@ const mapStateToProps = (state) => {
   return {
     pixelList: state.pixels.pixelList,
     errors: state.pixels.errors,
-    loading: state.loading.pixelsLoading,
     sidebar: state.sidebar,
   };
 };

@@ -8,7 +8,8 @@ class PixelList extends React.Component {
       panels.push(
         <PixelPanelContainer key="done"
           sidebarName="done"
-          panelName="Done" />
+          panelName="Done"
+          projectId={this.props.projectId} />
       );
     }
     if (this.props.sidebar.current) {
@@ -16,7 +17,8 @@ class PixelList extends React.Component {
         <PixelPanelContainer
           key="current-backlog"
           sidebarName="current"
-          panelName="Current/Backlog" />
+          panelName="Current/Backlog"
+          projectId={this.props.projectId} />
       );
     }
     if (this.props.sidebar.icebox) {
@@ -24,7 +26,8 @@ class PixelList extends React.Component {
         <PixelPanelContainer
           key="icebox"
           sidebarName="icebox"
-          panelName="Icebox" />
+          panelName="Icebox"
+          projectId={this.props.projectId} />
       );
     }
 
