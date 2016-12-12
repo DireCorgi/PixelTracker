@@ -1,6 +1,7 @@
 import React from 'react';
 import PixelListItemContainer from './pixel_list_item_container';
 import PixelFormContainer from './pixel_form_container';
+import { Spinner } from '../spinners/spinners';
 
 class PixelPanel extends React.Component {
   constructor(props) {
@@ -57,6 +58,11 @@ class PixelPanel extends React.Component {
   }
 
   render() {
+    if(this.props.loading) {
+      return (
+        <Spinner />
+      );
+    }
     return(
       <article className="panel-container">
         <header className="panel-header">

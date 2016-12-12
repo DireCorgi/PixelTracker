@@ -25,6 +25,8 @@ class User < ApplicationRecord
     through: :project_members,
     source: :project
 
+  has_many :comments
+
   attr_reader :password
 
   def self.generate_session_token

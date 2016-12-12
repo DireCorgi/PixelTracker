@@ -39,4 +39,6 @@ class Pixel < ApplicationRecord
     class_name: :User,
     foreign_key: :requester_id
 
+  has_many :comments
+
 end
