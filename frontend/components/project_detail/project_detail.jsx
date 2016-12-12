@@ -16,7 +16,8 @@ class ProjectDetail extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.params.projectId !== nextProps.params.projectId) {
       this.props.resetProjectErrors();
-      this.props.fetchPixels(this.props.params.projectId);
+      this.props.resetPixels();
+      this.props.fetchPixels(nextProps.params.projectId);
       if (!this.props.projectsList[nextProps.params.projectId])
         this.props.fetchProject(nextProps.params.projectId);
     }
@@ -24,6 +25,7 @@ class ProjectDetail extends React.Component {
 
   componentWillUnmount() {
     this.props.resetProjectErrors();
+    this.props.resetPixels();
     this.props.changeHeader('default');
   }
 

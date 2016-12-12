@@ -5,6 +5,7 @@ export const RECEIVE_PIXEL_DETAIL = 'RECEIVE_PIXEL_DETAIL';
 export const RECEIVE_PIXEL_ERRORS = 'RECEIVE_PIXEL_ERRORS';
 export const DELETE_PIXEL = 'DELETE_PIXEL';
 export const LOADING_PIXELS = 'LOADING_PIXELS';
+export const RESET_PIXELS = 'RESET_PIXELS';
 
 export const receivePixels = (pixels) => {
   return {
@@ -12,6 +13,12 @@ export const receivePixels = (pixels) => {
     pixels,
   };
 };
+
+export const resetPixels = () => {
+  return {
+    type: RESET_PIXELS,
+  }
+}
 
 export const receivePixelDetail = (pixel) => {
   return {

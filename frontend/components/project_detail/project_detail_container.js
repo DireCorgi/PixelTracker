@@ -3,6 +3,7 @@ import { selectAllProjects } from '../../reducers/selector';
 import { fetchOneProject, resetProjectErrors } from '../../actions/project_actions';
 import { fetchPixels } from '../../actions/pixel_actions';
 import { receiveNewHeaderType } from '../../actions/header_actions';
+import { resetPixels } from '../../actions/pixel_actions';
 import ProjectDetail from './project_detail';
 
 const mapStateToProps = (state) => {
@@ -22,6 +23,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     changeHeader: (headerType) => dispatch(receiveNewHeaderType(headerType)),
     resetProjectErrors: () => dispatch(resetProjectErrors()),
     fetchPixels: (projectId) => dispatch(fetchPixels(projectId)),
+    resetPixels: () => dispatch(resetPixels()),
   };
 };
 

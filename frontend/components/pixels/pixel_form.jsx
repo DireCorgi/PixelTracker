@@ -23,7 +23,7 @@ class PixelForm extends React.Component {
     this.handlePointsChange = this.handlePointsChange.bind(this);
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
-    this.handleSumbit = this.handleSumbit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
   }
@@ -84,7 +84,7 @@ class PixelForm extends React.Component {
     this.setState({ description: newDescription });
   }
 
-  handleSumbit(e) {
+  handleSubmit(e) {
     e.preventDefault();
     const pixel = this.state;
     if (this.props.formType === 'create') {
@@ -138,10 +138,6 @@ class PixelForm extends React.Component {
       disabled = true;
     }
 
-    if (this.props.loading){
-      return (<Spinner />);
-    }
-
     return (
       <form className='pixel-form'>
         {button}
@@ -158,7 +154,7 @@ class PixelForm extends React.Component {
           </div>
           <div className="right-form-nav">
             <button className="cancel-button" onClick={this.handleClick}>cancel</button>
-            <button className="save-button" onClick={this.handleSumbit}>Save</button>
+            <button className="save-button" onClick={this.handleSubmit}>Save</button>
           </div>
         </nav>
         <section className="drop-down-features">
