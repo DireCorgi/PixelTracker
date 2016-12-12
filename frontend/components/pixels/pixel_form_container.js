@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import PixelForm from './pixel_form';
 import { createPixel, updatePixel, removePixel, resetPixelErrors }
   from '../../actions/pixel_actions';
+import { hideColumn } from '../../actions/sidebar_actions';
 
 
 const mapStateToProps = (state) => {
@@ -18,6 +19,7 @@ const mapDispatchToProps = (dispatch) => {
     updatePixel: (pixelId, pixel) => dispatch(updatePixel(pixelId, pixel)),
     removePixel: (pixelId) => dispatch(removePixel(pixelId)),
     resetPixelErrors: () => dispatch(resetPixelErrors()),
+    hideForm:() => dispatch(hideColumn('newPixel')),
   };
 };
 

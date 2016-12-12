@@ -30,6 +30,9 @@ class Sidebar extends React.Component {
   handleFilter(filterName) {
     return (e) => {
       const columnName = filterName;
+      if (filterName === 'newPixel') {
+        this.props.showColumn('icebox');
+      }
       if (this.props.sidebar[columnName]) {
         this.props.hideColumn(columnName);
       } else {
@@ -40,9 +43,9 @@ class Sidebar extends React.Component {
 
   renderFilterListItem(filterName, filterContent) {
     const spanClassName = `sidebar-icon ${filterName}-icon`;
-    let liClassName = '';
+    let liClassName = `${filterName}-item`;
     if (this.props.sidebar[filterName]){
-      liClassName += 'selected-filter';
+      liClassName += ' selected-filter';
     }
     return (
       <li
@@ -79,6 +82,7 @@ class Sidebar extends React.Component {
         </header>
 
         <nav className="side-bar-nav">
+          { this.renderFilterListItem('newPixel', 'New Pixel') }
           { this.renderFilterListItem('current', 'Current/Backlog') }
           { this.renderFilterListItem('icebox', 'Icebox') }
           { this.renderFilterListItem('done', 'Done') }

@@ -44,7 +44,7 @@ class PixelPanel extends React.Component {
   }
 
   renderPixelForm() {
-    if (this.props.panelName === 'Icebox') {
+    if (this.props.panelName === 'Icebox' && this.props.sidebar.newPixel) {
       return (
         <PixelFormContainer
           projectId={this.props.projectId}
@@ -59,7 +59,6 @@ class PixelPanel extends React.Component {
   render() {
     return(
       <article className="panel-container">
-        <div className="left-panel-divider"></div>
         <header className="panel-header">
           <button onClick={this.handleClick}></button>
           { this.props.panelName }

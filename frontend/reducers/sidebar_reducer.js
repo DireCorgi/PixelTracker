@@ -4,7 +4,7 @@ import {
   RESET_VIEW,
 } from '../actions/sidebar_actions';
 
-const defaultState = { icebox: true, done: true, current: true };
+const defaultState = { icebox: true, done: true, current: true, newPixel: false };
 
 const SidebarReducer = (state = defaultState, action) => {
   Object.freeze(state);

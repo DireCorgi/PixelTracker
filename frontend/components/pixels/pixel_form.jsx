@@ -24,6 +24,8 @@ class PixelForm extends React.Component {
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleSumbit = this.handleSumbit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   resetState() {
@@ -36,8 +38,28 @@ class PixelForm extends React.Component {
       icebox: true,
       id: "",
     };
+    if (this.props.formType === 'create'){
+      this.setState(defaultState);
+      this.props.hideForm();
+    }
     this.props.resetPixelErrors();
-    this.setState(defaultState);
+    if (this.props.formType === 'update') {
+      this.props.handleClick();
+    }
+  }
+
+  componentDidMount() {
+    this.props.resetPixelErrors();
+  }
+
+  handleClick(e) {
+    e.preventDefault();
+    if (this.props.formType === 'update') {
+      this.props.handleClick();
+    } else if (this.props.formType === 'create') {
+      this.resetState();
+      this.props.hideForm();
+    }
   }
 
   handleCategoryChange(e) {
@@ -65,12 +87,27 @@ class PixelForm extends React.Component {
   handleSumbit(e) {
     e.preventDefault();
     const pixel = this.state;
-    pixel.pixel_ord = this.props.pixelOrd;
-    this.props.createPixel(this.props.projectId, pixel).then(
-      () => {
-        this.resetState();
-      }
-    );
+    if (this.props.formType === 'create') {
+      pixel.pixel_ord = this.props.pixelOrd;
+      this.props.createPixel(this.props.projectId, pixel).then(
+        () => {
+          this.resetState();
+        }
+      );
+    } else if (this.props.formType === 'update') {
+      this.props.updatePixel(pixel.id, pixel).then(
+        () => {
+          this.resetState();
+        }
+      );
+    }
+  }
+
+  handleDelete(e) {
+    e.preventDefault();
+    if (this.props.formType === 'update') {
+      this.props.removePixel(this.state.id);
+    }
   }
 
   resetPoints() {
@@ -116,10 +153,11 @@ class PixelForm extends React.Component {
         <nav className="pixel-form-nav group">
           <div className="left-form-nav">
             <div className="id-number">ID: {this.state.id}</div>
-            <button className="delete-button"><i className="material-icons">delete</i></button>
+            <button className="delete-button" onClick={this.handleDelete}><i className="material-icons">delete</i>
+            </button>
           </div>
           <div className="right-form-nav">
-            <button className="cancel-button">cancel</button>
+            <button className="cancel-button" onClick={this.handleClick}>cancel</button>
             <button className="save-button" onClick={this.handleSumbit}>Save</button>
           </div>
         </nav>
