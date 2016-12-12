@@ -6,6 +6,7 @@ class PixelPanel extends React.Component {
   constructor(props) {
     super(props);
 
+    this.listLength = 0;
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -23,7 +24,7 @@ class PixelPanel extends React.Component {
           mapPixels.push(<li key={pixel.id}><PixelListItemContainer pixelId={pixel.id} /></li>);
       }
     });
-
+    this.listLength = mapPixels.length;
     return (
       <ul>
         {mapPixels}
@@ -38,7 +39,9 @@ class PixelPanel extends React.Component {
   renderPixelForm() {
     if (this.props.panelName === 'Icebox') {
       return (
-        <PixelFormContainer projectId={this.props.projectId}/>
+        <PixelFormContainer
+          projectId={this.props.projectId}
+          pixelOrd={this.listLength + 1}/>
       );
     } else {
       return null;

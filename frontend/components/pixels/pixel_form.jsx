@@ -1,11 +1,11 @@
 import React from 'react';
 
+
 class PixelForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      pixel_ord: 1,
       state: 'Unstarted',
       title: '',
       category: 'Feature',
@@ -17,20 +17,56 @@ class PixelForm extends React.Component {
 
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
     this.handlePointsChange = this.handlePointsChange.bind(this);
+    this.handleTitleChange = this.handleTitleChange.bind(this);
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+    this.handleSumbit = this.handleSumbit.bind(this);
   }
 
-  handleCategoryChange(e){
-
+  handleCategoryChange(e) {
+    const newCategory = e.target.value;
+    if (newCategory !== 'Feature')
+      this.resetPoints();
+    this.setState({ category: newCategory });
   }
 
-  handlePointsChange(e){
-
+  handlePointsChange(e) {
+    const newPoints = parseInt(e.target.value);
+    this.setState({ points: newPoints });
   }
+
+  handleTitleChange(e) {
+    const newTitle = e.currentTarget.value;
+    this.setState({ title: newTitle });
+  }
+
+  handleDescriptionChange(e) {
+    const newDescription = e.currentTarget.value;
+    this.setState({ description: newDescription });
+  }
+
+  handleSumbit(e) {
+    e.preventDefault();
+    const pixel = this.state;
+    pixel.pixel_ord = this.props.pixelOrd;
+    this.props.createPixel(this.props.projectId, pixel);
+  }
+
+  resetPoints() {
+    this.setState({ points: 0 });
+  }
+
 
   render() {
-    let button = (<button><i className="material-icons">keyboard_arrow_down</i></button>);
+    let button = (
+      <button><i className="material-icons">keyboard_arrow_down</i></button>
+    );
     if (this.state.id === "") {
       button = null;
+    }
+
+    let disabled = false;
+    if (this.state.category !== 'Feature') {
+      disabled = true;
     }
 
     return (
@@ -38,6 +74,7 @@ class PixelForm extends React.Component {
         {button}
         <input type="text"
           value={this.state.title}
+          onChange={this.handleTitleChange}
           placeholder='Pixel title' />
         <nav className="pixel-form-nav group">
           <div className="left-form-nav">
@@ -46,7 +83,7 @@ class PixelForm extends React.Component {
           </div>
           <div className="right-form-nav">
             <button className="cancel-button">cancel</button>
-            <button className="save-button">Save</button>
+            <button className="save-button" onClick={this.handleSumbit}>Save</button>
           </div>
         </nav>
         <section className="drop-down-features">
@@ -61,7 +98,8 @@ class PixelForm extends React.Component {
           </label>
           <label>POINTS
             <select value={this.state.points}
-              onChange={this.handlePointsChange}>
+              onChange={this.handlePointsChange}
+              disabled={disabled}>
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -72,7 +110,9 @@ class PixelForm extends React.Component {
           </label>
         </section>
         <label>Description
-          <textarea value={this.state.description}></textarea>
+          <textarea
+            value={this.state.description}
+            onChange={this.handleDescriptionChange} />
         </label>
       </form>
     );

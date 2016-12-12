@@ -16,7 +16,7 @@ export default (state = defaultState, action) => {
       newState.pixelList = newPixelList;
       return newState;
     case RECEIVE_PIXEL_DETAIL:
-      const curPixelList = Object.assgin({}, newState.pixelDetails);
+      const curPixelList = Object.assign({}, newState.pixelList);
 
       curPixelList[action.pixel.id] = action.pixel;
       newState.pixelList = curPixelList;
