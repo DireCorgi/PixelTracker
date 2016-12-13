@@ -1,6 +1,6 @@
 import React from 'react';
 import { Spinner } from '../spinners/spinners';
-
+import CommentsContainer from './comments_container';
 
 class PixelForm extends React.Component {
   constructor(props) {
@@ -185,6 +185,7 @@ class PixelForm extends React.Component {
             value={this.state.description}
             onChange={this.handleDescriptionChange} />
         </label>
+        <CommentsContainer pixelId={this.state.id}/>
       </form>
     );
   }

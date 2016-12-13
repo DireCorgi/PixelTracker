@@ -7,5 +7,6 @@ json.comments do
     json.body comment.body
     json.user comment.user.username
     json.pixel_id comment.pixel_id
+    json.created_at comment.created_at.strftime("%m-%d-%Y, %I:%M %p")
   end
 end

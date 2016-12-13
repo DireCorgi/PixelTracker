@@ -156,3 +156,95 @@ ul.form-errors {
 input.errored-title {
   border: 2px solid #e46363;
 }
+
+.pixel-comments-container {
+  margin: 5px;
+}
+
+.pixel-comments-container > h2 {
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.pixel-comments-list {
+
+  margin-bottom: 8px;
+  border-radius: 3px;
+}
+
+.comment-list-item {
+  background: #DFDCD0;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.comment-list-item > h4 {
+  float: right;
+  font-size: 10px;
+  color: #777;
+}
+
+.comment-list-item > h3 {
+  display: inline-block;
+  color: #222;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.comments-right-nav > button {
+  float: right;
+}
+
+.new-comment {
+  background: #DFDCD0;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.new-comment > textarea {
+  display: block;
+  resize: none;
+  background: #fff;
+  padding: 5px;
+  width: 96%;
+  border: 1px solid #ADB0B7;
+  border-radius: 3px;
+  margin: 4px auto;
+  height: auto;
+}
+
+.new-comment > button {
+  float: right;
+  font-size: 10px;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 0 0;
+  background: #666666;
+  border: 1px solid #555;
+  padding: 3px 10px;
+  margin: 3px;
+  margin-right: 1.5%;
+}
+
+.new-comment > button:hover {
+  background: #2B4C74;
+  border: 1px solid #24364C;
+}
+
+textarea.errored-item {
+  border: 1px solid #ac0000;
+}
+
+.comments-right-nav button {
+  color: #666;
+}
+
+.comments-right-nav button:hover {
+  color: #888;
+}
+
+li.inside-description {
+  background: #F6F6F6;
+  border-bottom: 1px solid #ADB0B7;
+}

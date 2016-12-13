@@ -1,7 +1,11 @@
 import { connect } from 'react-redux';
 import PixelForm from './pixel_form';
-import { createPixel, updatePixel, removePixel, resetPixelErrors }
-  from '../../actions/pixel_actions';
+import {
+  createPixel,
+  updatePixel,
+  removePixel,
+  resetPixelErrors,
+} from '../../actions/pixel_actions';
 import { hideColumn } from '../../actions/sidebar_actions';
 
 

@@ -32,6 +32,22 @@ class PixelListItem extends React.Component {
     }
   }
 
+
+  renderComments(pixel) {
+    const comments = pixel.comments;
+    const mapComments = comments.map((comment, idx) => {
+      return (
+          <li key={comment.id} className="comment-list-item inside-description">
+            <h3>{comment.user}</h3>
+            <h4>{comment.created_at}</h4>
+            <p>{comment.body}</p>
+          </li>
+      );
+    });
+    return mapComments;
+  }
+
+
   renderSummary(pixel) {
     return(
       <section className="pixel-list-item-container">
@@ -48,6 +64,10 @@ class PixelListItem extends React.Component {
               <h2>DESCRIPTION</h2>
               <p>{pixel.description}</p>
             </div>
+            <h3>ACTIVITY</h3>
+            <ul className="pixel-comments-list description-ul">
+              {this.renderComments(pixel)}
+            </ul>
           <footer className="group">
             <div className="pixel-description-footer-left">
               Requested By: {pixel.requester}

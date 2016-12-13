@@ -1,4 +1,5 @@
 import * as PixelsAPIUtil from '../util/pixels_api_util.js';
+import * as CommentsAPIUtil from '../util/comments_api_util.js';
 
 export const RECEIVE_ALL_PIXELS = 'RECEIVE_ALL_PIXELS';
 export const RECEIVE_PIXEL_DETAIL = 'RECEIVE_PIXEL_DETAIL';
@@ -17,8 +18,8 @@ export const receivePixels = (pixels) => {
 export const resetPixels = () => {
   return {
     type: RESET_PIXELS,
-  }
-}
+  };
+};
 
 export const receivePixelDetail = (pixel) => {
   return {
@@ -97,6 +98,36 @@ export const removePixel = (pixelId) => {
     dispatch(loadingPixels());
     return PixelsAPIUtil.deletePixel(pixelId).then(
       data => dispatch(deletePixel(pixelId)),
+      errors => dispatch(receivePixelErrors(errors.responseJSON))
+    );
+  };
+};
+
+export const createComment = (comment) => {
+  return (dispatch) => {
+    dispatch(loadingPixels());
+    return CommentsAPIUtil.createComment(comment).then(
+      pixel => dispatch(receivePixelDetail(pixel)),
+      errors => dispatch(receivePixelErrors(errors.responseJSON))
+    );
+  };
+};
+
+export const updateComment = (comment) => {
+  return (dispatch) => {
+    dispatch(loadingPixels());
+    return CommentsAPIUtil.updateComment(comment).then(
+      pixel => dispatch(receivePixelDetail(pixel)),
+      errors => dispatch(receivePixelErrors(errors.responseJSON))
+    );
+  };
+};
+
+export const deleteComment = (commentId) => {
+  return (dispatch) => {
+    dispatch(loadingPixels());
+    return CommentsAPIUtil.deleteComment(commentId).then(
+      pixel => dispatch(receivePixelDetail(pixel)),
       errors => dispatch(receivePixelErrors(errors.responseJSON))
     );
   };
