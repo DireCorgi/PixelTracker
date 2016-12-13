@@ -39,12 +39,15 @@ class Pixel < ApplicationRecord
     class_name: :User,
     foreign_key: :requester_id
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   has_many :commenters,
     through: :comments,
     source: :user
 
-  has_many :tasks, -> { order(:task_ord) }
+  has_many :tasks,
+    dependent: :destroy,
+    inverse_of: :pixel
 
+  accepts_nested_attributes_for :tasks, allow_destroy: true
 end

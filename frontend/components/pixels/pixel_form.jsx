@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spinner } from '../spinners/spinners';
+import { Spinner2 } from '../spinners/spinners';
 import CommentsContainer from './comments_container';
 import TasksContainer from './tasks_container';
 
@@ -88,19 +88,30 @@ class PixelForm extends React.Component {
   }
 
   handleSubmit(e) {
+    const target = e.currentTarget;
     e.preventDefault();
-    const pixel = this.state;
+    target.disabled = true;
+    const pixel = Object.assign({}, this.state);
+    pixel.tasks_attributes = this.props.tasks;
     if (this.props.formType === 'create') {
       pixel.pixel_ord = this.props.pixelOrd;
       this.props.createPixel(this.props.projectId, pixel).then(
         () => {
+          target.disabled = false;
           this.resetState();
+        },
+        () => {
+          target.disabled = false;
         }
       );
     } else if (this.props.formType === 'update') {
       this.props.updatePixel(pixel.id, pixel).then(
         () => {
+          target.disabled = false;
           this.resetState();
+        },
+        () => {
+          target.disabled = false;
         }
       );
     }

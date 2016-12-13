@@ -46,7 +46,7 @@ class Api::PixelsController < ApplicationController
   private
 
   def pixel_params
-    params.require(:pixel).permit(:state, :title, :category, :pixel_ord, :description, :points)
+    params.require(:pixel).permit(:state, :title, :category, :pixel_ord, :description, :points, tasks_attributes: [:body, :pixel_id, :task_ord, :complete])
   end
 
   def check_member()

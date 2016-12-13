@@ -1,7 +1,7 @@
-import { RECEIVE_ALL_PIXELS, RECEIVE_PIXEL_DETAIL, RECEIVE_PIXEL_ERRORS, DELETE_PIXEL, RESET_PIXELS }
+import { RECEIVE_ALL_PIXELS, RECEIVE_PIXEL_DETAIL, RECEIVE_PIXEL_ERRORS, DELETE_PIXEL, RESET_PIXELS, RECEIVE_TASKS }
   from '../actions/pixel_actions';
 
-const defaultState = { pixelList: {}, errors: {} };
+const defaultState = { pixelList: {}, errors: {}, tasks: [] };
 
 export default (state = defaultState, action) => {
   Object.freeze(state);
@@ -31,6 +31,9 @@ export default (state = defaultState, action) => {
       const deletedPixelList = Object.assign({}, newState.pixelList);
       delete deletedPixelList[action.pixelId];
       newState.pixelList = deletedPixelList;
+      return newState;
+    case RECEIVE_TASKS:
+      newState.tasks = action.tasks;
       return newState;
     default:
       return state;

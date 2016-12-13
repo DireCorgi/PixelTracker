@@ -10,11 +10,19 @@ export const LOADING_PIXELS = 'LOADING_PIXELS';
 export const RESET_PIXELS = 'RESET_PIXELS';
 export const LOADING_TASKS = 'LOADING_TASKS';
 export const LOADING_COMMENTS = 'LOADING_COMMENTS';
+export const RECEIVE_TASKS = 'RECEIVE_TASKS';
 
 export const receivePixels = (pixels) => {
   return {
     type: RECEIVE_ALL_PIXELS,
     pixels,
+  };
+};
+
+export const receiveTasks = (tasks) => {
+  return {
+    type: RECEIVE_TASKS,
+    tasks,
   };
 };
 

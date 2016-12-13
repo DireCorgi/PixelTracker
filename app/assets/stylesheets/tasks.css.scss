@@ -76,4 +76,16 @@
     padding-right: 4px;
   }
 
+  .complete-task {
+    background: #B9D089;
+  }
+
+  .task-complete {
+    width: 12px;
+    height: 12px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin-left: 4px;
+  }
+
 }

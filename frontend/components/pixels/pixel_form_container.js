@@ -5,6 +5,8 @@ import {
   updatePixel,
   removePixel,
   resetPixelErrors,
+  createTask,
+  receiveTasks,
 } from '../../actions/pixel_actions';
 import { hideColumn } from '../../actions/sidebar_actions';
 
@@ -13,6 +15,8 @@ const mapStateToProps = (state) => {
   return {
     errors: state.pixels.errors,
     loading: state.loading.pixelsLoading,
+    tasks: state.pixels.tasks,
+    recentPixelId: state.pixels.recentPixelId,
   };
 };
 
@@ -24,6 +28,8 @@ const mapDispatchToProps = (dispatch) => {
     removePixel: (pixelId) => dispatch(removePixel(pixelId)),
     resetPixelErrors: () => dispatch(resetPixelErrors()),
     hideForm:() => dispatch(hideColumn('newPixel')),
+    createTask: (task) => dispatch(createTask(task)),
+    receiveTasks: (tasks) => dispatch(receiveTasks(tasks)),
   };
 };
 

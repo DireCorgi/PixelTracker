@@ -19,6 +19,7 @@ class TaskListItem extends React.Component {
     this.toggleComplete = this.toggleComplete.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleChange(e) {
@@ -31,17 +32,37 @@ class TaskListItem extends React.Component {
     e.preventDefault();
     const target = e.currentTarget;
     target.disabled = true;
-    this.setState({ loading: true });
-    this.props.updateTask({ body: this.state.body, id: this.props.task.id })
-      .then( () => {
+    if (this.props.task.id) {
+      this.setState({ loading: true });
+        this.props.updateTask({ body: this.state.body, id: this.props.task.id })
+        .then( () => {
           target.disabled = false;
           this.setState({ loading: false, editMode: false });
         }
       );
+    } else {
+      this.props.updateNewTask(this.props.taskIndex, this.state.body );
+      target.disabled = false;
+      this.setState({ editMode: false });
+    }
+  }
 
+  handleDelete(e) {
+    e.preventDefault();
+    const target = e.currentTarget;
+    target.disabled = true;
+    this.setState({ loading: true });
+    if (this.props.task.id) {
+      this.props.deleteTask(this.props.task.id).then(() => {
+        this.props.removeTask(-1);
+      });
+    } else {
+      this.props.removeTask(this.props.taskIndex);
+    }
   }
 
   toggleComplete(e) {
+    e.preventDefault();
     const target = e.currentTarget;
     target.disabled = true;
     const enable = () => { target.disabled = false; };
@@ -77,14 +98,32 @@ class TaskListItem extends React.Component {
     }
   }
 
-  renderForm() {
-    return(
-      <section className="new-task-form">
+  checkBox() {
+    let checkBox = (
+      <input
+        className="task-complete"
+        type="checkbox"
+        disabled/>
+    );
+
+    if (this.props.task.id) {
+      checkBox = (
         <input
           className="task-complete"
           type="checkbox"
           checked={this.state.complete}
-          onClick={this.toggleComplete} />
+          onChange={this.toggleComplete} />
+      );
+    }
+
+    return checkBox;
+  }
+
+  renderForm() {
+
+    return(
+      <section className="new-task-form">
+        {this.checkBox()}
         <input
           className="new-task-body"
           type="text"
@@ -117,13 +156,14 @@ class TaskListItem extends React.Component {
     if (!this.state.complete) {
       complete = "not done";
     }
+
+    let sectionClassName = "new-task-form task-list-item";
+    if (this.state.complete) {
+      sectionClassName += " complete-task";
+    }
     return (
-      <section className="new-task-form task-list-item">
-        <input
-          className="task-complete"
-          type="checkbox"
-          checked={this.state.complete}
-          onChange={this.toggleComplete} />
+      <section className={sectionClassName}>
+        {this.checkBox()}
         <p>{this.state.body}</p>
         <button
           className="edit-button"
@@ -131,7 +171,8 @@ class TaskListItem extends React.Component {
           <i className="material-icons">mode_edit</i>
         </button>
         <button
-          className="edit-button">
+          className="edit-button"
+          onClick={this.handleDelete}>
           <i className="material-icons">delete</i>
         </button>
       </section>

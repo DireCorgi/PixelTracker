@@ -15,6 +15,9 @@ class Task < ApplicationRecord
   validates :body, :pixel, :task_ord, presence: true
   validates :complete, inclusion: { in: [ true, false ], message: "is not defined" }
 
-  belongs_to :pixel
+  belongs_to :pixel,
+    inverse_of: :tasks
+
+  default_scope { order(:task_ord) }
 
 end
