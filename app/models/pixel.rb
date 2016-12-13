@@ -45,4 +45,6 @@ class Pixel < ApplicationRecord
     through: :comments,
     source: :user
 
+  has_many :tasks
+
 end

@@ -10,3 +10,12 @@ json.comments do
     json.created_at comment.created_at.strftime("%m-%d-%Y, %I:%M %p")
   end
 end
+json.tasks do
+  json.array! pixel.tasks do |task|
+    json.id task.id
+    json.body task.body
+    json.pixel_id task.pixel_id
+    json.task_ord task.task_ord
+    json.complete task.complete
+  end
+end

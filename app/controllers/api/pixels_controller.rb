@@ -4,12 +4,12 @@ class Api::PixelsController < ApplicationController
 
   def index
     project = Project.find(params[:project_id])
-    @pixels = project.pixels.includes(:requester).includes(:comments).includes(:commenters)
+    @pixels = project.pixels.includes(:requester).includes(:comments).includes(:commenters).includes(:tasks)
     render :index
   end
 
   def show
-    @pixel = Pixel.includes(:comments).includes(:commenters).find(params[:id])
+    @pixel = Pixel.includes(:comments).includes(:commenters).includes(:tasks).find(params[:id])
     render :show
   end
 
