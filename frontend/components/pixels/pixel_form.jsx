@@ -129,14 +129,20 @@ class PixelForm extends React.Component {
       </button>
     );
 
+    let comments = (
+      <CommentsContainer pixelId={this.state.id}/>
+    );
+
     if (this.state.id === "") {
       button = null;
+      comments = null;
     }
 
     let disabled = false;
     if (this.state.category !== 'Feature') {
       disabled = true;
     }
+
 
     return (
       <form className='pixel-form'>
@@ -185,7 +191,7 @@ class PixelForm extends React.Component {
             value={this.state.description}
             onChange={this.handleDescriptionChange} />
         </label>
-        <CommentsContainer pixelId={this.state.id}/>
+        {comments}
       </form>
     );
   }
