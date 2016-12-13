@@ -4,7 +4,7 @@ class Comments extends React.Component {
   constructor(props) {
     super(props);
     this.state = { body: "" };
-
+  
     this.handleChange = this.handleChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);

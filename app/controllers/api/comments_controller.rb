@@ -21,12 +21,13 @@ class Api::CommentsController < ApplicationController
   end
 
   def destroy
-    comment = Comment.find(params[:id])
-    if comment.destroy
+    comment = Comment.find_by(id: params[:id])
+    if comment
+      comment.destroy!
       @pixel = comment.pixel
       render 'api/pixels/show'
     else
-      render json: comment.errors, status: 422
+      render json: { errors: "Cannot Find Comment" }, status: 404
     end
   end
 
