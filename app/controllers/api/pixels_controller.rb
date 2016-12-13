@@ -4,7 +4,7 @@ class Api::PixelsController < ApplicationController
 
   def index
     project = Project.find(params[:project_id])
-    @pixels = project.pixels.includes(:requester).includes(:comments).includes(:commenters).includes(:tasks)
+    @pixels = project.pixels.order(:pixel_ord).includes(:requester).includes(:comments).includes(:commenters).includes(:tasks)
     render :index
   end
 
@@ -34,11 +34,12 @@ class Api::PixelsController < ApplicationController
   end
 
   def destroy
-    @pixel = Pixel.find(params[:id])
-    if @pixel.destroy
+    @pixel = Pixel.find_by(id: params[:id])
+    if @pixel
+      @pixel.destroy!
       render json: {}
     else
-      render json: @pixel.errors, status: 422
+      render json: { error: "Not Found" }, status: 404
     end
   end
 

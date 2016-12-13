@@ -45,6 +45,6 @@ class Pixel < ApplicationRecord
     through: :comments,
     source: :user
 
-  has_many :tasks
+  has_many :tasks, -> { order(:task_ord) }
 
 end

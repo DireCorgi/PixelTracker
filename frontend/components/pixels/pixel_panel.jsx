@@ -13,17 +13,13 @@ class PixelPanel extends React.Component {
 
   pixelSummary() {
     const mapPixels = [];
-    this.props.pixels.sort((a,b) => {
-      if (a.pixel_ord > b.pixel_ord) {
-        return 1;
-      } else {
-        return -1;
-      }
-    });
+    let maxOrd = 0;
     this.props.pixels.forEach((pixel)=> {
       if (this.props.panelName === 'Icebox'){
-        if (pixel.icebox)
+        if (pixel.icebox){
           mapPixels.push(<li key={pixel.id}><PixelListItemContainer pixelId={pixel.id} /></li>);
+          maxOrd = pixel.pixel_ord;
+        }
       } else if (this.props.panelName === 'Current/Backlog') {
         if (!pixel.icebox && pixel.state !== 'Accepted')
           mapPixels.push(<li key={pixel.id}><PixelListItemContainer pixelId={pixel.id} /></li>);
@@ -32,7 +28,7 @@ class PixelPanel extends React.Component {
           mapPixels.push(<li key={pixel.id}><PixelListItemContainer pixelId={pixel.id} /></li>);
       }
     });
-    this.listLength = mapPixels.length;
+    this.listLength = maxOrd;
     return (
       <ul>
         {mapPixels}
