@@ -1,5 +1,6 @@
 import * as PixelsAPIUtil from '../util/pixels_api_util.js';
 import * as CommentsAPIUtil from '../util/comments_api_util.js';
+import * as TasksAPIUtil from '../util/tasks_api_util.js';
 
 export const RECEIVE_ALL_PIXELS = 'RECEIVE_ALL_PIXELS';
 export const RECEIVE_PIXEL_DETAIL = 'RECEIVE_PIXEL_DETAIL';
@@ -7,6 +8,8 @@ export const RECEIVE_PIXEL_ERRORS = 'RECEIVE_PIXEL_ERRORS';
 export const DELETE_PIXEL = 'DELETE_PIXEL';
 export const LOADING_PIXELS = 'LOADING_PIXELS';
 export const RESET_PIXELS = 'RESET_PIXELS';
+export const LOADING_TASKS = 'LOADING_TASKS';
+export const LOADING_COMMENTS = 'LOADING_COMMENTS';
 
 export const receivePixels = (pixels) => {
   return {
@@ -51,6 +54,14 @@ export const receivePixelErrors = (errors) => {
 
 export const loadingPixels = () => {
   return { type: LOADING_PIXELS };
+};
+
+export const loadingTasks = () => {
+  return { type: LOADING_TASKS };
+};
+
+export const loadingComments = () => {
+  return { type: LOADING_COMMENTS };
 };
 
 export const fetchPixels = (projectId) => {
@@ -105,7 +116,7 @@ export const removePixel = (pixelId) => {
 
 export const createComment = (comment) => {
   return (dispatch) => {
-    dispatch(loadingPixels());
+    dispatch(loadingComments());
     return CommentsAPIUtil.createComment(comment).then(
       pixel => dispatch(receivePixelDetail(pixel)),
       errors => dispatch(receivePixelErrors(errors.responseJSON))
@@ -115,7 +126,7 @@ export const createComment = (comment) => {
 
 export const updateComment = (comment) => {
   return (dispatch) => {
-    dispatch(loadingPixels());
+    dispatch(loadingComments());
     return CommentsAPIUtil.updateComment(comment).then(
       pixel => dispatch(receivePixelDetail(pixel)),
       errors => dispatch(receivePixelErrors(errors.responseJSON))
@@ -125,8 +136,18 @@ export const updateComment = (comment) => {
 
 export const deleteComment = (commentId) => {
   return (dispatch) => {
-    dispatch(loadingPixels());
+    dispatch(loadingComments());
     return CommentsAPIUtil.deleteComment(commentId).then(
+      pixel => dispatch(receivePixelDetail(pixel)),
+      errors => dispatch(receivePixelErrors(errors.responseJSON))
+    );
+  };
+};
+
+export const createTask = (task) => {
+  return (dispatch) => {
+    dispatch(loadingTasks());
+    return TasksAPIUtil.createTask(task).then(
       pixel => dispatch(receivePixelDetail(pixel)),
       errors => dispatch(receivePixelErrors(errors.responseJSON))
     );

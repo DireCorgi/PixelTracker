@@ -1,10 +1,11 @@
 import React from 'react';
+import { Spinner2 } from '../spinners/spinners';
 
 class Comments extends React.Component {
   constructor(props) {
     super(props);
     this.state = { body: "" };
-  
+
     this.handleChange = this.handleChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -60,6 +61,15 @@ class Comments extends React.Component {
     let className = "";
     if (this.props.errors.body) {
       className = "errored-item";
+    }
+    debugger
+
+    if (this.props.loading) {
+      return (
+        <section className="pixel-comments-container">
+          <Spinner2 />
+        </section>
+      );
     }
     return (
       <section className="pixel-comments-container">

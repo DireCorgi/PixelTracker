@@ -12,3 +12,10 @@ export const Spinner = () => {
     <div className="loader">Loading...</div>
   );
 };
+
+
+export const Spinner2 = () => {
+  return (
+    <div className="loader-2">Loading...</div>
+  );
+};

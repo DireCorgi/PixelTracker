@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
   return {
     pixelList: state.pixels.pixelList,
     errors: state.pixels.errors,
-    loading: state.loading.pixelsLoading,
+    loading: state.loading.commentsLoading,
     currentUser: state.session.currentUser.username,
   };
 };
