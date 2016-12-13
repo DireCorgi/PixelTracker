@@ -19,6 +19,8 @@ class PixelForm extends React.Component {
       this.state = this.props.pixel;
     }
 
+    this.deleted = false;
+
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
     this.handlePointsChange = this.handlePointsChange.bind(this);
     this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -105,7 +107,8 @@ class PixelForm extends React.Component {
 
   handleDelete(e) {
     e.preventDefault();
-    if (this.props.formType === 'update') {
+    if (this.props.formType === 'update' && !this.deleted) {
+      this.deleted = true;
       this.props.removePixel(this.state.id);
     }
   }
