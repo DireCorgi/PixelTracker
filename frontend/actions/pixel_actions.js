@@ -157,7 +157,7 @@ export const createTask = (task) => {
 export const updateTask = (task) => {
   return (dispatch) => {
     dispatch(loadingTasks());
-    return TasksAPIUtil.createTask(task).then(
+    return TasksAPIUtil.updateTask(task).then(
       pixel => dispatch(receivePixelDetail(pixel)),
       errors => dispatch(receivePixelErrors(errors.responseJSON))
     );

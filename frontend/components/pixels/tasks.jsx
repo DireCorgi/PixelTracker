@@ -1,15 +1,37 @@
 import React from 'react';
 import TaskListItem from './task_list_item';
-import { Spinner2 } from '../spinners/spinners';
+import { Spinner3 } from '../spinners/spinners';
 
 class Tasks extends React.Component {
   constructor(props) {
     super(props);
     this.maxOrd = 0;
-    this.state = { body: "" , tasksComplete: 0, totalTasks: 0};
+    this.state = { body: "" , tasksComplete: this.getCompletedTasks(), totalTasks: this.taskList().length};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateComplete = this.updateComplete.bind(this);
+    this.removeTask = this.removeTask.bind(this);
+  }
+
+  getCompletedTasks() {
+    let completeTasks = 0;
+    this.taskList().forEach((task) => {
+      if (task.complete)
+        completeTasks += 1;
+    });
+    return completeTasks;
+  }
+
+  updateComplete(num) {
+    let completedTasks = this.state.tasksComplete;
+    completedTasks += num;
+    this.setState({ tasksComplete: completedTasks });
+  }
+
+  removeTask() {
+    const newTasks = this.state.totalTasks - 1;
+    this.setState({ totalTasks: newTasks });
   }
 
   taskList() {
@@ -34,7 +56,7 @@ class Tasks extends React.Component {
         task_ord: (this.maxOrd + 1),
        };
       this.props.createTask(newTask).then(() => {
-        this.setState({ body: "" });
+        this.setState({ body: "", totalTasks: (this.state.totalTasks + 1) });
         this.maxOrd += 1;
         target.disabled = false;
       });
@@ -48,7 +70,12 @@ class Tasks extends React.Component {
 
   renderTaskList() {
     const taskListItems = this.taskList().map((task) => {
-      return(<TaskListItem key={task.id} task={task} />);
+      return(
+        <TaskListItem
+          key={task.id}
+          task={task}
+          updateComplete={this.updateComplete}
+          removeTask={this.removeTask}/>);
     });
 
     return (
@@ -62,7 +89,7 @@ class Tasks extends React.Component {
     if (this.props.loading) {
       return (
         <section className="new-task-form">
-          <Spinner2 />
+          <Spinner3 />
         </section>
       );
     }
@@ -85,7 +112,7 @@ class Tasks extends React.Component {
   render() {
     return (
       <section className="tasks-container">
-        <h2>Tasks</h2>
+        <h2>Tasks ({this.state.tasksComplete}/{this.state.totalTasks})</h2>
         {this.renderTaskList()}
         {this.renderForm()}
       </section>
