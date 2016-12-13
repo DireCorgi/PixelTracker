@@ -10,18 +10,23 @@ class Api::TasksController < ApplicationController
   end
 
   def update
-    task = Task.find(params[:id])
-    if task.update(task_params)
-      @pixel = task.pixel
-      render 'api/pixels/show'
+    task = Task.find_by(id: params[:id])
+    if task
+      if task.update(task_params)
+        @pixel = task.pixel
+        render 'api/pixels/show'
+      else
+        render json: task.errors, status: 422
+      end
     else
-      render json: task.errors, status: 422
+      render json: { errors: "Cannot Find Task" }, status: 404
     end
   end
 
   def destroy
-    task = Task.find(params[:id])
-    if task.destroy
+    task = Task.find_by(id: params[:id])
+    if task
+      task.destroy!
       @pixel = task.pixel
       render 'api/pixels/show'
     else
