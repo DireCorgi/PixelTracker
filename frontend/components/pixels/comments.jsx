@@ -19,6 +19,7 @@ class Comments extends React.Component {
 
   handleDelete(e) {
     e.preventDefault();
+    e.currentTarget.disabled = true;
     const idx = parseInt(e.currentTarget.value);
     const comment = this.props.pixelList[this.props.pixelId].comments[idx];
     if (comment.user === this.props.currentUser) {
@@ -62,7 +63,6 @@ class Comments extends React.Component {
     if (this.props.errors.body) {
       className = "errored-item";
     }
-    debugger
 
     if (this.props.loading) {
       return (

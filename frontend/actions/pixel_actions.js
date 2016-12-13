@@ -153,3 +153,23 @@ export const createTask = (task) => {
     );
   };
 };
+
+export const updateTask = (task) => {
+  return (dispatch) => {
+    dispatch(loadingTasks());
+    return TasksAPIUtil.createTask(task).then(
+      pixel => dispatch(receivePixelDetail(pixel)),
+      errors => dispatch(receivePixelErrors(errors.responseJSON))
+    );
+  };
+};
+
+export const deleteTask = (taskId) => {
+  return (dispatch) => {
+    dispatch(loadingTasks());
+    return TasksAPIUtil.deleteTask(taskId).then(
+      pixel => dispatch(receivePixelDetail(pixel)),
+      errors => dispatch(receivePixelErrors(errors.responseJSON))
+    );
+  };
+};

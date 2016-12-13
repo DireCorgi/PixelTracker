@@ -107,9 +107,13 @@ class PixelForm extends React.Component {
 
   handleDelete(e) {
     e.preventDefault();
+    e.currentTarget.disabled = true;
     if (this.props.formType === 'update' && !this.deleted) {
       this.deleted = true;
-      this.props.removePixel(this.state.id);
+      e.currentTarget.disabled = false;
+      this.props.removePixel(this.state.id).then(() => {
+        this.deleted = false;
+      });
     }
   }
 
