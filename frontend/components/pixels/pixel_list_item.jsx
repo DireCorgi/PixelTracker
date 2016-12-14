@@ -1,5 +1,7 @@
 import React from 'react';
 import PixelFormContainer from './pixel_form_container';
+import { newPixelState, buttonName }
+  from '../../util/pixel_state_util.js';
 
 class PixelListItem extends React.Component {
   constructor(props) {
@@ -62,6 +64,19 @@ class PixelListItem extends React.Component {
     return mapTasks;
   }
 
+  renderButton(pixel) {
+    const name = buttonName(pixel.state);
+    if (name === 'none') {
+      return null;
+    }
+    const className = `next-state-button ${name}-button`;
+    return (
+      <button className={className}>
+        {name}
+      </button>
+    );
+  }
+
 
   renderSummary(pixel) {
     return(
@@ -98,6 +113,7 @@ class PixelListItem extends React.Component {
           </footer>
         </section>
         <summary>{pixel.title}</summary>
+        {this.renderButton(pixel)}
       </div>
       </section>);
   }

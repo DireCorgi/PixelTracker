@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import PixelListItem from './pixel_list_item';
-
+import { updatePixel } from '../../actions/pixel_actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return  {
-
+    updatePixel: (pixelId, pixel) => dispatch(updatePixel(pixelId, pixel)),
   };
 };
 
