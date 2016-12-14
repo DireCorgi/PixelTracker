@@ -85,6 +85,9 @@ class PixelForm extends React.Component {
       if (newState === "Accepted") {
         newOrd = this.props.ords.maxDone + 1;
       }
+      if (nextState === 'Unstarted') {
+        newOrd = this.props.ords.maxUnstarted + 1;
+      }
       this.setState({ state: newState, icebox: false, pixel_ord: newOrd });
       const pixel = { id: this.state.id, state: newState, icebox: false, pixel_ord: newOrd };
       this.props.updatePixel(pixel.id, pixel).then(
@@ -102,6 +105,7 @@ class PixelForm extends React.Component {
 
   handleStateChange(e) {
     e.preventDefault();
+    const target = e.currentTarget;
     const newState = e.currentTarget.value;
     let newOrd = this.state.pixel_ord;
     if (this.state.icebox) {
@@ -113,7 +117,21 @@ class PixelForm extends React.Component {
     if (newState === "Accepted") {
       newOrd = this.props.ords.maxDone + 1;
     }
-    this.setState({ state: newState, icebox: false, pixel_ord: newOrd });
+    if (newState === 'Unstarted') {
+      newOrd = this.props.ords.maxUnstarted + 1;
+    }
+    this.setState({ state: newState });
+    const pixel = { id: this.state.id, state: newState, icebox: false, pixel_ord: newOrd };
+    this.props.updatePixel(pixel.id, pixel).then(
+      () => {
+        target.disabled = false;
+        if (this.mounted)
+          this.resetState();
+      },
+      () => {
+        target.disabled = false;
+      }
+    );
   }
 
   handleClick(e) {

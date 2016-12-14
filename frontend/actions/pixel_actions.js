@@ -33,12 +33,13 @@ export const resetPixels = () => {
   };
 };
 
-export const updateMaxOrds = (maxIcebox, maxBacklog, maxDone) => {
+export const updateMaxOrds = (maxIcebox, maxBacklog, maxDone, maxUnstarted) => {
   return {
     type: UPDATE_ORDS,
     maxIcebox,
     maxBacklog,
     maxDone,
+    maxUnstarted,
   };
 };
 

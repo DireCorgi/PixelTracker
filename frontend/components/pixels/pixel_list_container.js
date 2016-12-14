@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch) => {
 
   return  {
     fetchPixels: (projectId) => dispatch(fetchPixels(projectId)),
-    updateMaxOrds: (maxIcebox, maxBacklog, maxDone) => dispatch(updateMaxOrds(maxIcebox, maxBacklog, maxDone)),
+    updateMaxOrds: (maxIcebox, maxBacklog, maxDone, maxUnstarted) => dispatch(updateMaxOrds(maxIcebox, maxBacklog, maxDone, maxUnstarted)),
   };
 };
 

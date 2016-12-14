@@ -34,6 +34,9 @@ class PixelListItem extends React.Component {
       if (nextState === 'Accepted') {
         newOrd = this.props.ords.maxDone + 1;
       }
+      if (nextState === 'Unstarted') {
+        newOrd = this.props.ords.maxUnstarted + 1;
+      }
       this.props.updatePixel(pixelId, { state: nextState, icebox: false, pixel_ord: newOrd });
     };
   }
@@ -107,9 +110,14 @@ class PixelListItem extends React.Component {
       );
     }
 
+    let className = `pixel-list-item-summary ${pixel.state}-item`;
+    if (pixel.icebox) {
+      className += ' icebox-pixel';
+    }
+
     return(
       <section className="pixel-list-item-container">
-      <div className="pixel-list-item-summary">
+      <div className={className}>
         <button onClick={this.handleClick}>
           <i className="material-icons">keyboard_arrow_right</i>
         </button>

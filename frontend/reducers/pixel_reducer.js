@@ -5,7 +5,7 @@ const defaultState = {
   pixelList: {},
   errors: {},
   tasks: [],
-  ords: { maxIcebox: 0, maxBacklog: 0, maxDone: 0 },
+  ords: { maxIcebox: 0, maxBacklog: 0, maxDone: 0, maxUnstarted: 0 },
 };
 
 export default (state = defaultState, action) => {
@@ -45,6 +45,7 @@ export default (state = defaultState, action) => {
       newOrds.maxIcebox = action.maxIcebox;
       newOrds.maxBacklog = action.maxBacklog;
       newOrds.maxDone = action.maxDone;
+      newOrds.maxUnstarted = action.maxUnstarted;
       newState.ords = newOrds;
       return newState;
     default:

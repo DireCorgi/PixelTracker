@@ -12,7 +12,9 @@ class PixelPanel extends React.Component {
   }
 
   pixelSummary() {
-    const mapPixels = [];
+    let mapPixels = [];
+    const unStartedPixels = [];
+    const startedPixels = [];
     let maxOrd = 0;
     this.props.pixels.forEach((pixel)=> {
       if (this.props.panelName === 'Icebox'){
@@ -22,7 +24,11 @@ class PixelPanel extends React.Component {
         }
       } else if (this.props.panelName === 'Current/Backlog') {
         if ( !pixel.icebox && pixel.state !== 'Accepted' ) {
-          mapPixels.push(<li key={pixel.id}><PixelListItemContainer pixelId={pixel.id} /></li>);
+          if (pixel.state === 'Unstarted') {
+            unStartedPixels.push(<li key={pixel.id}><PixelListItemContainer pixelId={pixel.id} /></li>);
+          } else {
+            startedPixels.push(<li key={pixel.id}><PixelListItemContainer pixelId={pixel.id} /></li>);
+          }
         }
       } else if (this.props.panelName === 'Done') {
         if (pixel.state === 'Accepted'){
@@ -30,6 +36,9 @@ class PixelPanel extends React.Component {
         }
       }
     });
+    if (unStartedPixels.length > 0 || startedPixels.length > 0) {
+      mapPixels = startedPixels.concat(unStartedPixels);
+    }
     this.listLength = maxOrd;
     return (
       <ul>
