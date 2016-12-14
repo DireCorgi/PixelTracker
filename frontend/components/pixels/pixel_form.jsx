@@ -2,6 +2,8 @@ import React from 'react';
 import { Spinner2 } from '../spinners/spinners';
 import CommentsContainer from './comments_container';
 import TasksContainer from './tasks_container';
+import { newPixelState, buttonName }
+  from '../../util/pixel_state_util.js';
 
 class PixelForm extends React.Component {
   constructor(props) {
@@ -31,6 +33,7 @@ class PixelForm extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleStateChange = this.handleStateChange.bind(this);
+    this.handleNextState = this.handleNextState.bind(this);
   }
 
   resetState() {
@@ -62,9 +65,11 @@ class PixelForm extends React.Component {
     this.mounted = false;
   }
 
-  handleStateChange(e) {
+  handleNextState(e) {
     e.preventDefault();
-    const newPixelState = e.currentTarget.value;
+    const target = e.currentTarget;
+    target.disabled = true;
+    const newState = newPixelState(this.state.state);
     let newOrd = this.state.pixel_ord;
     if (this.state.icebox) {
       newOrd = this.props.ords.maxBacklog + 1;
@@ -72,10 +77,37 @@ class PixelForm extends React.Component {
     if (this.state.state === "Accepted") {
       newOrd = this.props.ords.maxBacklog + 1;
     }
-    if (newPixelState === "Accepted") {
+    if (newState === "Accepted") {
       newOrd = this.props.ords.maxDone + 1;
     }
-    this.setState({ state: newPixelState, icebox: false, pixel_ord: newOrd });
+    this.setState({ state: newState, icebox: false, pixel_ord: newOrd });
+    const pixel = { id: this.state.id, state: newState, icebox: false, pixel_ord: newOrd };
+    this.props.updatePixel(pixel.id, pixel).then(
+      () => {
+        target.disabled = false;
+        if (this.mounted)
+          this.resetState();
+      },
+      () => {
+        target.disabled = false;
+      }
+    );
+  }
+
+  handleStateChange(e) {
+    e.preventDefault();
+    const newState = e.currentTarget.value;
+    let newOrd = this.state.pixel_ord;
+    if (this.state.icebox) {
+      newOrd = this.props.ords.maxBacklog + 1;
+    }
+    if (this.state.state === "Accepted") {
+      newOrd = this.props.ords.maxBacklog + 1;
+    }
+    if (newState === "Accepted") {
+      newOrd = this.props.ords.maxDone + 1;
+    }
+    this.setState({ state: newState, icebox: false, pixel_ord: newOrd });
   }
 
   handleClick(e) {
@@ -165,6 +197,19 @@ class PixelForm extends React.Component {
     }
   }
 
+  renderButton() {
+    const name = buttonName(this.state.state);
+    if (name === 'none' || this.state.id === "") {
+      return null;
+    }
+    const className = `next-state-button drop-down-button ${name}-button`;
+    return (
+      <button className={className} onClick={this.handleNextState}>
+        {name}
+      </button>
+    );
+  }
+
   render() {
     let button = (
       <button onClick={this.props.handleClick}>
@@ -240,6 +285,7 @@ class PixelForm extends React.Component {
               <option value="Rejected">Rejected</option>
               <option value="Accepted">Accepted</option>
             </select>
+            {this.renderButton()}
           </label>
         </section>
         <label>Description
