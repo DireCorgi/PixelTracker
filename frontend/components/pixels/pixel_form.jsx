@@ -65,7 +65,17 @@ class PixelForm extends React.Component {
   handleStateChange(e) {
     e.preventDefault();
     const newPixelState = e.currentTarget.value;
-    this.setState({ state: newPixelState, icebox: false });
+    let newOrd = this.state.pixel_ord;
+    if (this.state.icebox) {
+      newOrd = this.props.ords.maxBacklog + 1;
+    }
+    if (this.state.state === "Accepted") {
+      newOrd = this.props.ords.maxBacklog + 1;
+    }
+    if (newPixelState === "Accepted") {
+      newOrd = this.props.ords.maxDone + 1;
+    }
+    this.setState({ state: newPixelState, icebox: false, pixel_ord: newOrd });
   }
 
   handleClick(e) {
@@ -107,7 +117,7 @@ class PixelForm extends React.Component {
     const pixel = Object.assign({}, this.state);
     pixel.tasks_attributes = this.props.tasks;
     if (this.props.formType === 'create') {
-      pixel.pixel_ord = this.props.pixelOrd;
+      pixel.pixel_ord = this.props.ords.maxIcebox + 1;
       this.props.createPixel(this.props.projectId, pixel).then(
         () => {
           target.disabled = false;

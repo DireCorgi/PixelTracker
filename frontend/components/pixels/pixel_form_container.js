@@ -17,6 +17,7 @@ const mapStateToProps = (state) => {
     loading: state.loading.pixelsLoading,
     tasks: state.pixels.tasks,
     recentPixelId: state.pixels.recentPixelId,
+    ords: state.pixels.ords,
   };
 };
 
