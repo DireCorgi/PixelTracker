@@ -47,6 +47,19 @@ class PixelListItem extends React.Component {
     return mapComments;
   }
 
+  renderTasks(pixel) {
+    const tasks = pixel.tasks;
+    const mapTasks = tasks.map((task, idx) => {
+      return (
+          <li key={task.id} className="comment-list-item inside-description">
+            <input type="checkbox" disabled checked={task.complete} />
+            <p>{task.body}</p>
+          </li>
+      );
+    });
+    return mapTasks;
+  }
+
 
   renderSummary(pixel) {
     return(
@@ -67,6 +80,10 @@ class PixelListItem extends React.Component {
             <h3>ACTIVITY</h3>
             <ul className="pixel-comments-list description-ul">
               {this.renderComments(pixel)}
+            </ul>
+            <h3>TASKS</h3>
+            <ul className="pixel-comments-list description-ul">
+              {this.renderTasks(pixel)}
             </ul>
           <footer className="group">
             <div className="pixel-description-footer-left">
