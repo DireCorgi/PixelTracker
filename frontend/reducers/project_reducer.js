@@ -8,11 +8,7 @@ const ProjectReducer = (state = defaultState, action) => {
   let newState = Object.assign({}, state);
   switch (action.type) {
     case RECEIVE_PROJECTS:
-      const newProjectList = {};
-      action.projects.forEach((project)=> {
-        newProjectList[project.id] = project;
-      });
-      newState.projectList = newProjectList;
+      newState.projectList = action.projects;
       newState.errors = [];
       return newState;
     case RECEIVE_ONE_PROJECT:

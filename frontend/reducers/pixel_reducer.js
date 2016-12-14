@@ -13,12 +13,8 @@ export default (state = defaultState, action) => {
   let newState = Object.assign({}, state);
   switch (action.type) {
     case RECEIVE_ALL_PIXELS:
-      const newPixelList = {};
-      action.pixels.forEach((pixel) => {
-        newPixelList[pixel.id] = pixel;
-      });
       newState.errors = {};
-      newState.pixelList = newPixelList;
+      newState.pixelList = action.pixels;
       return newState;
     case RECEIVE_PIXEL_DETAIL:
       const curPixelList = Object.assign({}, newState.pixelList);
