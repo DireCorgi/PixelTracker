@@ -291,7 +291,7 @@ class PixelForm extends React.Component {
               onChange={this.handleCategoryChange}>
               <option value="Feature">Feature</option>
               <option value="Bug">Bug</option>
-              <option value="Chore">Build</option>
+              <option value="Chore">Chore</option>
               <option value="Release">Release</option>
             </select>
           </label>
