@@ -11,6 +11,7 @@ export const RESET_PIXELS = 'RESET_PIXELS';
 export const LOADING_TASKS = 'LOADING_TASKS';
 export const LOADING_COMMENTS = 'LOADING_COMMENTS';
 export const RECEIVE_TASKS = 'RECEIVE_TASKS';
+export const UPDATE_ORDS = 'UPDATE_ORDS';
 
 export const receivePixels = (pixels) => {
   return {
@@ -29,6 +30,15 @@ export const receiveTasks = (tasks) => {
 export const resetPixels = () => {
   return {
     type: RESET_PIXELS,
+  };
+};
+
+export const updateMaxOrds = (maxIcebox, maxBacklog, maxDone) => {
+  return {
+    type: UPDATE_ORDS,
+    maxIcebox,
+    maxBacklog,
+    maxDone,
   };
 };
 

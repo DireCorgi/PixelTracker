@@ -7,8 +7,8 @@ class PixelListItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = { opened: false };
-
     this.handleClick = this.handleClick.bind(this);
+    this.handleUpdateState = this.handleUpdateState.bind(this);
   }
 
   handleClick(e) {
@@ -17,6 +17,22 @@ class PixelListItem extends React.Component {
     } else {
       this.setState({ opened: true });
     }
+  }
+
+  handleUpdateState(pixel) {
+    const pixelId = pixel.id;
+    const curState = pixel.state;
+    const nextState = newPixelState(curState);
+    let newOrd = pixel.pixel_ord;
+    if (pixel.icebox) {
+      newOrd = this.props.ords.maxBacklog + 1;
+    }
+    if (nextState === 'Accepted') {
+      newOrd = this.props.ords.maxDone + 1;
+    }
+    return () => {
+      this.props.updatePixel(pixelId, { state: newPixelState(curState), icebox: false, pixel_ord: newOrd });
+    };
   }
 
   renderCategory(category) {
@@ -71,7 +87,7 @@ class PixelListItem extends React.Component {
     }
     const className = `next-state-button ${name}-button`;
     return (
-      <button className={className}>
+      <button onClick={this.handleUpdateState(pixel)} className={className}>
         {name}
       </button>
     );

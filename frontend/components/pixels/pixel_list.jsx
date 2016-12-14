@@ -2,6 +2,24 @@ import React from 'react';
 import PixelPanelContainer from './pixel_panel_container';
 
 class PixelList extends React.Component {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.pixelList !== this.props.pixelList) {
+      let maxIcebox = 0;
+      let maxBacklog = 0;
+      let maxDone = 0;
+      nextProps.pixels.forEach((pixel)=> {
+        if (pixel.icebox) {
+          maxIcebox = pixel.pixel_ord;
+        } else if (!pixel.icebox && pixel.state !== 'Accepted') {
+          maxBacklog = pixel.pixel_ord;
+        } else if (pixel.state === 'Accepted') {
+          maxDone = pixel.pixel_ord;
+        }
+      });
+      this.props.updateMaxOrds(maxIcebox, maxBacklog, maxDone);
+    }
+  }
+
   render() {
     const panels = [];
     if ( this.props.sidebar.done ) {
