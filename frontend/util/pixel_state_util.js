@@ -9,7 +9,7 @@ export const newPixelState = (curState) => {
     case 'Delivered':
       return 'Accepted';
     case 'Rejected':
-      return 'Started';
+      return 'Unstarted';
     default:
       return curState;
   }
