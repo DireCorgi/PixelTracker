@@ -3,11 +3,14 @@ import { DropTarget } from 'react-dnd';
 import { ItemTypes } from '../../modules/dnd_item_types';
 
 const pixelTarget = {
-  hover(props) {
-    console.log("hovered");
-  },
-  drop(props) {
-    console.log("dropped");
+  drop(props, monitor, component) {
+    const pixel = monitor.getItem();
+    if (pixel.icebox) {
+      props.updatePixel(
+        pixel.pixelId,
+        { icebox: false, pixel_ord: (props.ords.maxUnstarted + 1) }
+      );
+    }
   }
 };
 
@@ -15,14 +18,23 @@ function collect(connect, monitor) {
   return {
     connectDropTarget: connect.dropTarget(),
     isOver: monitor.isOver(),
-    canDrop: monitor.canDrop()
+    canDrop: monitor.canDrop(),
+    item: monitor.getItem(),
   };
 }
 
-class DropArea extends React.Component{
+class DropArea extends React.Component {
+
   render() {
+    let areaClass = 'drop-area';
+    if (this.props.item) {
+      if (this.props.isOver && this.props.item.icebox === true) {
+        areaClass += ' hovered-container';
+      }
+    }
+
     return this.props.connectDropTarget(
-      <div className='drop-area'>
+      <div className={areaClass}>
       </div>
     );
   }

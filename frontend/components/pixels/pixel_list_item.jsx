@@ -16,9 +16,6 @@ const pixelSource = {
   },
   canDrag(props) {
     return props.pixelList[props.pixelId].state !== 'Accepted';
-  },
-  endDrag(props) {
-    console.log("drag ended");
   }
 };
 
