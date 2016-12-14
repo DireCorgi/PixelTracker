@@ -2,11 +2,50 @@ import React from 'react';
 import PixelFormContainer from './pixel_form_container';
 import { newPixelState, buttonName }
   from '../../util/pixel_state_util.js';
+import { DragSource } from 'react-dnd';
+import { ItemTypes } from '../../modules/dnd_item_types';
+
+const pixelSource = {
+  beginDrag(props) {
+    return {
+      pixelId: props.pixelId,
+      pixelOrd: props.pixelList[props.pixelId].pixel_ord,
+      icebox: props.pixelList[props.pixelId].icebox,
+      pixelState: props.pixelList[props.pixelId].state,
+    };
+  },
+  canDrag(props) {
+    return props.pixelList[props.pixelId].state !== 'Accepted';
+  },
+  endDrag(props) {
+    console.log("drag ended");
+  }
+};
+
+const pixelTarget = {
+  hover(props, monitor, component) {
+    console.log("hovered");
+  }
+};
+
+function collect(connect, monitor) {
+  return {
+    connectDragSource: connect.dragSource(),
+    connectDragPreview: connect.dragPreview(),
+    isDragging: monitor.isDragging()
+  };
+}
+
+function collectDrop(connect) {
+  return {
+    connectDropTarget: connect.dropTarget(),
+  };
+}
 
 class PixelListItem extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { opened: false };
+    this.state = { opened: false, hover: false };
     this.handleClick = this.handleClick.bind(this);
     this.handleUpdateState = this.handleUpdateState.bind(this);
   }
@@ -114,6 +153,12 @@ class PixelListItem extends React.Component {
     if (pixel.icebox) {
       className += ' icebox-pixel';
     }
+    if (this.props.isDragging) {
+      className += ' dragging';
+    }
+    if (pixel.category === 'Release')  {
+      className += ' release-pixel';
+    }
 
     return(
       <section className="pixel-list-item-container">
@@ -157,15 +202,19 @@ class PixelListItem extends React.Component {
 
   render() {
     const pixel = this.props.pixelList[this.props.pixelId];
-    let display = this.renderSummary(pixel);
+    const display = this.renderSummary(pixel);
+    const { connectDragSource, isDragging } = this.props;
     if(this.state.opened) {
-      display = (
-        <PixelFormContainer
+      return (
+        <div>
+          <PixelFormContainer
           formType="update"
           pixel={pixel}
-          handleClick={this.handleClick} />);
+          handleClick={this.handleClick} />
+        </div>
+      );
     }
-    return(
+    return connectDragSource(
       <div>
         {display}
       </div>
@@ -173,4 +222,4 @@ class PixelListItem extends React.Component {
   }
 }
 
-export default PixelListItem;
+export default DragSource(ItemTypes.PIXEL, pixelSource, collect)(PixelListItem);

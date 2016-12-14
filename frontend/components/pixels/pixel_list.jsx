@@ -1,5 +1,7 @@
 import React from 'react';
 import PixelPanelContainer from './pixel_panel_container';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 
 class PixelList extends React.Component {
   componentWillReceiveProps(nextProps) {
@@ -63,4 +65,4 @@ class PixelList extends React.Component {
   }
 }
 
-export default PixelList;
+export default DragDropContext(HTML5Backend)(PixelList);

@@ -2,11 +2,34 @@ import React from 'react';
 import PixelListItemContainer from './pixel_list_item_container';
 import PixelFormContainer from './pixel_form_container';
 import { Spinner } from '../spinners/spinners';
+import DropArea from './drop_area';
+import { ItemTypes } from '../../modules/dnd_item_types';
+import { DropTarget } from 'react-dnd';
+
+const pixelTarget = {
+  drop(props, monitor, component) {
+    const pixel = monitor.getItem();
+    if (pixel.icebox) {
+      props.updatePixel(
+        pixel.pixelId,
+        { icebox: false, pixel_ord: (props.ords.maxUnstarted + 1) }
+      );
+    }
+  }
+};
+
+function collect(connect, monitor) {
+  return {
+    connectDropTarget: connect.dropTarget(),
+    isOver: monitor.isOver(),
+    canDrop: monitor.canDrop()
+  };
+}
+
 
 class PixelPanel extends React.Component {
   constructor(props) {
     super(props);
-
     this.listLength = 0;
     this.handleClick = this.handleClick.bind(this);
   }
@@ -65,8 +88,17 @@ class PixelPanel extends React.Component {
   }
 
   render() {
-    return(
-      <article className="panel-container">
+    let panelClass = 'panel-container';
+    if (this.props.isOver && this.props.panelName === "Current/Backlog") {
+      panelClass += ' hovered-container';
+    }
+    let dropArea = null;
+    if (this.props.panelName === 'Current/Backlog') {
+      dropArea = <DropArea ords={this.props.ords} updatePixel={this.props.updatePixel}/>;
+    }
+
+    return this.props.connectDropTarget(
+      <article className={panelClass}>
         <header className="panel-header">
           <button onClick={this.handleClick}></button>
           { this.props.panelName }
@@ -75,9 +107,10 @@ class PixelPanel extends React.Component {
         <section className="panel-list">
           {this.pixelSummary()}
         </section>
+        { dropArea }
       </article>
     );
   }
 }
 
-export default PixelPanel;
+export default DropTarget(ItemTypes.PIXEL, pixelTarget, collect)(PixelPanel);
