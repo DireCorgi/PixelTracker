@@ -19,19 +19,22 @@ class PixelListItem extends React.Component {
     }
   }
 
-  handleUpdateState(pixel) {
-    const pixelId = pixel.id;
-    const curState = pixel.state;
-    const nextState = newPixelState(curState);
-    let newOrd = pixel.pixel_ord;
-    if (pixel.icebox) {
-      newOrd = this.props.ords.maxBacklog + 1;
-    }
-    if (nextState === 'Accepted') {
-      newOrd = this.props.ords.maxDone + 1;
-    }
-    return () => {
-      this.props.updatePixel(pixelId, { state: newPixelState(curState), icebox: false, pixel_ord: newOrd });
+  handleUpdateState(pixel, newState = null) {
+    return (e) => {
+      const pixelId = pixel.id;
+      const curState = pixel.state;
+      if (newState === null) {
+        newState = newPixelState(curState);
+      }
+      const nextState = newState;
+      let newOrd = pixel.pixel_ord;
+      if (pixel.icebox) {
+        newOrd = this.props.ords.maxBacklog + 1;
+      }
+      if (nextState === 'Accepted') {
+        newOrd = this.props.ords.maxDone + 1;
+      }
+      this.props.updatePixel(pixelId, { state: nextState, icebox: false, pixel_ord: newOrd });
     };
   }
 
@@ -95,6 +98,15 @@ class PixelListItem extends React.Component {
 
 
   renderSummary(pixel) {
+    let rejectButton = null;
+    if (pixel.state === 'Delivered') {
+      rejectButton = (
+        <button
+          className="next-state-button Reject-button"
+          onClick={this.handleUpdateState(pixel, 'Rejected')}>Reject</button>
+      );
+    }
+
     return(
       <section className="pixel-list-item-container">
       <div className="pixel-list-item-summary">
@@ -130,6 +142,7 @@ class PixelListItem extends React.Component {
         </section>
         <summary>{pixel.title}</summary>
         {this.renderButton(pixel)}
+        {rejectButton}
       </div>
       </section>);
   }

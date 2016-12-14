@@ -65,33 +65,39 @@ class PixelForm extends React.Component {
     this.mounted = false;
   }
 
-  handleNextState(e) {
-    e.preventDefault();
-    const target = e.currentTarget;
-    target.disabled = true;
-    const newState = newPixelState(this.state.state);
-    let newOrd = this.state.pixel_ord;
-    if (this.state.icebox) {
-      newOrd = this.props.ords.maxBacklog + 1;
+  handleNextState(nextState = null) {
+    if (nextState === null) {
+      nextState = newPixelState(this.state.state);
     }
-    if (this.state.state === "Accepted") {
-      newOrd = this.props.ords.maxBacklog + 1;
-    }
-    if (newState === "Accepted") {
-      newOrd = this.props.ords.maxDone + 1;
-    }
-    this.setState({ state: newState, icebox: false, pixel_ord: newOrd });
-    const pixel = { id: this.state.id, state: newState, icebox: false, pixel_ord: newOrd };
-    this.props.updatePixel(pixel.id, pixel).then(
-      () => {
-        target.disabled = false;
-        if (this.mounted)
-          this.resetState();
-      },
-      () => {
-        target.disabled = false;
+
+    return (e) => {
+      e.preventDefault();
+      const target = e.currentTarget;
+      target.disabled = true;
+      const newState = nextState;
+      let newOrd = this.state.pixel_ord;
+      if (this.state.icebox) {
+        newOrd = this.props.ords.maxBacklog + 1;
       }
-    );
+      if (this.state.state === "Accepted") {
+        newOrd = this.props.ords.maxBacklog + 1;
+      }
+      if (newState === "Accepted") {
+        newOrd = this.props.ords.maxDone + 1;
+      }
+      this.setState({ state: newState, icebox: false, pixel_ord: newOrd });
+      const pixel = { id: this.state.id, state: newState, icebox: false, pixel_ord: newOrd };
+      this.props.updatePixel(pixel.id, pixel).then(
+        () => {
+          target.disabled = false;
+          if (this.mounted)
+          this.resetState();
+        },
+        () => {
+          target.disabled = false;
+        }
+      );
+    };
   }
 
   handleStateChange(e) {
@@ -204,7 +210,7 @@ class PixelForm extends React.Component {
     }
     const className = `next-state-button drop-down-button ${name}-button`;
     return (
-      <button className={className} onClick={this.handleNextState}>
+      <button className={className} onClick={this.handleNextState()}>
         {name}
       </button>
     );
@@ -232,6 +238,15 @@ class PixelForm extends React.Component {
     }
 
     const stateDisabled = (this.props.formType === 'create');
+
+    let rejectButton = null;
+    if (this.state.state === 'Delivered')
+      rejectButton = (
+        <button
+          className="next-state-button drop-down-button Reject-button"
+          onClick={this.handleNextState('Rejected')}>Reject
+        </button>
+      );
 
     return (
       <form className='pixel-form'>
@@ -285,6 +300,7 @@ class PixelForm extends React.Component {
               <option value="Rejected">Rejected</option>
               <option value="Accepted">Accepted</option>
             </select>
+            {rejectButton}
             {this.renderButton()}
           </label>
         </section>
