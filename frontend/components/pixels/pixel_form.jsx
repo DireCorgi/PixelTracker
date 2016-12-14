@@ -20,6 +20,7 @@ class PixelForm extends React.Component {
       this.state = this.props.pixel;
     }
 
+    this.mounted = true;
     this.deleted = false;
 
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
@@ -29,6 +30,7 @@ class PixelForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleStateChange = this.handleStateChange.bind(this);
   }
 
   resetState() {
@@ -53,6 +55,17 @@ class PixelForm extends React.Component {
 
   componentDidMount() {
     this.props.resetPixelErrors();
+    this.mounted = true;
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
+  }
+
+  handleStateChange(e) {
+    e.preventDefault();
+    const newPixelState = e.currentTarget.value;
+    this.setState({ state: newPixelState, icebox: false });
   }
 
   handleClick(e) {
@@ -108,7 +121,8 @@ class PixelForm extends React.Component {
       this.props.updatePixel(pixel.id, pixel).then(
         () => {
           target.disabled = false;
-          this.resetState();
+          if (this.mounted)
+            this.resetState();
         },
         () => {
           target.disabled = false;
@@ -162,6 +176,7 @@ class PixelForm extends React.Component {
       disabled = true;
     }
 
+    const stateDisabled = (this.props.formType === 'create');
 
     return (
       <form className='pixel-form'>
@@ -202,6 +217,18 @@ class PixelForm extends React.Component {
               <option value="3">3</option>
               <option value="4">4</option>
               <option value="5">5</option>
+            </select>
+          </label>
+          <label>STATE
+            <select value={this.state.state}
+              onChange={this.handleStateChange}
+              disabled={stateDisabled}>
+              <option value="Unstarted">Unstarted</option>
+              <option value="Started">Started</option>
+              <option value="Finished">Finished</option>
+              <option value="Delivered">Delivered</option>
+              <option value="Rejected">Rejected</option>
+              <option value="Accepted">Accepted</option>
             </select>
           </label>
         </section>

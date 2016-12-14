@@ -16,12 +16,12 @@ class PixelPanel extends React.Component {
     let maxOrd = 0;
     this.props.pixels.forEach((pixel)=> {
       if (this.props.panelName === 'Icebox'){
-        if (pixel.icebox){
+        if (pixel.icebox && pixel.state === 'Unstarted') {
           mapPixels.push(<li key={pixel.id}><PixelListItemContainer pixelId={pixel.id} /></li>);
           maxOrd = pixel.pixel_ord;
         }
       } else if (this.props.panelName === 'Current/Backlog') {
-        if (!pixel.icebox && pixel.state !== 'Accepted')
+        if ( !pixel.icebox && pixel.state !== 'Accepted' )
           mapPixels.push(<li key={pixel.id}><PixelListItemContainer pixelId={pixel.id} /></li>);
       } else if (this.props.panelName === 'Done') {
         if (pixel.state === 'Accepted')
