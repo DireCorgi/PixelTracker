@@ -12,5 +12,6 @@ Rails.application.routes.draw do
     resources :pixels ,only: [:destroy, :update, :show]
     resources :comments, only: [:create, :update, :destroy]
     resources :tasks, only: [:create, :update, :destroy]
+    patch '/mass_update_pixels', :to => 'pixels#mass_update'
   end
 end

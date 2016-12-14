@@ -1,4 +1,6 @@
 class Api::TasksController < ApplicationController
+  before_action :require_logged_in
+
   def create
     task = Task.new(task_params);
     if task.save

@@ -43,6 +43,16 @@ class Api::PixelsController < ApplicationController
     end
   end
 
+  def mass_update
+    pixels = params[:pixels]
+    updatedPixels = Pixel.update(pixels.keys, pixels.values)
+    if updatedPixels
+      render json: { sucess: "Sucessfully Updated" }
+    else
+      render json: { error: "Update Failed" }, status: 422
+    end
+  end
+
   private
 
   def pixel_params

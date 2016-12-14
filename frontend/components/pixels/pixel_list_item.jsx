@@ -4,6 +4,7 @@ import { newPixelState, buttonName }
   from '../../util/pixel_state_util.js';
 import { DragSource } from 'react-dnd';
 import { ItemTypes } from '../../modules/dnd_item_types';
+import PixelListItemDrop from './pixel_list_drop_area';
 
 const pixelSource = {
   beginDrag(props) {
@@ -19,23 +20,11 @@ const pixelSource = {
   }
 };
 
-const pixelTarget = {
-  hover(props, monitor, component) {
-    console.log("hovered");
-  }
-};
-
 function collect(connect, monitor) {
   return {
     connectDragSource: connect.dragSource(),
     connectDragPreview: connect.dragPreview(),
     isDragging: monitor.isDragging()
-  };
-}
-
-function collectDrop(connect) {
-  return {
-    connectDropTarget: connect.dropTarget(),
   };
 }
 
@@ -146,6 +135,8 @@ class PixelListItem extends React.Component {
       );
     }
 
+
+
     let className = `pixel-list-item-summary ${pixel.state}-item`;
     if (pixel.icebox) {
       className += ' icebox-pixel';
@@ -208,6 +199,15 @@ class PixelListItem extends React.Component {
           formType="update"
           pixel={pixel}
           handleClick={this.handleClick} />
+        </div>
+      );
+    }
+    if (pixel.state !== 'Accepted') {
+      return connectDragSource(
+        <div>
+          <PixelListItemDrop icebox={pixel.icebox} pixelState={pixel.state}>
+            {display}
+          </PixelListItemDrop>
         </div>
       );
     }
