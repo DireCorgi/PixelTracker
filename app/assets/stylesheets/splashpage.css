@@ -1,4 +1,11 @@
 
+.splash-page {
+  position: relative;
+  background: #3187e0;
+  border-top: 1px solid #7fb5ed;
+  border-bottom: 1px solid #7fb5ed;
+  overflow: hidden;
+}
 .splash-page > img {
   max-width: 120%;
   height: auto;
@@ -14,13 +21,6 @@ img.blur {
   filter: blur(2.7px);
 }
 
-.splash-page {
-  position: relative;
-  background: #3187e0;
-  border-top: 1px solid #7fb5ed;
-  border-bottom: 1px solid #7fb5ed;
-  overflow: hidden;
-}
 
 .splash-page-text {
   display: block;
