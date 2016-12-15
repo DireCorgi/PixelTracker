@@ -37,6 +37,7 @@
   padding-right: 15px;
   padding-bottom: 5px;
   top: 2px;
+  float: left;
 }
 
 .username-header:after {
@@ -97,4 +98,49 @@
 
 .hidden-username-nav > li:hover {
   background: #EEF0F1;
+}
+
+.errors-header {
+  display: block;
+  position: fixed;
+  padding: 5px 8px;
+  color: #AD5E5C;
+  background-color: rgba(255,231,231,.9);
+  border: 1px solid#E77D7B;
+  border-radius: 5px;
+  top: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space:nowrap;
+}
+
+.errors-header > button {
+  font-size: 11px;
+  padding: 2px 5px;
+  text-shadow: 0 0 0;
+  margin: 0 3px;
+}
+
+button.errors-reload-button {
+  color: #76A958;
+  background-color: #E7FFD6;
+  border: 1px solid #92D971;
+}
+
+button.errors-ignore-button {
+  color: #BF9E1B;
+  background-color: #FFF6BF;
+  border: 1px solid #FFD324;
+}
+
+button.errors-reload-button:hover {
+  color: #76A958;
+  background-color: #c8e4b3;
+  border: 1px solid #84cf61;
+}
+
+button.errors-ignore-button:hover {
+  color: #BF9E1B;
+  background-color: #e7dda2;
+  border: 1px solid #e9c01c;
 }

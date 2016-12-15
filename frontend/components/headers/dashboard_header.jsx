@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router';
+import ErrorsHeader from './errors_header';
 
 class DashboardHeader extends React.Component {
 
@@ -60,13 +61,14 @@ class DashboardHeader extends React.Component {
           </Link>
           {this.renderIcon()}
         </h1>
-
+        <ErrorsHeader />
         <nav className="right-nav-list-dashboard">
           <div className="username-header" onClick={this.toggleUserNav}>{ user.username }
             <nav className={ hiddenUsernameClass }>
               <li onClick={this.props.logout}>Log Out</li>
             </nav>
           </div>
+          <Link to="/dashboard">Dashboard</Link>
         </nav>
       </header>
     );
