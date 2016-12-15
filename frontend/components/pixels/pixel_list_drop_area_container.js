@@ -1,6 +1,9 @@
 import { connect } from 'react-redux';
 import PixelListDropArea from './pixel_list_drop_area';
-import { massUpdatePixels, updateMassPixels } from '../../actions/pixel_actions';
+import {
+  massUpdatePixels,
+  updateMassPixels,
+ } from '../../actions/pixel_actions';
 import { selectAllPixels } from '../../reducers/selector';
 
 const mapStateToProps = (state) => {

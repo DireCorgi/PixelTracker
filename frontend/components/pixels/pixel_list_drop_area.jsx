@@ -40,12 +40,15 @@ const pixelTarget = {
         }
       });
       props.updateMassPixels(pixels);
+      item.startLoading();
       const newPixels = {};
       pixels.forEach((pixel) => {
         newPixels[pixel.id] = { icebox: icebox, pixel_ord: pixel.pixel_ord };
       });
-      props.massUpdatePixel(newPixels);
-      return;
+      props.massUpdatePixel(newPixels).then(
+        () => item.finishLoading(),
+        () => item.finishLoading()
+      );
     }
 
     if (props.icebox) {

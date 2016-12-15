@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spinner2 } from '../spinners/spinners';
+import { Spinner2, Spinner5 } from '../spinners/spinners';
 import CommentsContainer from './comments_container';
 import TasksContainer from './tasks_container';
 import { newPixelState, buttonName }
@@ -122,14 +122,17 @@ class PixelForm extends React.Component {
     }
     this.setState({ state: newState });
     const pixel = { id: this.state.id, state: newState, icebox: false, pixel_ord: newOrd };
+    this.props.startLoading(this.state.id);
     this.props.updatePixel(pixel.id, pixel).then(
       () => {
         target.disabled = false;
+        this.props.finishLoading(this.state.id);
         if (this.mounted)
           this.resetState();
       },
       () => {
         target.disabled = false;
+        this.props.finishLoading(this.state.id);
       }
     );
   }
@@ -174,24 +177,30 @@ class PixelForm extends React.Component {
     pixel.tasks_attributes = this.props.tasks;
     if (this.props.formType === 'create') {
       pixel.pixel_ord = this.props.ords.maxIcebox + 1;
+      this.props.startLoading('new');
       this.props.createPixel(this.props.projectId, pixel).then(
         () => {
           target.disabled = false;
           this.resetState();
+          this.props.finishLoading('new');
         },
         () => {
           target.disabled = false;
+          this.props.finishLoading('new');
         }
       );
     } else if (this.props.formType === 'update') {
+      this.props.startLoading(this.state.id);
       this.props.updatePixel(pixel.id, pixel).then(
         () => {
           target.disabled = false;
+          this.props.finishLoading(this.state.id);
           if (this.mounted)
             this.resetState();
         },
         () => {
           target.disabled = false;
+          this.props.finishLoading(this.state.id);
         }
       );
     }
@@ -266,14 +275,25 @@ class PixelForm extends React.Component {
         </button>
       );
 
+      let loading = null;
+      if (this.state.id !== "" && this.props.loading[this.state.id]) {
+        loading = <Spinner5 />;
+      }
+      if (this.state.id === "" && this.props.loading['new']){
+        loading = <Spinner5 />;
+      }
+
     return (
       <form className='pixel-form'>
-        {button}
-        <input type="text"
-          value={this.state.title}
-          onChange={this.handleTitleChange}
-          placeholder='Pixel title'
-          className={this.titleClass()}/>
+        <header className='pixel-form-title'>
+          {button}
+          {loading}
+          <input type="text"
+            value={this.state.title}
+            onChange={this.handleTitleChange}
+            placeholder='Pixel title'
+            className={this.titleClass()}/>
+        </header>
         <nav className="pixel-form-nav group">
           <div className="left-form-nav">
             <div className="id-number">ID: {this.state.id}</div>

@@ -69,6 +69,7 @@ class PixelPanel extends React.Component {
       <DropArea
         ords={this.props.ords}
         updatePixel={this.props.updatePixel}
+        updateMassPixels={this.props.updateMassPixels}
         areaType={this.props.panelName}/>
     );
 

@@ -5,15 +5,34 @@ import { ItemTypes } from '../../modules/dnd_item_types';
 const pixelTarget = {
   drop(props, monitor, component) {
     const pixel = monitor.getItem();
+
     if (pixel.icebox) {
+      const newPixel = {
+        id: pixel.id,
+        pixel_ord:(props.ords.maxUnstarted + 1),
+        icebox: false
+      };
+      pixel.startLoading();
       props.updatePixel(
         pixel.pixelId,
-        { icebox: false, pixel_ord: (props.ords.maxUnstarted + 1) }
+        newPixel
+      ).then(
+        () => pixel.finishLoading(),
+        () => pixel.finishLoading()
       );
     } else if (pixel.pixelState === 'Unstarted') {
+      const newPixel = {
+        id: pixel.id,
+        pixel_ord:(props.ords.maxIcebox + 1),
+        icebox: true,
+      };
+      pixel.startLoading();
       props.updatePixel(
         pixel.pixelId,
-        { icebox: true, pixel_ord: (props.ords.maxIcebox + 1) }
+        newPixel
+      ).then(
+        () => pixel.finishLoading(),
+        () => pixel.finishLoading()
       );
     }
   },

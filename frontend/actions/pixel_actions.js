@@ -13,6 +13,8 @@ export const LOADING_COMMENTS = 'LOADING_COMMENTS';
 export const RECEIVE_TASKS = 'RECEIVE_TASKS';
 export const UPDATE_ORDS = 'UPDATE_ORDS';
 export const UPDATE_PIXELS = 'UPDATE_PIXELS';
+export const LOAD_SINGLE_PIXEL = 'LOAD_SINGLE_PIXEL';
+export const LOADING_COMPLETE_SINGLE_PIXEL = 'LOADING_COMPLETE_SINGLE_PIXEL';
 
 export const receivePixels = (pixels) => {
   return {
@@ -38,6 +40,20 @@ export const updateMassPixels = (pixels) => {
   return {
     type: UPDATE_PIXELS,
     pixels,
+  };
+};
+
+export const loadingSinglePixel = (pixelId) => {
+  return {
+    type: LOAD_SINGLE_PIXEL,
+    pixelId: pixelId,
+  };
+};
+
+export const finishLoadingSinglePixel = (pixelId) => {
+  return {
+    type: LOADING_COMPLETE_SINGLE_PIXEL,
+    pixelId: pixelId,
   };
 };
 

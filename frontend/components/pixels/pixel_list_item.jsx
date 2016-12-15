@@ -14,7 +14,8 @@ const pixelSource = {
       pixelOrd: props.pixelList[props.pixelId].pixel_ord,
       icebox: props.pixelList[props.pixelId].icebox,
       pixelState: props.pixelList[props.pixelId].state,
-      toggleLoading: component.toggleLoading,
+      startLoading: props.startLoading,
+      finishLoading: props.finishLoading,
     };
   },
   canDrag(props) {
@@ -33,19 +34,11 @@ function collect(connect, monitor) {
 class PixelListItem extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { opened: false, hover: false, loading: false };
+    this.state = { opened: false, hover: false };
     this.handleClick = this.handleClick.bind(this);
     this.handleUpdateState = this.handleUpdateState.bind(this);
-    this.toggleLoading = this.toggleLoading.bind(this);
   }
 
-  toggleLoading() {
-    if (this.state.loading === false) {
-      this.setState({ loading: true });
-    } else {
-      this.setState({ loading: false });
-    }
-  }
 
   handleClick(e) {
     if (this.state.opened) {
@@ -73,12 +66,17 @@ class PixelListItem extends React.Component {
       if (nextState === 'Unstarted') {
         newOrd = this.props.ords.maxUnstarted + 1;
       }
-      this.props.updatePixel(pixelId, { state: nextState, icebox: false, pixel_ord: newOrd });
+      this.props.startLoading();
+      this.props.updatePixel(pixelId, { state: nextState, icebox: false, pixel_ord: newOrd })
+        .then(
+          () => this.props.finishLoading(),
+          () => this.props.finishLoading()
+        );
     };
   }
 
   renderCategory(category) {
-    if (this.state.loading) {
+    if (this.props.loading[this.props.pixelId]) {
       return (<Spinner5 />);
     }
     if (category === "Feature") {

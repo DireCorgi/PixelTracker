@@ -4,6 +4,28 @@ import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
 class PixelList extends React.Component {
+  componentDidMount() {
+    let maxIcebox = 0;
+    let maxBacklog = 0;
+    let maxDone = 0;
+    let maxUnstarted = 0;
+    this.props.pixels.forEach((pixel)=> {
+      if (pixel.icebox) {
+        maxIcebox = pixel.pixel_ord;
+      } else if (!pixel.icebox && pixel.state !== 'Accepted') {
+        if (pixel.state === 'Unstarted') {
+          maxUnstarted = pixel.pixel_ord;
+        } else {
+          maxBacklog = pixel.pixel_ord;
+        }
+        maxBacklog = pixel.pixel_ord;
+      } else if (pixel.state === 'Accepted') {
+        maxDone = pixel.pixel_ord;
+      }
+    });
+    this.props.updateMaxOrds(maxIcebox, maxBacklog, maxDone, maxUnstarted);
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.pixelList !== this.props.pixelList) {
       let maxIcebox = 0;
