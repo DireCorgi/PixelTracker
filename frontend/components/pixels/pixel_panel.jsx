@@ -65,14 +65,12 @@ class PixelPanel extends React.Component {
   }
 
   render() {
-    let dropArea = null;
-    if (this.props.panelName === 'Current/Backlog') {
-      dropArea = (
-        <DropArea
-          ords={this.props.ords}
-          updatePixel={this.props.updatePixel}/>
-      );
-    }
+    const dropArea = (
+      <DropArea
+        ords={this.props.ords}
+        updatePixel={this.props.updatePixel}
+        areaType={this.props.panelName}/>
+    );
 
     return (
       <article className="panel-container">

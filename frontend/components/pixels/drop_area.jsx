@@ -10,7 +10,22 @@ const pixelTarget = {
         pixel.pixelId,
         { icebox: false, pixel_ord: (props.ords.maxUnstarted + 1) }
       );
+    } else if (pixel.pixelState === 'Unstarted') {
+      props.updatePixel(
+        pixel.pixelId,
+        { icebox: true, pixel_ord: (props.ords.maxIcebox + 1) }
+      );
     }
+  },
+  canDrop(props, monitor, component) {
+    const item = monitor.getItem();
+    if (props.areaType === "Current/Backlog") {
+      return item.icebox === true;
+    }
+    if (props.areaType === "Icebox") {
+      return (!item.icebox && item.pixelState === 'Unstarted');
+    }
+    return false;
   }
 };
 
@@ -19,18 +34,19 @@ function collect(connect, monitor) {
     connectDropTarget: connect.dropTarget(),
     isOver: monitor.isOver(),
     canDrop: monitor.canDrop(),
-    item: monitor.getItem(),
   };
 }
 
 class DropArea extends React.Component {
 
   render() {
+    if (this.props.areaType === 'Done') {
+      return null;
+    }
+
     let areaClass = 'drop-area';
-    if (this.props.item) {
-      if (this.props.isOver && this.props.item.icebox === true) {
-        areaClass += ' hovered-container';
-      }
+    if (this.props.canDrop && this.props.isOver) {
+      areaClass += ' hovered-container';
     }
 
     return this.props.connectDropTarget(
