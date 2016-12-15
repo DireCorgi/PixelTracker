@@ -5,16 +5,18 @@
   border-top: 1px solid #7fb5ed;
   border-bottom: 1px solid #7fb5ed;
   overflow: hidden;
+  height: 100vh;
 }
+
 .splash-page > img {
-  max-width: 120%;
-  height: auto;
-  min-width: 700px;
+  min-width: 2469px;
+  min-height: 1029px;
   display: block;
   position: relative;
   opacity: 0.6;
   filter: blur(1.4px);
   margin: 0 auto;
+  width: 100%;
 }
 
 img.blur {
@@ -40,4 +42,32 @@ img.blur {
 
 .fade {
   opacity: 0;
+}
+
+.splash-page-footer {
+  display: block;
+  border-top: 3px solid #F39E40;
+  background: #4A7190;
+  width: 100%;
+  color: #A9BFD7;
+  position: absolute;
+  bottom: 0;
+}
+
+.splash-footer-logo {
+  color: #A9BFD7;
+  margin-left: 2%;
+}
+
+.splash-page-footer > a{
+  float: right;
+  display: block;
+  font-size: 18px;
+  padding: 2px;
+  margin: 12px;
+}
+
+.splash-page-footer > a:hover {
+  color: #b8ccdf;
+  text-decoration: underline;
 }
