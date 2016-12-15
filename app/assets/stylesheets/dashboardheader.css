@@ -100,6 +100,16 @@
   background: #EEF0F1;
 }
 
+.right-nav-list-dashboard > a {
+  float: left;
+  margin: 0 15px;
+  padding: 2px;
+}
+
+.right-nav-list-dashboard > a:hover {
+  text-decoration: underline;
+}
+
 .errors-header {
   display: block;
   position: fixed;

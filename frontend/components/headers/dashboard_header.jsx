@@ -67,13 +67,13 @@ class DashboardHeader extends React.Component {
           {this.renderIcon()}
         </h1>
         {errorsHeader}
-        <nav className="right-nav-list-dashboard">
+        <nav className="right-nav-list-dashboard group">
+          <Link to="/dashboard">Dashboard</Link>
           <div className="username-header" onClick={this.toggleUserNav}>{ user.username }
             <nav className={ hiddenUsernameClass }>
               <li onClick={this.props.logout}>Log Out</li>
             </nav>
           </div>
-          <Link to="/dashboard">Dashboard</Link>
         </nav>
       </header>
     );
