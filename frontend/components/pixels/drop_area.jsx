@@ -18,7 +18,10 @@ const pixelTarget = {
         newPixel
       ).then(
         () => pixel.finishLoading(),
-        () => pixel.finishLoading()
+        () => {
+          pixel.finishLoading();
+          props.dragError();
+        }
       );
     } else if (pixel.pixelState === 'Unstarted') {
       const newPixel = {
@@ -32,7 +35,10 @@ const pixelTarget = {
         newPixel
       ).then(
         () => pixel.finishLoading(),
-        () => pixel.finishLoading()
+        () => {
+          pixel.finishLoading();
+          props.dragError();
+        }
       );
     }
   },

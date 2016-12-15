@@ -89,15 +89,19 @@ class PixelForm extends React.Component {
         newOrd = this.props.ords.maxUnstarted + 1;
       }
       this.setState({ state: newState, icebox: false, pixel_ord: newOrd });
+      this.props.startLoading(this.state.id);
       const pixel = { id: this.state.id, state: newState, icebox: false, pixel_ord: newOrd };
       this.props.updatePixel(pixel.id, pixel).then(
         () => {
           target.disabled = false;
+          this.props.finishLoading(this.state.id);
           if (this.mounted)
-          this.resetState();
+            this.resetState();
         },
         () => {
           target.disabled = false;
+          this.props.finishLoading(this.state.id);
+          this.props.dragError();
         }
       );
     };
@@ -133,6 +137,7 @@ class PixelForm extends React.Component {
       () => {
         target.disabled = false;
         this.props.finishLoading(this.state.id);
+        this.props.dragError();
       }
     );
   }

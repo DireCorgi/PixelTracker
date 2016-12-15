@@ -5,6 +5,7 @@ import {
   updateMassPixels,
  } from '../../actions/pixel_actions';
 import { selectAllPixels } from '../../reducers/selector';
+import { dragAndDropError } from '../../actions/error_actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -18,6 +19,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return  {
     massUpdatePixel: (pixels) => dispatch(massUpdatePixels(pixels)),
     updateMassPixels: (pixels) => dispatch(updateMassPixels(pixels)),
+    dragError: () => dispatch(dragAndDropError()),
   };
 };
 

@@ -11,6 +11,7 @@ import {
   finishLoadingSinglePixel,
 } from '../../actions/pixel_actions';
 import { hideColumn } from '../../actions/sidebar_actions';
+import { dragAndDropError } from '../../actions/error_actions';
 
 
 const mapStateToProps = (state) => {
@@ -34,6 +35,7 @@ const mapDispatchToProps = (dispatch) => {
     receiveTasks: (tasks) => dispatch(receiveTasks(tasks)),
     startLoading: (pixelId) => dispatch(loadingSinglePixel(pixelId)),
     finishLoading: (pixelId) => dispatch(finishLoadingSinglePixel(pixelId)),
+    dragError: () => dispatch(dragAndDropError()),
   };
 };
 

@@ -47,7 +47,11 @@ const pixelTarget = {
       });
       props.massUpdatePixel(newPixels).then(
         () => item.finishLoading(),
-        () => item.finishLoading()
+        () => {
+          item.finishLoading();
+          props.dragError();
+        }
+
       );
     }
 

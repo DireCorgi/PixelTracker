@@ -5,6 +5,7 @@ import {
   loadingSinglePixel,
   finishLoadingSinglePixel,
  } from '../../actions/pixel_actions';
+import { dragAndDropError } from '../../actions/error_actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -21,6 +22,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     updatePixel: (pixelId, pixel) => dispatch(updatePixel(pixelId, pixel)),
     startLoading: () => dispatch(loadingSinglePixel(loadingPixelId)),
     finishLoading: () => dispatch(finishLoadingSinglePixel(loadingPixelId)),
+    dragError: () => dispatch(dragAndDropError()),
   };
 };
 

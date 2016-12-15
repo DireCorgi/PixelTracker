@@ -70,6 +70,7 @@ class PixelPanel extends React.Component {
         ords={this.props.ords}
         updatePixel={this.props.updatePixel}
         updateMassPixels={this.props.updateMassPixels}
+        dragError={this.props.dragError}
         areaType={this.props.panelName}/>
     );
 

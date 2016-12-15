@@ -70,7 +70,10 @@ class PixelListItem extends React.Component {
       this.props.updatePixel(pixelId, { state: nextState, icebox: false, pixel_ord: newOrd })
         .then(
           () => this.props.finishLoading(),
-          () => this.props.finishLoading()
+          () => {
+            this.props.dragError();
+            this.props.finishLoading();
+          }
         );
     };
   }
