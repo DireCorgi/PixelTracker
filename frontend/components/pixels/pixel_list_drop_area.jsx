@@ -12,6 +12,7 @@ const pixelTarget = {
     function updateOrder(icebox, callback) {
       const pixels = [];
       let index = 1;
+      let doneIndex = 1;
       props.allPixels.forEach((pixel) => {
         if (callback(pixel)) {
           if (pixel.id === props.pixelId) {
@@ -27,6 +28,14 @@ const pixelTarget = {
           newPixel.icebox = icebox;
           newPixel.pixel_ord = index;
           index += 1;
+          pixels.push(newPixel);
+        }
+        if (pixel.state === 'Accepted') {
+          const newPixel = {};
+          newPixel.id = pixel.id;
+          newPixel.icebox = false;
+          newPixel.pixel_ord = doneIndex;
+          doneIndex += 1;
           pixels.push(newPixel);
         }
       });
