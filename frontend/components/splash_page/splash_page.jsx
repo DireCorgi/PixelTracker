@@ -16,8 +16,7 @@ class SplashPage extends React.Component {
 
         <footer className="splash-page-footer group">
           <h1 className="header-logo splash-footer-logo">
-            <img src={window.lightLogoPath} alt="Logo" />
-            PixelTracker
+            Made by Frank Ye
           </h1>
           <a href="https://github.com/DireCorgi/pixelTracker">Github</a>
         </footer>

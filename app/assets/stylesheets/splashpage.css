@@ -47,27 +47,31 @@ img.blur {
 .splash-page-footer {
   display: block;
   border-top: 3px solid #F39E40;
-  background: #4A7190;
+  background: #eee;
   width: 100%;
-  color: #A9BFD7;
+  color: #50565c;
   position: absolute;
   bottom: 0;
 }
 
 .splash-footer-logo {
-  color: #A9BFD7;
   margin-left: 2%;
+  color: #50565c;
+  font-size: 16px;
+  margin: 12px 20px;
+  padding: 2px;
+  font-weight: 400;
 }
 
 .splash-page-footer > a{
   float: right;
   display: block;
-  font-size: 18px;
+  font-size: 16px;
   padding: 2px;
-  margin: 12px;
+  margin: 12px 20px;
 }
 
 .splash-page-footer > a:hover {
-  color: #b8ccdf;
+  color: #899eb3;
   text-decoration: underline;
 }
