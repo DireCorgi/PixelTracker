@@ -53,6 +53,11 @@ class DashboardHeader extends React.Component {
       hiddenUsernameClass += ' display-nav';
     }
 
+    let errorsHeader = null;
+    if (this.props.dragErrors) {
+      errorsHeader = <ErrorsHeader clearErrors={this.props.clearErrors}/>;
+    }
+
     return(
       <header className="application-header dashboard-header group">
         <h1 className="header-logo-light">
@@ -61,7 +66,7 @@ class DashboardHeader extends React.Component {
           </Link>
           {this.renderIcon()}
         </h1>
-        <ErrorsHeader />
+        {errorsHeader}
         <nav className="right-nav-list-dashboard">
           <div className="username-header" onClick={this.toggleUserNav}>{ user.username }
             <nav className={ hiddenUsernameClass }>

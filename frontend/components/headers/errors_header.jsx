@@ -6,11 +6,16 @@ class ErrorHeader extends React.Component {
 
     this.state = {reload: false, ignore: false };
     this.reloadPage = this.reloadPage.bind(this);
+    this.ignoreErrors = this.ignoreErrors.bind(this);
   }
 
   reloadPage(e) {
     this.setState({ reload: true });
     window.location.reload(true);
+  }
+
+  ignoreErrors() {
+    this.props.clearErrors();
   }
 
   render() {
@@ -25,6 +30,7 @@ class ErrorHeader extends React.Component {
         </button>
         <button
           className="errors-ignore-button"
+          onClick={this.ignoreErrors}
           disabled={this.state.ignore}>
           Ignore
         </button>
