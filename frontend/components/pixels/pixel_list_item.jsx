@@ -60,6 +60,9 @@ class PixelListItem extends React.Component {
       if (pixel.icebox) {
         newOrd = this.props.ords.maxBacklog + 1;
       }
+      if (curState === 'Unstarted' && nextState !== 'Unstarted') {
+        newOrd = this.props.ords.maxBacklog + 1;
+      }
       if (nextState === 'Accepted') {
         newOrd = this.props.ords.maxDone + 1;
       }
