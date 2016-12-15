@@ -57,7 +57,7 @@ img.blur {
 .splash-footer-logo {
   margin-left: 2%;
   color: #50565c;
-  font-size: 16px;
+  font-size: 14px;
   margin: 12px 20px;
   padding: 2px;
   font-weight: 400;
@@ -66,7 +66,7 @@ img.blur {
 .splash-page-footer > a{
   float: right;
   display: block;
-  font-size: 16px;
+  font-size: 14px;
   padding: 2px;
   margin: 12px 20px;
 }
