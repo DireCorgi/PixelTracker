@@ -4,20 +4,22 @@ import { newPixelState, buttonName }
   from '../../util/pixel_state_util.js';
 import { DragSource } from 'react-dnd';
 import { ItemTypes } from '../../modules/dnd_item_types';
-import PixelListItemDrop from './pixel_list_drop_area';
+import PixelListItemDropContainer from './pixel_list_drop_area_container';
+import { Spinner5 } from '../spinners/spinners';
 
 const pixelSource = {
-  beginDrag(props) {
+  beginDrag(props, monitor, component) {
     return {
       pixelId: props.pixelId,
       pixelOrd: props.pixelList[props.pixelId].pixel_ord,
       icebox: props.pixelList[props.pixelId].icebox,
       pixelState: props.pixelList[props.pixelId].state,
+      toggleLoading: component.toggleLoading,
     };
   },
   canDrag(props) {
     return props.pixelList[props.pixelId].state !== 'Accepted';
-  }
+  },
 };
 
 function collect(connect, monitor) {
@@ -31,9 +33,18 @@ function collect(connect, monitor) {
 class PixelListItem extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { opened: false, hover: false };
+    this.state = { opened: false, hover: false, loading: false };
     this.handleClick = this.handleClick.bind(this);
     this.handleUpdateState = this.handleUpdateState.bind(this);
+    this.toggleLoading = this.toggleLoading.bind(this);
+  }
+
+  toggleLoading() {
+    if (this.state.loading === false) {
+      this.setState({ loading: true });
+    } else {
+      this.setState({ loading: false });
+    }
   }
 
   handleClick(e) {
@@ -67,6 +78,9 @@ class PixelListItem extends React.Component {
   }
 
   renderCategory(category) {
+    if (this.state.loading) {
+      return (<Spinner5 />);
+    }
     if (category === "Feature") {
       return (<figure><i className="material-icons">star_rate</i></figure>);
     }
@@ -134,8 +148,6 @@ class PixelListItem extends React.Component {
           onClick={this.handleUpdateState(pixel, 'Rejected')}>Reject</button>
       );
     }
-
-
 
     let className = `pixel-list-item-summary ${pixel.state}-item`;
     if (pixel.icebox) {
@@ -205,9 +217,12 @@ class PixelListItem extends React.Component {
     if (pixel.state !== 'Accepted') {
       return connectDragSource(
         <div>
-          <PixelListItemDrop icebox={pixel.icebox} pixelState={pixel.state}>
+          <PixelListItemDropContainer
+            icebox={pixel.icebox}
+            pixelState={pixel.state}
+            pixelId={pixel.id}>
             {display}
-          </PixelListItemDrop>
+          </PixelListItemDropContainer>
         </div>
       );
     }

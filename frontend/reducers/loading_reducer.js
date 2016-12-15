@@ -22,6 +22,7 @@ const defaultState = {
   pixelsLoading: false,
   tasksLoading: false,
   commentsLoading: false,
+  orderLoading: {},
 };
 
 export default (state = defaultState, action) => {

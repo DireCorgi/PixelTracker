@@ -1,5 +1,13 @@
-import { RECEIVE_ALL_PIXELS, RECEIVE_PIXEL_DETAIL, RECEIVE_PIXEL_ERRORS, DELETE_PIXEL, RESET_PIXELS, RECEIVE_TASKS, UPDATE_ORDS }
-  from '../actions/pixel_actions';
+import {
+  RECEIVE_ALL_PIXELS,
+  RECEIVE_PIXEL_DETAIL,
+  RECEIVE_PIXEL_ERRORS,
+  DELETE_PIXEL,
+  RESET_PIXELS,
+  RECEIVE_TASKS,
+  UPDATE_ORDS,
+  UPDATE_PIXELS,
+ } from '../actions/pixel_actions';
 
 const defaultState = {
   pixelList: {},
@@ -43,6 +51,17 @@ export default (state = defaultState, action) => {
       newOrds.maxDone = action.maxDone;
       newOrds.maxUnstarted = action.maxUnstarted;
       newState.ords = newOrds;
+      return newState;
+    case UPDATE_PIXELS:
+      const updatedPixelList = Object.assign({}, newState.pixelList);
+      action.pixels.forEach((pixel) => {
+        const updatedPixel = Object.assign({}, updatedPixelList[pixel.id]);
+        updatedPixel.icebox = pixel.icebox;
+        updatedPixel.pixel_ord = pixel.pixel_ord;
+        updatedPixelList[pixel.id] = updatedPixel;
+      });
+      newState.pixelList = updatedPixelList;
+      newState.errors = {};
       return newState;
     default:
       return state;

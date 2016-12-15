@@ -34,3 +34,11 @@ export const deletePixel = (pixelId) => {
     method: 'DELETE',
   });
 };
+
+export const massUpdatePixels = (pixels) => {
+  return $.ajax({
+    url: 'api/mass_update_pixels',
+    method: 'PATCH',
+    data: { pixels },
+  });
+};

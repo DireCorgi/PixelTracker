@@ -12,6 +12,7 @@ export const LOADING_TASKS = 'LOADING_TASKS';
 export const LOADING_COMMENTS = 'LOADING_COMMENTS';
 export const RECEIVE_TASKS = 'RECEIVE_TASKS';
 export const UPDATE_ORDS = 'UPDATE_ORDS';
+export const UPDATE_PIXELS = 'UPDATE_PIXELS';
 
 export const receivePixels = (pixels) => {
   return {
@@ -30,6 +31,13 @@ export const receiveTasks = (tasks) => {
 export const resetPixels = () => {
   return {
     type: RESET_PIXELS,
+  };
+};
+
+export const updateMassPixels = (pixels) => {
+  return {
+    type: UPDATE_PIXELS,
+    pixels,
   };
 };
 
@@ -83,6 +91,7 @@ export const loadingComments = () => {
   return { type: LOADING_COMMENTS };
 };
 
+
 export const fetchPixels = (projectId) => {
   return (dispatch) => {
     dispatch(loadingPixels());
@@ -118,6 +127,15 @@ export const updatePixel = (pixelId, pixel) => {
     dispatch(loadingPixels());
     return PixelsAPIUtil.updatePixel(pixelId, pixel).then(
       newPixel => dispatch(receivePixelDetail(newPixel)),
+      errors => dispatch(receivePixelErrors(errors.responseJSON))
+    );
+  };
+};
+
+export const massUpdatePixels = (pixels) => {
+  return (dispatch) => {
+    return PixelsAPIUtil.massUpdatePixels(pixels).then(
+      data => dispatch(receivePixelErrors({})),
       errors => dispatch(receivePixelErrors(errors.responseJSON))
     );
   };
