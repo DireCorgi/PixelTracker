@@ -104,7 +104,6 @@ export const fetchPixels = (projectId) => {
 
 export const fetchPixelDetail = (pixelId) => {
   return (dispatch) => {
-    dispatch(loadingPixels());
     return PixelsAPIUtil.fetchPixelDetail(pixelId).then(
       pixel => dispatch(receivePixelDetail(pixel)),
       errors => dispatch(receivePixelErrors(errors.responseJSON))
@@ -114,7 +113,6 @@ export const fetchPixelDetail = (pixelId) => {
 
 export const createPixel = (projectId, pixel) => {
   return (dispatch) => {
-    dispatch(loadingPixels());
     return PixelsAPIUtil.createPixel(projectId, pixel).then(
       newPixel => dispatch(receivePixelDetail(newPixel)),
       errors => dispatch(receivePixelErrors(errors.responseJSON))
@@ -124,7 +122,6 @@ export const createPixel = (projectId, pixel) => {
 
 export const updatePixel = (pixelId, pixel) => {
   return (dispatch) => {
-    dispatch(loadingPixels());
     return PixelsAPIUtil.updatePixel(pixelId, pixel).then(
       newPixel => dispatch(receivePixelDetail(newPixel)),
       errors => dispatch(receivePixelErrors(errors.responseJSON))
@@ -143,7 +140,6 @@ export const massUpdatePixels = (pixels) => {
 
 export const removePixel = (pixelId) => {
   return (dispatch) => {
-    dispatch(loadingPixels());
     return PixelsAPIUtil.deletePixel(pixelId).then(
       data => dispatch(deletePixel(pixelId)),
       errors => dispatch(receivePixelErrors(errors.responseJSON))

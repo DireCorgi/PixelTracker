@@ -9,94 +9,55 @@ const pixelTarget = {
       return;
     }
 
-    if (props.icebox) {
-      const iceboxPixels = [];
+    function updateOrder(icebox, callback) {
+      const pixels = [];
       let index = 1;
       props.allPixels.forEach((pixel) => {
-        if (pixel.icebox && pixel.id !== item.pixelId) {
+        if (callback(pixel)) {
           if (pixel.id === props.pixelId) {
             const currentPixel = {};
             currentPixel.id = item.pixelId;
-            currentPixel.icebox = true;
+            currentPixel.icebox = icebox;
             currentPixel.pixel_ord = index;
             index += 1;
-            iceboxPixels.push(currentPixel);
+            pixels.push(currentPixel);
           }
           const newPixel = {};
           newPixel.id = pixel.id;
-          newPixel.icebox = true;
+          newPixel.icebox = icebox;
           newPixel.pixel_ord = index;
           index += 1;
-          iceboxPixels.push(newPixel);
+          pixels.push(newPixel);
         }
       });
-      props.updateMassPixels(iceboxPixels);
+      props.updateMassPixels(pixels);
       const newPixels = {};
-      iceboxPixels.forEach((pixel) => {
-        newPixels[pixel.id] = { icebox: true, pixel_ord: pixel.pixel_ord };
+      pixels.forEach((pixel) => {
+        newPixels[pixel.id] = { icebox: icebox, pixel_ord: pixel.pixel_ord };
       });
       props.massUpdatePixel(newPixels);
       return;
+    }
+
+    if (props.icebox) {
+      const callback = (pixel) => {
+        return (pixel.icebox && pixel.id !== item.pixelId);
+      };
+      updateOrder(true, callback);
     }
 
     if (props.pixelState === 'Unstarted') {
-      const unstartedPixels = [];
-      let index = 1;
-      props.allPixels.forEach((pixel) => {
-        if (!pixel.icebox && pixel.state === 'Unstarted' && pixel.id !== item.pixelId) {
-          if (pixel.id === props.pixelId) {
-            const currentPixel = {};
-            currentPixel.id = item.pixelId;
-            currentPixel.icebox = false;
-            currentPixel.pixel_ord = index;
-            index += 1;
-            unstartedPixels.push(currentPixel);
-          }
-          const newPixel = {};
-          newPixel.id = pixel.id;
-          newPixel.icebox = false;
-          newPixel.pixel_ord = index;
-          index += 1;
-          unstartedPixels.push(newPixel);
-        }
-      });
-      props.updateMassPixels(unstartedPixels);
-      const newPixels = {};
-      unstartedPixels.forEach((pixel) => {
-        newPixels[pixel.id] = { icebox: false, pixel_ord: pixel.pixel_ord };
-      });
-      props.massUpdatePixel(newPixels);
-      return;
+      const callback = (pixel) => {
+        return (!pixel.icebox && pixel.state === 'Unstarted' && pixel.id !== item.pixelId);
+      };
+      updateOrder(false, callback);
     }
 
     if (props.pixelState !== 'Accepted') {
-      const unstartedPixels = [];
-      let index = 1;
-      props.allPixels.forEach((pixel) => {
-        if (pixel.state !== 'Unstarted' && pixel.state !== 'Accepted' && pixel.id !== item.pixelId) {
-          if (pixel.id === props.pixelId) {
-            const currentPixel = {};
-            currentPixel.id = item.pixelId;
-            currentPixel.icebox = false;
-            currentPixel.pixel_ord = index;
-            index += 1;
-            unstartedPixels.push(currentPixel);
-          }
-          const newPixel = {};
-          newPixel.id = pixel.id;
-          newPixel.icebox = false;
-          newPixel.pixel_ord = index;
-          index += 1;
-          unstartedPixels.push(newPixel);
-        }
-      });
-      props.updateMassPixels(unstartedPixels);
-      const newPixels = {};
-      unstartedPixels.forEach((pixel) => {
-        newPixels[pixel.id] = { icebox: false, pixel_ord: pixel.pixel_ord };
-      });
-      props.massUpdatePixel(newPixels);
-      return;
+      const callback = (pixel) => {
+        return (pixel.state !== 'Unstarted' && pixel.state !== 'Accepted' && pixel.id !== item.pixelId);
+      };
+      updateOrder(false, callback);
     }
 
   },

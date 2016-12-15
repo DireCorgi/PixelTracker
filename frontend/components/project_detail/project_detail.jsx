@@ -30,7 +30,7 @@ class ProjectDetail extends React.Component {
   }
 
   renderStories() {
-    if (this.props.loading) {
+    if (this.props.loading || this.props.pixelsLoading) {
       return (
         <figure><RainbowSpinner /></figure>
       );
