@@ -80,7 +80,7 @@ class Members extends React.Component {
   }
 
   render() {
-    
+
     const errors = this.props.errors.map((error, idx)=>(<li key={idx}>{error}</li>));
 
     return (
