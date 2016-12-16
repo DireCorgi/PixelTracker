@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { updateTask, deleteTask } from '../../actions/pixel_actions';
 import { Spinner4 } from '../spinners/spinners';
+import ConfirmModal from './confirm_modal';
 
 class TaskListItem extends React.Component {
   constructor(props) {
@@ -161,6 +162,9 @@ class TaskListItem extends React.Component {
     if (this.state.complete) {
       sectionClassName += " complete-task";
     }
+
+    const buttonContent = <i className="material-icons">delete</i>;
+
     return (
       <section className={sectionClassName}>
         {this.checkBox()}
@@ -170,11 +174,12 @@ class TaskListItem extends React.Component {
           onClick={this.toggleEdit}>
           <i className="material-icons">mode_edit</i>
         </button>
-        <button
-          className="edit-button"
-          onClick={this.handleDelete}>
-          <i className="material-icons">delete</i>
-        </button>
+        <ConfirmModal
+          buttonClass="edit-button"
+          buttonContent={buttonContent}
+          message="Are you sure you want to delete this task?"
+          callback={this.handleDelete}
+          buttonActive="true"/>
       </section>
     );
   }
