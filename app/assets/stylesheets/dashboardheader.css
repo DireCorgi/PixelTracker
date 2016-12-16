@@ -115,13 +115,14 @@
   position: fixed;
   padding: 5px 8px;
   color: #AD5E5C;
-  background-color: rgba(255,231,231,.9);
-  border: 1px solid#E77D7B;
+  background-color: rgba(255,231,231,.92);
+  border: 1px solid #E77D7B;
   border-radius: 5px;
-  top: 2%;
+  top: 44px;
   left: 50%;
   transform: translateX(-50%);
   white-space:nowrap;
+  z-index: 5;
 }
 
 .errors-header > button {

@@ -21,7 +21,7 @@ class ErrorHeader extends React.Component {
   render() {
     return(
       <section className="errors-header">
-        Something Went Wrong. Your changes were not saved. Please reload the page.
+        Something went wrong. Your changes were not saved. Please reload the page.
         <button
           className="errors-reload-button"
           onClick={this.reloadPage}
