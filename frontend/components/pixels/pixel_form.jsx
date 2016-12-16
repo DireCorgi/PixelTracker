@@ -4,6 +4,7 @@ import CommentsContainer from './comments_container';
 import TasksContainer from './tasks_container';
 import { newPixelState, buttonName }
   from '../../util/pixel_state_util.js';
+import ConfirmModal from './confirm_modal';
 
 class PixelForm extends React.Component {
   constructor(props) {
@@ -280,13 +281,16 @@ class PixelForm extends React.Component {
         </button>
       );
 
-      let loading = null;
-      if (this.state.id !== "" && this.props.loading[this.state.id]) {
-        loading = <Spinner5 />;
-      }
-      if (this.state.id === "" && this.props.loading['new']){
-        loading = <Spinner5 />;
-      }
+    let loading = null;
+    if (this.state.id !== "" && this.props.loading[this.state.id]) {
+      loading = <Spinner5 />;
+    }
+    if (this.state.id === "" && this.props.loading['new']){
+      loading = <Spinner5 />;
+    }
+
+    const buttonContent = <i className="material-icons">delete</i>;
+    const buttonActive = this.props.formType === 'update';
 
     return (
       <form className='pixel-form'>
@@ -302,8 +306,12 @@ class PixelForm extends React.Component {
         <nav className="pixel-form-nav group">
           <div className="left-form-nav">
             <div className="id-number">ID: {this.state.id}</div>
-            <button className="delete-button" onClick={this.handleDelete}><i className="material-icons">delete</i>
-            </button>
+            <ConfirmModal
+              buttonClass="delete-button"
+              buttonContent={buttonContent}
+              message="Are you sure you want to delete this pixel?"
+              callback={this.handleDelete}
+              buttonActive={buttonActive}/>
           </div>
           <div className="right-form-nav">
             <button className="cancel-button" onClick={this.handleClick}>cancel</button>

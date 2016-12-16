@@ -154,3 +154,52 @@ button.errors-ignore-button:hover {
   background-color: #e7dda2;
   border: 1px solid #e9c01c;
 }
+
+.confirm-modal-message {
+  font-size: 14px;
+  font-weight: normal;
+  display: block;
+  padding: 10px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+
+.confirm-modal-buttons {
+  height: 30px;
+  padding: 10px;
+  border-top: 1px solid #d0d0d0;
+  background: #fff;
+}
+
+.confirm-modal-confirm-button {
+  font-size: 12px;
+  background: #00CD77;
+  color: #fff;
+  border: 1px solid #0db46e;
+  border-radius: 3px;
+  float: left;
+}
+
+.confirm-modal-confirm-button:hover {
+  color: #fff;
+  background: #16db88;
+  border: 1px solid #15be77;
+}
+
+.confirm-modal-cancel-button {
+  background: #BD2C00;
+  color: #fff;
+  border: 1px solid #ac2b04;
+  border-radius: 3px;
+  font-size: 12px;
+  float: right;
+}
+
+.confirm-modal-cancel-button:hover {
+  background: #c83c11;
+  color: #fff;
+  border: 1px solid #ba3006;
+}
