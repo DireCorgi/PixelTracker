@@ -23,6 +23,7 @@ header.main-header {
   display: inline-block;
   position: relative;
   top: 3px;
+  margin-right: 3px;
 }
 
 #header-logo-inside {

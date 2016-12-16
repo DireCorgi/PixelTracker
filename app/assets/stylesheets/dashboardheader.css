@@ -18,7 +18,7 @@
   width: 20px;
   height: auto;
   top: 3px;
-  margin-right: 1px;
+  margin-right: 3px;
 }
 
 .right-nav-list-dashboard {
@@ -156,7 +156,7 @@ button.errors-ignore-button:hover {
 }
 
 .confirm-modal-message {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: normal;
   display: block;
   padding: 10px;
@@ -176,17 +176,17 @@ button.errors-ignore-button:hover {
 
 .confirm-modal-confirm-button {
   font-size: 12px;
-  background: #00CD77;
+  background: #629200;
   color: #fff;
-  border: 1px solid #0db46e;
+  border: 1px solid #4E8200;
   border-radius: 3px;
   float: left;
 }
 
 .confirm-modal-confirm-button:hover {
   color: #fff;
-  background: #16db88;
-  border: 1px solid #15be77;
+  background: #568000;
+  border: 1px solid #467304;
 }
 
 .confirm-modal-cancel-button {

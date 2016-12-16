@@ -57,21 +57,26 @@ img.blur {
 .splash-footer-logo {
   margin-left: 2%;
   color: #50565c;
-  font-size: 14px;
-  margin: 12px 20px;
+  font-size: 12px;
+  margin: 10px 20px;
   padding: 2px;
   font-weight: 400;
 }
 
-.splash-page-footer > a{
+.splash-footer-container > a{
   float: right;
   display: block;
-  font-size: 14px;
+  font-size: 12px;
   padding: 2px;
-  margin: 12px 20px;
+  margin: 10px 20px;
 }
 
-.splash-page-footer > a:hover {
+.splash-footer-container > a:hover {
   color: #899eb3;
   text-decoration: underline;
+}
+
+.splash-footer-container {
+  max-width: 860px;
+  margin: 0 auto;
 }

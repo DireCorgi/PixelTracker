@@ -14,11 +14,13 @@ class SplashPage extends React.Component {
         <img src={ window.splashBackgroundPath } alt="background" className={imgClass}/>
         <h2 className={textClass}>Pixel perfect project management</h2>
 
-        <footer className="splash-page-footer group">
-          <h1 className="header-logo splash-footer-logo">
-            Made by Frank Ye
-          </h1>
-          <a href="https://github.com/DireCorgi/pixelTracker">Github</a>
+        <footer className="splash-page-footer">
+          <div className="splash-footer-container group">
+            <h1 className="header-logo splash-footer-logo">
+              Made by Frank Ye
+            </h1>
+            <a href="https://github.com/DireCorgi/pixelTracker">Github</a>
+          </div>
         </footer>
       </section>
     );

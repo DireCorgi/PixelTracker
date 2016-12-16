@@ -51,7 +51,7 @@ class ConfirmModal extends React.Component {
         borderRadius: '3px',
         background: '#F6F6F6',
         zIndex: 11,
-        width: '320px',
+        width: '260px',
         height: '160px',
         boxShadow: '1px 1px 4px #333',
         overflow: 'hidden',
