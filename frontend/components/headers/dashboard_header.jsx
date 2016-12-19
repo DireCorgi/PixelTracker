@@ -58,8 +58,6 @@ class DashboardHeader extends React.Component {
       errorsHeader = <ErrorsHeader clearErrors={this.props.clearErrors}/>;
     }
 
-    const callback = () => console.log("WORKS!");
-
     return(
       <header className="application-header dashboard-header group">
         <h1 className="header-logo-light">

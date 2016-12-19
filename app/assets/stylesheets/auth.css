@@ -73,8 +73,8 @@ input.submit-button:hover {
 button.guest-button {
   display: block;
   margin: 0 auto;
-  font-size: 13px;
-  color: #72a2cd;
+  font-size: 16px;
+  color: #4d85b6;
 }
 
 ul.error-display {
