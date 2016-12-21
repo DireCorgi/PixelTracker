@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import { RainbowSpinner } from '../spinners/spinners';
+import ConfirmModal from '../pixels/confirm_modal';
 
 class Members extends React.Component {
   constructor(props) {
@@ -72,7 +73,13 @@ class Members extends React.Component {
           <li key={member.project_member_id}>
             <span>{member.member_name}</span>
             <span className="email">{member.member_email}</span>
-            <button value={member.project_member_id} onClick={this.handleRemove}>Remove</button>
+            <ConfirmModal
+               buttonClass=""
+               buttonContent="Remove"
+               message={`Are you sure you want to remove ${member.member_name}?`}
+               callback={this.handleRemove}
+               buttonActive="true"
+               buttonValue={member.project_member_id}/>
           </li>
         );
       })
@@ -80,7 +87,6 @@ class Members extends React.Component {
   }
 
   render() {
-
     const errors = this.props.errors.map((error, idx)=>(<li key={idx}>{error}</li>));
 
     return (

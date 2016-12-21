@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 
 //buttonClass, buttonContent, message, callback, buttonActive: required props
+//buttonValue: optional prop
 
 class ConfirmModal extends React.Component {
   constructor(props) {
@@ -60,17 +61,24 @@ class ConfirmModal extends React.Component {
   }
 
   render() {
+    let buttonValue = "";
+    if (this.props.buttonValue !== undefined) {
+      buttonValue = this.props.buttonValue;
+    }
+
     return (
       <button className={this.props.buttonClass} onClick={this.openForm}>
         {this.props.buttonContent}
         <Modal
         isOpen={this.state.confirmOpen}
         onRequestClose={this.closeForm}
-        style={this.formStyling()}>
+        style={this.formStyling()}
+        contentLabel="confirm-modal">
           <h4 className="confirm-modal-message">{this.props.message}</h4>
           <div className="confirm-modal-buttons group">
             <button
               onClick={this.handleClick}
+              value={buttonValue}
               className="confirm-modal-confirm-button">Confirm</button>
             <button
               onClick={this.closeForm}

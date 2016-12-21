@@ -1,5 +1,6 @@
 import React from 'react';
 import { Spinner2 } from '../spinners/spinners';
+import ConfirmModal from './confirm_modal';
 
 class Comments extends React.Component {
   constructor(props) {
@@ -40,6 +41,7 @@ class Comments extends React.Component {
 
   renderComments() {
     const comments = this.props.pixelList[this.props.pixelId].comments;
+    const buttonContent = <i className="material-icons">delete_forever</i>
     const mapComments = comments.map((comment, idx) => {
       return (
           <li key={comment.id} className="comment-list-item group">
@@ -47,9 +49,13 @@ class Comments extends React.Component {
             <h4>{comment.created_at}</h4>
             <p>{comment.body}</p>
             <div className="comments-right-nav group">
-              <button onClick={this.handleDelete} value={idx}><i
-                className="material-icons">delete_forever</i>
-              </button>
+              <ConfirmModal
+                buttonClass=""
+                buttonContent={buttonContent}
+                message="Do you want to delete this comment?"
+                callback={this.handleDelete}
+                buttonActive="true"
+                buttonValue={idx}/>
             </div>
           </li>
       );

@@ -206,6 +206,9 @@ class PixelListItem extends React.Component {
 
   render() {
     const pixel = this.props.pixelList[this.props.pixelId];
+    if(!pixel){
+      return null;
+    }
     const display = this.renderSummary(pixel);
     const { connectDragSource, isDragging } = this.props;
     if(this.state.opened) {
