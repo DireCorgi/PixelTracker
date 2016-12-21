@@ -10,12 +10,7 @@ class DashboardHeader extends React.Component {
 
     this.state = { userNav: false };
 
-    this.logoutAndRedirectUser = this.logoutAndRedirectUser.bind(this);
     this.toggleUserNav = this.toggleUserNav.bind(this);
-  }
-
-  logoutAndRedirectUser(){
-    this.props.logout();
   }
 
   componentWillReceiveProps(newProps) {
