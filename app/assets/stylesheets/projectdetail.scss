@@ -38,7 +38,7 @@
 }
 
 .side-bar-shrink > button {
-  background: url("<%= image_path 'icons/menu-white.png' %>");
+  background: image-url('icons/menu-white.png');
   background-size: cover;
   height: 10px;
   width: 6px;
@@ -46,7 +46,7 @@
 }
 
 .side-bar-header > button {
-  background: url("<%= image_path 'icons/person-icon-white.png' %>");
+  background: image-url('icons/person-icon-white.png');
   background-size: cover;
   height: 9px;
   width: 3px;
@@ -125,21 +125,21 @@ li.newPixel-item {
 }
 
 .current-icon {
-  background: url("<%= image_path 'icons/list-icon-white.png' %>");
+  background: image-url('icons/list-icon-white.png');
   background-size: cover;
 }
 
 .icebox-icon {
-  background: url("<%= image_path 'icons/icebox-icon-white.png' %>");
+  background: image-url('icons/icebox-icon-white.png');
   background-size: cover;
 }
 
 .done-icon {
-  background: url("<%= image_path 'icons/check-icon-white.png' %>");
+  background: image-url('icons/check-icon-white.png');
   background-size: cover;
 }
 
 .newPixel-icon {
-  background: url("<%= image_path 'icons/plus-icon-white.png' %>");
+  background: image-url('icons/plus-icon-white.png');
   background-size: cover;
 }

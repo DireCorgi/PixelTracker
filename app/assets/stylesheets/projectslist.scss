@@ -61,7 +61,7 @@
   float: right;
   width: 24px;
   height: 24px;
-  background: url("<%= image_path 'icons/people-icon.png' %>");
+  background: image-url('icons/people-icon.png');
   background-size: cover;
   opacity: 0.6;
   position: relative;
@@ -110,7 +110,7 @@
   width: 12px;
   height: 12px;
   margin: 0 3px;
-  background: url("<%= image_path 'icons/lock-icon.png' %>");
+  background: image-url('icons/lock-icon.png');
   background-size: cover;
   position: relative;
   display: inline-block;

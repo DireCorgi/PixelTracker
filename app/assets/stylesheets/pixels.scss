@@ -25,7 +25,7 @@
 .panel-header button {
   width: 3px;
   height: 10px;
-  background: url("<%= image_path 'icons/xmark-icon-white.png' %>");
+  background: image-url('icons/xmark-icon-white.png');
   background-size: cover;
   margin-right: 10px;
   opacity: .6;
