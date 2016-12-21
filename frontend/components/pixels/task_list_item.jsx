@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { updateTask, deleteTask } from '../../actions/pixel_actions';
 import { Spinner4 } from '../spinners/spinners';
 import ConfirmModal from './confirm_modal';
+import CheckBox from './task_list_checkbox';
 
 class TaskListItem extends React.Component {
   constructor(props) {
@@ -99,32 +100,14 @@ class TaskListItem extends React.Component {
     }
   }
 
-  checkBox() {
-    let checkBox = (
-      <input
-        className="task-complete"
-        type="checkbox"
-        disabled/>
-    );
-
-    if (this.props.task.id) {
-      checkBox = (
-        <input
-          className="task-complete"
-          type="checkbox"
-          checked={this.state.complete}
-          onChange={this.toggleComplete} />
-      );
-    }
-
-    return checkBox;
-  }
-
   renderForm() {
 
     return(
       <section className="new-task-form">
-        {this.checkBox()}
+        <CheckBox
+          complete={this.state.complete}
+          toggleComplete={this.toggleComplete}
+          active={this.props.task.id}/>
         <input
           className="new-task-body"
           type="text"
@@ -167,7 +150,10 @@ class TaskListItem extends React.Component {
 
     return (
       <section className={sectionClassName}>
-        {this.checkBox()}
+      <CheckBox
+        complete={this.state.complete}
+        toggleComplete={this.toggleComplete}
+        active={this.props.task.id}/>
         <p>{this.state.body}</p>
         <button
           className="edit-button"
