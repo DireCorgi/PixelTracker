@@ -4,11 +4,7 @@ import { Link } from 'react-router';
 class MainHeader extends React.Component {
 
   loggedIn(){
-    if (this.props.currentUser) {
-      return true;
-    } else{
-      return false;
-    }
+    return Boolean(this.props.currentUser);
   }
 
   navItems() {
