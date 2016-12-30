@@ -16,9 +16,9 @@ const CheckBox = (props) => {
         className="task-complete"
         type="checkbox"
         disabled/>
-    )
+    );
   }
 
-}
+};
 
-export default CheckBox
+export default CheckBox;
