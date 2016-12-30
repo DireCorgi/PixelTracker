@@ -5,6 +5,13 @@ import TasksContainer from './tasks_container';
 import { newPixelState, buttonName }
   from '../../util/pixel_state_util.js';
 import ConfirmModal from './confirm_modal';
+import {
+  StateButton,
+  OpenButton,
+  LoadingSpinner,
+  RejectButton,
+  Comments,
+} from './pixel_form_helper';
 
 class PixelForm extends React.Component {
   constructor(props) {
@@ -236,67 +243,20 @@ class PixelForm extends React.Component {
     }
   }
 
-  renderButton() {
-    const name = buttonName(this.state.state);
-    if (name === 'none' || this.state.id === "") {
-      return null;
-    }
-    const className = `next-state-button drop-down-button ${name}-button`;
-    return (
-      <button className={className} onClick={this.handleNextState()}>
-        {name}
-      </button>
-    );
-  }
-
   render() {
-    let button = (
-      <button onClick={this.props.handleClick}>
-        <i className="material-icons">keyboard_arrow_down</i>
-      </button>
-    );
-
-    let comments = (
-      <CommentsContainer pixelId={this.state.id}/>
-    );
-
-    if (this.state.id === "") {
-      button = null;
-      comments = null;
-    }
-
-    let disabled = false;
-    if (this.state.category !== 'Feature') {
-      disabled = true;
-    }
-
+    const disabled = (this.state.category !== 'Feature');
     const stateDisabled = (this.props.formType === 'create');
-
-    let rejectButton = null;
-    if (this.state.state === 'Delivered')
-      rejectButton = (
-        <button
-          className="next-state-button drop-down-button Reject-button"
-          onClick={this.handleNextState('Rejected')}>Reject
-        </button>
-      );
-
-    let loading = null;
-    if (this.state.id !== "" && this.props.loading[this.state.id]) {
-      loading = <Spinner5 />;
-    }
-    if (this.state.id === "" && this.props.loading['new']){
-      loading = <Spinner5 />;
-    }
-
     const buttonContent = <i className="material-icons">delete</i>;
     const buttonActive = this.props.formType === 'update';
 
     return (
       <form className='pixel-form'>
         <header className='pixel-form-title'>
-          {button}
-          {loading}
+          <OpenButton handleClick={this.handleClick} id={this.state.id} />
+          <LoadingSpinner
+            loading={this.props.loading}
+            id={this.state.id}
+            spinner={Spinner5} />
           <input type="text"
             value={this.state.title}
             onChange={this.handleTitleChange}
@@ -351,8 +311,13 @@ class PixelForm extends React.Component {
               <option value="Rejected">Rejected</option>
               <option value="Accepted">Accepted</option>
             </select>
-            {rejectButton}
-            {this.renderButton()}
+            <RejectButton
+              state={this.state.state}
+              handleNextState={this.handleNextState} />
+            <StateButton
+              id={this.state.button}
+              name={buttonName(this.state.state)}
+              handleNextState={this.handleNextState} />
           </label>
         </section>
         <label>Description
@@ -361,7 +326,7 @@ class PixelForm extends React.Component {
             onChange={this.handleDescriptionChange} />
         </label>
         <TasksContainer pixelId={this.state.id}/>
-        {comments}
+        <Comments id={this.state.id} CommentsContainer={CommentsContainer} />
       </form>
     );
   }
