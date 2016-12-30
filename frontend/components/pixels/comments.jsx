@@ -1,6 +1,7 @@
 import React from 'react';
 import { Spinner2 } from '../spinners/spinners';
 import ConfirmModal from './confirm_modal';
+import CommentList from './comments_list';
 
 class Comments extends React.Component {
   constructor(props) {
@@ -39,31 +40,6 @@ class Comments extends React.Component {
     );
   }
 
-  renderComments() {
-    const comments = this.props.pixelList[this.props.pixelId].comments;
-    const buttonContent = <i className="material-icons">delete_forever</i>
-    const mapComments = comments.map((comment, idx) => {
-      return (
-          <li key={comment.id} className="comment-list-item group">
-            <h3>{comment.user}</h3>
-            <h4>{comment.created_at}</h4>
-            <p>{comment.body}</p>
-            <div className="comments-right-nav group">
-              <ConfirmModal
-                buttonClass=""
-                buttonContent={buttonContent}
-                message="Do you want to delete this comment?"
-                callback={this.handleDelete}
-                buttonActive="true"
-                buttonValue={idx}/>
-            </div>
-          </li>
-      );
-    });
-    return mapComments;
-  }
-
-
   render() {
     let className = "";
     if (this.props.errors.body) {
@@ -80,9 +56,9 @@ class Comments extends React.Component {
     return (
       <section className="pixel-comments-container">
         <h2>Activity</h2>
-        <ul className="pixel-comments-list">
-          {this.renderComments()}
-        </ul>
+        <CommentList
+        comments={this.props.pixelList[this.props.pixelId].comments}
+        handleDelete={this.handleDelete} />
         <section className="new-comment group">
           <textarea
             className={className}
