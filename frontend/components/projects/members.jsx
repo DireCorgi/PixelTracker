@@ -1,7 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { RainbowSpinner } from '../spinners/spinners';
-import ConfirmModal from '../pixels/confirm_modal';
+import MemberList from './member_list';
 
 class Members extends React.Component {
   constructor(props) {
@@ -31,7 +30,6 @@ class Members extends React.Component {
     this.setState({username: newName });
   }
 
-
   handleSubmit(e){
     e.preventDefault();
     const projectMember = {
@@ -47,45 +45,6 @@ class Members extends React.Component {
     this.props.deleteProjectMember(e.currentTarget.value);
   }
 
-  renderMembers(){
-    if (this.props.loading) {
-      return (
-        <figure>
-          <RainbowSpinner />
-        </figure>
-      );
-    }
-    let members = [];
-    if(this.props.projectList[this.props.projectId]) {
-      members = this.props.projectList[this.props.projectId].members;
-    }
-    return (
-      members.map((member) => {
-        if (member.member_name === this.props.currentUsername){
-          return (
-            <li key={member.project_member_id}>
-              <span>{member.member_name}</span>
-              <span className="email">{member.member_email}</span>
-            </li>
-          );
-        }
-        return (
-          <li key={member.project_member_id}>
-            <span>{member.member_name}</span>
-            <span className="email">{member.member_email}</span>
-            <ConfirmModal
-               buttonClass=""
-               buttonContent="Remove"
-               message={`Are you sure you want to remove ${member.member_name}?`}
-               callback={this.handleRemove}
-               buttonActive="true"
-               buttonValue={member.project_member_id}/>
-          </li>
-        );
-      })
-    );
-  }
-
   render() {
     const errors = this.props.errors.map((error, idx)=>(<li key={idx}>{error}</li>));
 
@@ -99,10 +58,11 @@ class Members extends React.Component {
           <div className='members-container'>
             <section className="project-form">
               <h1>Members</h1>
-              <section className="member-list">
-                <h2>Current Members</h2>
-                {this.renderMembers()}
-              </section>
+              <MemberList
+                project={this.props.projectList[this.props.projectId]}
+                loading={this.props.loading}
+                handleRemove={this.handleRemove}
+                currentUsername={this.props.currentUsername}/>
               <form className="project-form-input">
                 <label>Add a Member
                   <input type="text"
@@ -156,6 +116,5 @@ class Members extends React.Component {
   }
 
 }
-
 
 export default Members;

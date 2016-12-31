@@ -39,19 +39,14 @@ class DashboardHeader extends React.Component {
 
   render() {
     let user = this.props.currentUser;
-    if (user === null) {
-      user = { username: 'none' };
-    }
+    if (user === null) user = { username: 'none' };
 
     let hiddenUsernameClass = 'hidden-username-nav';
-    if (this.state.userNav) {
-      hiddenUsernameClass += ' display-nav';
-    }
+    if (this.state.userNav) hiddenUsernameClass += ' display-nav';
 
     let errorsHeader = null;
-    if (this.props.dragErrors) {
+    if (this.props.dragErrors)
       errorsHeader = <ErrorsHeader clearErrors={this.props.clearErrors}/>;
-    }
 
     return(
       <header className="application-header dashboard-header group">

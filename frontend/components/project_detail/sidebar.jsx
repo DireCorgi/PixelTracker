@@ -1,6 +1,6 @@
 import React from 'react';
 import MembersContainer from '../projects/members_container';
-
+import FilterListItem from './filter_list_item';
 
 class Sidebar extends React.Component {
   constructor(props) {
@@ -41,23 +41,7 @@ class Sidebar extends React.Component {
     };
   }
 
-  renderFilterListItem(filterName, filterContent) {
-    const spanClassName = `sidebar-icon ${filterName}-icon`;
-    let liClassName = `${filterName}-item`;
-    if (this.props.sidebar[filterName]){
-      liClassName += ' selected-filter';
-    }
-    return (
-      <li
-        onClick={this.handleFilter(filterName)}
-        className={liClassName}>
-        <span className={spanClassName}></span>
-        {filterContent}
-      </li>
-    );
-  }
-
-  renderMemberNumbers() {
+  countMemberNumbers() {
     let projectMembers = 0;
     const curProject = this.props.projectList[this.props.projectId];
     if (curProject) {
@@ -78,14 +62,30 @@ class Sidebar extends React.Component {
         </div>
         <header className="side-bar-header">
           <MembersContainer projectId={this.props.projectId}/>
-          <span>{this.renderMemberNumbers()}</span>
+          <span>{this.countMemberNumbers()}</span>
         </header>
 
         <nav className="side-bar-nav">
-          { this.renderFilterListItem('newPixel', 'New Pixel') }
-          { this.renderFilterListItem('current', 'Current/Backlog') }
-          { this.renderFilterListItem('icebox', 'Icebox') }
-          { this.renderFilterListItem('done', 'Done') }
+          <FilterListItem
+            filterName="newPixel"
+            filterContent="New Pixel"
+            sidebar={this.props.sidebar["newPixel"]}
+            handleFilter={this.handleFilter}/>
+          <FilterListItem
+            filterName="current"
+            filterContent="Current/Backlog"
+            sidebar={this.props.sidebar["current"]}
+            handleFilter={this.handleFilter}/>
+          <FilterListItem
+            filterName="icebox"
+            filterContent="Icebox"
+            sidebar={this.props.sidebar["icebox"]}
+            handleFilter={this.handleFilter}/>
+          <FilterListItem
+            filterName="done"
+            filterContent="Done"
+            sidebar={this.props.sidebar["done"]}
+            handleFilter={this.handleFilter}/>
         </nav>
 
       </aside>
