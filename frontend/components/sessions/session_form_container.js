@@ -20,6 +20,7 @@ const mapDispatchToProps = function (dispatch, ownProps) {
   }
   return {
     processForm: (user) => dispatch(actionFunction(user)),
+    login: (user) => dispatch(login(user)),
     resetErrors: () => dispatch(resetErrors()),
     receiveNewHeaderType: (headerType) => dispatch(receiveNewHeaderType(headerType)),
     formType,
