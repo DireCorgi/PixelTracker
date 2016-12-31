@@ -4,6 +4,7 @@ import { updateTask, deleteTask } from '../../actions/pixel_actions';
 import { Spinner4 } from '../spinners/spinners';
 import ConfirmModal from './confirm_modal';
 import CheckBox from './task_list_checkbox';
+import TaskForm from './task_list_form';
 
 class TaskListItem extends React.Component {
   constructor(props) {
@@ -100,30 +101,6 @@ class TaskListItem extends React.Component {
     }
   }
 
-  renderForm() {
-
-    return(
-      <section className="new-task-form">
-        <CheckBox
-          complete={this.state.complete}
-          toggleComplete={this.toggleComplete}
-          active={this.props.task.id}/>
-        <input
-          className="new-task-body"
-          type="text"
-          placeholder="Add a task"
-          value={this.state.body}
-          onChange={this.handleChange} />
-        <button
-          className="cancel-task-button"
-          onClick={this.toggleEdit}>Cancel</button>
-        <button
-          className="add-task-button update-button"
-          onClick={this.handleUpdate}>Save</button>
-      </section>
-    );
-  }
-
   render() {
     if (this.state.loading) {
       return (
@@ -132,22 +109,23 @@ class TaskListItem extends React.Component {
         </section>
       );
     }
-
     if (this.state.editMode) {
-      return this.renderForm();
+      return (
+        <TaskForm
+          complete={this.state.complete}
+          toggleComplete={this.toggleComplete}
+          id={this.props.task.id}
+          body={this.state.body}
+          handleChange={this.handleChange}
+          toggleEdit={this.toggleEdit}
+          handleUpdate={this.handleUpdate}/>
+      );
     }
     let complete = "done";
-    if (!this.state.complete) {
-      complete = "not done";
-    }
-
+    if (!this.state.complete) complete = "not done";
     let sectionClassName = "new-task-form task-list-item";
-    if (this.state.complete) {
-      sectionClassName += " complete-task";
-    }
-
+    if (this.state.complete) sectionClassName += " complete-task";
     const buttonContent = <i className="material-icons">delete</i>;
-
     return (
       <section className={sectionClassName}>
       <CheckBox
@@ -169,21 +147,6 @@ class TaskListItem extends React.Component {
       </section>
     );
   }
-
 }
 
-const mapStateToProps = (state) => {
-  return {
-    errors: state.pixels.errors,
-    loading: state.loading.tasksLoading,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return  {
-    updateTask: (task) => dispatch(updateTask(task)),
-    deleteTask: (taskId) => dispatch(deleteTask(taskId)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(TaskListItem);
+export default TaskListItem;

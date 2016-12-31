@@ -1,6 +1,6 @@
 import React from 'react';
-import TaskListItem from './task_list_item';
-import { Spinner3 } from '../spinners/spinners';
+import TaskListItem from './task_list_item_container';
+import TaskForm from './task_form';
 
 class Tasks extends React.Component {
   constructor(props) {
@@ -142,7 +142,6 @@ class Tasks extends React.Component {
           taskIndex={idx}
           updateNewTask={this.updateTask}/>);
     });
-
     return (
       <ul className="task-list">
         {taskListItems}
@@ -150,38 +149,15 @@ class Tasks extends React.Component {
     );
   }
 
-  renderForm() {
-    if (this.state.loading) {
-      return (
-        <section className="new-task-form">
-          <Spinner3 />
-        </section>
-      );
-    }
-    return (
-      <section className="new-task-form">
-        <input className="task-complete" type="checkbox" disabled />
-        <input
-          className="new-task-body"
-          type="text"
-          placeholder="Add a task"
-          value={this.state.body}
-          onChange={this.handleChange} />
-        <button
-          className="add-task-button"
-          onClick={this.handleSubmit}>Add</button>
-      </section>
-    );
-  }
-
   render() {
-
-
     return (
       <section className="tasks-container">
         <h2>Tasks ({this.state.tasksComplete}/{this.state.totalTasks})</h2>
         {this.renderTaskList()}
-        {this.renderForm()}
+        <TaskForm
+          body={this.state.body}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}/>
       </section>
     );
   }
