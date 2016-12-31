@@ -108,11 +108,13 @@ class SessionForm extends React.Component {
   }
 
   guestLogin() {
-    if (this.props.formType === 'login'){
-      return (<button className='guest-button' onClick={this.handleGuestLogin}>Guest Login</button>);
-    } else {
-      return null;
-    }
+    let guestContent = "Try As Guest!";
+    if (this.props.formType === 'login') guestContent = "Guest Login";
+    return (
+      <button className='guest-button' onClick={this.handleGuestLogin}>
+        {guestContent}
+      </button>
+    );
   }
 
   isErrored(inputName) {

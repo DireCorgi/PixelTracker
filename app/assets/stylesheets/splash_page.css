@@ -1,7 +1,7 @@
 
 .splash-page {
   position: relative;
-  background: #3187e0;
+  background: #b2d1f1;
   border-top: 1px solid #7fb5ed;
   border-bottom: 1px solid #7fb5ed;
   overflow: hidden;
@@ -23,14 +23,17 @@ img.blur {
   filter: blur(2.7px);
 }
 
+.splash-center-box {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+}
 
 .splash-page-text {
   display: block;
-  position: absolute;
-  left: 50%;
-  top: 50%;
   color: #fff;
-  transform: translate(-50%, -50%);
   font-size: 32px;
   font-weight: 400;
   text-align: center;
@@ -38,10 +41,6 @@ img.blur {
   width: 100%;
   text-shadow: 0 0 20px black;
   transition: opacity 0.7s;
-}
-
-.fade {
-  opacity: 0;
 }
 
 .splash-page-footer {
@@ -63,7 +62,12 @@ img.blur {
   font-weight: 400;
 }
 
-.splash-footer-container > a{
+.splash-footer-logo > a:hover {
+  text-decoration: underline;
+  color: #899eb3;
+}
+
+.splash-footer-container > a {
   float: right;
   display: block;
   font-size: 12px;
@@ -79,4 +83,25 @@ img.blur {
 .splash-footer-container {
   max-width: 860px;
   margin: 0 auto;
+}
+
+.splash-get-started-button {
+  display: block;
+  width: 120px;
+  color: #fff;
+  text-align: center;
+  margin: 30px auto;
+  padding: 8px 10px;
+  font-size: 18px;
+  background: #F39E40;
+  border-radius: 3px;
+  font-weight: 300;
+}
+
+.splash-get-started-button:hover {
+  background: #EE7D00;
+}
+
+.fade {
+  opacity: 0;
 }
