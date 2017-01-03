@@ -6,6 +6,7 @@ const FilterListItem = (props) => {
   if (props.sidebar) liClassName += ' selected-filter';
   return (
     <li
+      id={props.filterName}
       onClick={props.handleFilter(props.filterName)}
       className={liClassName}>
       <span className={spanClassName}></span>

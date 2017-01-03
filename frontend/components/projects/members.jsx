@@ -49,7 +49,7 @@ class Members extends React.Component {
     const errors = this.props.errors.map((error, idx)=>(<li key={idx}>{error}</li>));
 
     return (
-      <button onClick={this.openForm}>
+      <button id="member-button" onClick={this.openForm}>
         <Modal
         isOpen={this.state.formOpen}
         onRequestClose={this.closeForm}

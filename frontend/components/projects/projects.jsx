@@ -28,7 +28,6 @@ class Projects extends React.Component {
           <h1>My Projects</h1>
           <ProjectFormContainer />
         </header>
-
         {this.renderProjects()}
       </section>
     );

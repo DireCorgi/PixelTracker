@@ -70,12 +70,12 @@ class Sidebar extends React.Component {
             filterName="newPixel"
             filterContent="New Pixel"
             sidebar={this.props.sidebar["newPixel"]}
-            handleFilter={this.handleFilter}/>
+            handleFilter={this.handleFilter} />
           <FilterListItem
             filterName="current"
             filterContent="Current/Backlog"
             sidebar={this.props.sidebar["current"]}
-            handleFilter={this.handleFilter}/>
+            handleFilter={this.handleFilter} />
           <FilterListItem
             filterName="icebox"
             filterContent="Icebox"

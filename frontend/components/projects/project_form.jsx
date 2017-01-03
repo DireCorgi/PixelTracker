@@ -52,7 +52,7 @@ class ProjectForm extends React.Component {
       projectName = <strong>Project Name: Can't Be Blank</strong>;
     }
     return (
-      <button onClick={this.openForm}>Create Project
+      <button id="project-button" onClick={this.openForm}>Create Project
         <Modal
         isOpen={this.state.formOpen}
         onRequestClose={this.closeForm}
