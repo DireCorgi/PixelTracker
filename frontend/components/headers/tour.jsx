@@ -101,7 +101,7 @@ class Tour extends React.Component {
         },
         {
           title: 'Project Page',
-          text: 'This panel is the Icebox. Any newly created pixels will be placed here. This panel is for any tickets that have not been started nor looked at by anyone. Once someone has delegated the work, these should be moved to the Current/Backlog panel',
+          text: 'This panel is the Icebox. Any newly created pixels will be placed here. This panel is for any tickets that have not been started nor looked at by anyone. Once someone has delegated the work, these should be moved to the Current/Backlog panel.',
           selector: '#Ice',
           position: 'left',
         },
