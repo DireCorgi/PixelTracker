@@ -11,7 +11,7 @@ const ProjectListItem = ({ project }) => {
 
   return (
     <div className={className}>
-      <Link id="project-link" to={projectUrl} >{project.name}</Link>
+      <Link to={projectUrl} >{project.name}</Link>
       <MembersContainer projectId={project.id}/>
     </div>
   );

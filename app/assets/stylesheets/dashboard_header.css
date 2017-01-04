@@ -206,3 +206,69 @@ button.errors-ignore-button:hover {
   color: #fff;
   border: 1px solid #ba3006;
 }
+
+a.tour-link {
+  color: #fcff6f;
+  float: none;
+}
+
+a.tour-link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.tour-group {
+  position: relative;
+  float: left;
+  padding: 2px 10px;
+}
+
+.take-tour {
+  position: absolute;
+  bottom: -150px;
+  right: 0;
+  width: 200px;
+  padding: 10px 20px;
+  background: #598dc6;
+  color: #fff;
+  border-radius: 4px;
+  z-index: 5;
+  font-size: 16px;
+  text-transform: none;
+}
+
+.take-tour:after {
+  content: "";
+  position: absolute;
+  top: -8px;
+  right: 38px;
+  border-top: 0;
+  border-bottom: 12px solid #598dc6;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  z-index: 5;
+}
+
+.tour-hidden {
+  display: none;
+}
+
+.bottom-tour-links {
+  margin-top: 10px;
+}
+
+.bottom-tour-links > button {
+  color: white;
+  text-shadow: 0 0 0;
+  margin: 8px 0;
+  float: right;
+  padding: 0;
+}
+
+#start-tour {
+  float: left;
+  background: #59AC5A;
+  padding: 4px 8px;
+  border-radius: 5px;
+  margin: 4px 0;
+}

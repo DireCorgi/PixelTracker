@@ -8,10 +8,6 @@ class Dashboard extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
-    setTimeout(() => { this.setState({ ready: true }); }, 1000);
-  }
-
   render() {
     const state = this.state;
     return (

@@ -9,7 +9,7 @@ class ProjectList extends React.Component {
     });
 
     return (
-      <section className='project-list'>
+      <section id='project-list' className='project-list'>
         <ul>
           {fullList}
         </ul>

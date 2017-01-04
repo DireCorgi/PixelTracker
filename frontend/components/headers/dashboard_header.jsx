@@ -3,6 +3,7 @@ import { withRouter } from 'react-router';
 import { Link } from 'react-router';
 import ErrorsHeader from './errors_header';
 import Joyride from 'react-joyride';
+import Tour from './tour';
 
 class DashboardHeader extends React.Component {
 
@@ -13,7 +14,7 @@ class DashboardHeader extends React.Component {
       joyrideType: 'continuous',
       ready: false,
       steps: [],
-      userNav: false
+      userNav: false,
     };
 
     this.toggleUserNav = this.toggleUserNav.bind(this);
@@ -21,29 +22,19 @@ class DashboardHeader extends React.Component {
     this.addTooltip = this.addTooltip.bind(this);
     this.startTour = this.startTour.bind(this);
     this.clearSteps = this.clearSteps.bind(this);
-    this.addProjectSteps = this.addProjectSteps.bind(this);
   }
 
   componentDidMount() {
-    setTimeout(() => { this.setState({ ready: true }); }, 1000);
-    if (this.props.headerType === 'default') {
-      this.addProjectSteps();
-    } else if (this.props.headerType === "project detail") {
-      this.addPixelSteps();
+    if (this.props.currentUser.username === 'guest' && !this.props.tooltip) {
+      this.setState({ openPopup: true });
+      this.props.changeHeader(this.props.headerType, true);
     }
+    this.setState({ ready: true });
   }
 
   componentWillReceiveProps(newProps) {
     if(newProps.currentUser === null) {
       this.props.router.push("/");
-    }
-    if(this.props.headerType !== newProps.headerType) {
-      this.clearSteps();
-      if (newProps.headerType === 'default') {
-        this.addProjectSteps();
-      } else if (newProps.headerType === "project detail") {
-        this.addPixelSteps();
-      }
     }
   }
 
@@ -67,48 +58,6 @@ class DashboardHeader extends React.Component {
 
   addTooltip(data) {
     this.joyride.addTooltip(data);
-  }
-
-  addProjectSteps() {
-    this.addSteps([
-        {
-          title: 'Dashboard',
-          text: 'On the main page you can create a new project',
-          selector: '#project-button',
-          position: 'left',
-        },
-        {
-          title: 'Dashboard',
-          text: 'After you create a project you can manage the members by clicking on the member icon',
-          selector: '#member-button',
-          position: 'left',
-        },
-        {
-          title: 'Dashboard',
-          text: 'You can navigate to the main project page by clicking the project name',
-          selector: '#project-link',
-          position: 'right',
-        }
-      ]
-    );
-  }
-
-  addPixelSteps() {
-    this.addSteps([
-        {
-          title: 'Project Page',
-          text: 'You can edit your members here',
-          selector: '#member-button',
-          position: 'right',
-        },
-        {
-          title: 'Project Page',
-          text: 'Create a new pixel by clicking this button',
-          selector: '#newPixel',
-          position: 'right',
-        }
-      ]
-    );
   }
 
   addSteps(steps) {
@@ -135,13 +84,11 @@ class DashboardHeader extends React.Component {
   }
 
   startTour() {
+    this.setState({ openPopup: false });
     this.joyride.reset();
     this.joyride.start(true);
   }
 
-  callback(options) {
-
-  }
 
   render() {
     let user = this.props.currentUser;
@@ -165,14 +112,13 @@ class DashboardHeader extends React.Component {
            locale={{
              back: (<span className="black-button">Back</span>),
              close: (<span className="black-button">Close</span>),
-             last: (<span>Last</span>),
+             last: (<span>Finish</span>),
              next: (<span>Next</span>),
              skip: (<span className="black-button">Skip</span>)
            }}
            showSkipButton={true}
            showStepsProgress={true}
-           showOverlay={state.joyrideOverlay}
-           callback={this.callback} />
+           showOverlay={state.joyrideOverlay} />
         <h1 className="header-logo-light">
           <Link to="/dashboard">
             <img src={ window.lightLogoPath } alt="icon-light" />
@@ -181,8 +127,17 @@ class DashboardHeader extends React.Component {
         </h1>
         {errorsHeader}
         <nav className="right-nav-list-dashboard group">
+          <div className="tour-group">
+            <a onClick={this.startTour} className="tour-link">Take a Tour</a>
+            <Tour
+            headerType={this.props.headerType}
+            addSteps={this.addSteps}
+            clearSteps={this.clearSteps}
+            startTour={this.startTour}
+            currentUser={this.props.currentUser}
+            openPopup={this.state.openPopup}/>
+          </div>
           <Link to="/dashboard">Dashboard</Link>
-          <a onClick={this.startTour}>Tour</a>
           <div className="username-header" onClick={this.toggleUserNav}>{ user.username }
             <nav className={ hiddenUsernameClass }>
               <li onClick={this.props.logout}>Log Out</li>

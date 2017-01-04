@@ -73,11 +73,11 @@ class PixelPanel extends React.Component {
         dragError={this.props.dragError}
         areaType={this.props.panelName}/>
     );
-
+    const id = this.props.panelName.substring(0,3);
     return (
-      <article className="panel-container">
+      <article className="panel-container" id={id}>
         <header className="panel-header">
-          <button onClick={this.handleClick}></button>
+          <button id='close-button' onClick={this.handleClick}></button>
           { this.props.panelName }
         </header>
         {this.renderPixelForm()}
