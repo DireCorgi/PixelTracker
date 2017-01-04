@@ -134,7 +134,7 @@ class Tour extends React.Component {
     if(this.state.open) className = "take-tour";
     return(
       <section className={className}>
-        Welcome {this.props.currentUser.username}! Take a tour to learn more about Pixel Tracker.
+        Welcome Guest! Take a tour to learn more about Pixel Tracker.
         <nav className="bottom-tour-links group">
           <button onClick={this.props.startTour} id="start-tour">Start Tour</button>
           <button onClick={this.handleClick}>Close</button>
