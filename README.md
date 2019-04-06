@@ -1,5 +1,5 @@
 # Pixel Tracker
-[Pixel Tracker Live](http://www.pixeltracker.org)
+[Pixel Tracker Live](https://pixel-tracker1.herokuapp.com)
 
 Pixel Tracker is a full-stack web application that is a clone of the project management tool Pivotal Tracker. Pixel Tracker uses Ruby on Rails and PostgreSQL as its backend, and React/Redux, utilizing the react-redux library and thunk middleware, on the frontend.   
 
